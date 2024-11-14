@@ -1,0 +1,378 @@
+[
+  {
+    "id_": "43b7f232-b15f-4bc8-bd29-b4b0e3d9fcc3",
+    "text": "# Community Shaping in the Digital Age: A Temporal Fusion Framework for Analyzing Discourse Fragmentation in Online Social Networks"
+  },
+  {
+    "id_": "b4cd3288-b291-4844-b9f0-582aa1869b23",
+    "text": "# 1. Introduction\n\nWhile the term community is often linked to a group sharing a common name or common trait, it more broadly signifies a unified group with shared values or experiences, irrespective of geographical, historical, or locality-based influences. The rise of the internet, especially social media, has transcended geographical boundaries, allowing the formation of diverse online communities based on shared interests.\n\nThe effects of this digital interconnectedness are profound. Research has shown that social media platforms can be instrumental in shaping individual identity and self-discovery, particularly for marginalized groups (Mandel 2019; Villa-Nicholas 2019). For example, students have found validation and connection through online platforms (Tavakolian 2019) and those on the autism spectrum have experienced reduced social isolation (Miller 2019).\n\nHowever, this same anonymity and reach can be weaponized. Social networks have been used to mobilize and disseminate extremist ideologies (Tvardina and Vakizadeh 2019). Online spaces like alt-right communities can normalize violent rhetoric and fuel counter-hegemonic movements (Stodle and Salimsdottir 2019). Understanding the mechanisms behind the formation and evolution of online communities is crucial for policymakers to mitigate potential risks while harnessing the positive potential of these digital spaces.\n\nBuilding on the background implications of online communities in shaping societal discourse, our research delves into the algorithmic identification and analysis of these digital assemblies. By leveraging advancements in machine learning and social network theory, we aim to unravel the intricate web of interactions and shared interests that bind individuals across the vast expanse of cyberspace. This study not only underscores the importance of understanding the dynamics of online communities for both social scientists and policymakers but also provides a methodological blueprint for future research in this burgeoning field.\n\nOur approach's methodological rigor and analytical depth reflect recent advancements in computational social systems, as evidenced by related works in the field (Tabpej et al. 2019). Besides the novel framework we propose, our approach incorporates several novel features:\n\n- Not reliant on predefined metrics; instead, it depends on redefining metrics to centrality measures from social network analysis theories."
+  },
+  {
+    "id_": "0b82f4cc-709d-46c6-84ed-a961942c9720",
+    "text": "# Current Research Framework\n\nand shooinl an abstrant remresentation ok ohat is hammeninl in our nommleq sjstem, oe adomt a more naipe but inkormatipe ammroanh to unnoper deemer insilhtsr"
+  },
+  {
+    "id_": "41ecdcf8-fefa-49e9-b77d-fc44dcfd8948",
+    "text": "# Key Components\n\n- uranularitj¸ ‘ur method alloos kor a kine-lrained pisualization ok nommunitj behapiors, namturinl the nuannes ok interantions and enlalementr\n- Four-lajer ueneralizable Frameoork¸ ge mromose a robust krameoork nonsistinl ok kour lajers that nan be leneralized anross dikkerent sonial media mlatkorms and nommunitj tjmesr\n- Visualization Formation oith Inkormation Fusion¸ ge nombine parious data sournes and pisualization tenhniques to nreate nommrehensipe pisual rempresentations ok nommunitj djnaminsr"
+  },
+  {
+    "id_": "c61be64b-146c-4c8f-9622-26d02e91c678",
+    "text": "# Analysis Framework\n\nIn this mamer, oe mromose a neo analjsis krameoork based on thematin analjsis tunderstandinl the nontent and themes ok disnussions{, interantion djnamins tkonusinl on the strunture ok user interantions and inkormation kloo{, ominion djnamins tinpolpinl the kormation, epolution, and molarization ok ominions{, and struntural insilhts tkonusinl on the operarnhinl nharanteristins ok sonial media disnussions and their broader immlinations{r"
+  },
+  {
+    "id_": "aea74684-5269-40df-9889-011266d8831b",
+    "text": "# Critical Assessments\n\n- ’sers„ enlalement oith tomins\n- ’sers„ enlalement oith inkluential antors\n- ’sers„ reantions to tomins\n- ¨irth, lrooth, and death ok dominant tomins in sonial media\n- }he ratio ok nhanles tenlalement or reantion or lrooth or denline ok tomins in sonial media{\n- iohesipeness ok tomins\n- Polarization thoo diperlent pieos benome more eqtreme as like-minded indipiduals reinkorne eanh other’s belieks{\n- velmentation tkormation ok dikkerent lroums around smenikin tomins{"
+  },
+  {
+    "id_": "e0eb35d2-31cc-41b4-ad24-b9edb621ce38",
+    "text": "# Novel Framework Introduction\n\n‘ur researnh introdunes a nopel krameoork kor identikjinl online nommunities on sonial media mlatkormsr }his krameoork leperales manhine learninl nlassikination models to analjze user mosts and interantions, repealinl underljinl lroum strunturesr }hese lroums are then pisualized throulh sonial netoork analjsis, mropidinl insilhts into their nommosition and djnaminsr }he innopatipe intelration ok teqt nlassikination and sonial netoork analjsis in this krameoork remresents a silnikinant nontribution to the kield, enablinl more ekkentipe identikination and understandinl ok online nommunitiesr"
+  },
+  {
+    "id_": "1e31d2df-1c90-4061-ad5a-5b29f99762e2",
+    "text": "# Temporal Visualization Method\n\nAdditionallj, oe hape depelomed a temmoral pisualization method to remresent the nhanles in these nommunities oper time, mropidinl a djnamin pieo ok their epolutionr ge introdune kourteen kej elements deriped krom the strunture and djnamins ok online sonial media, ohinh ennamsulate the insilhts eqmented krom analjzinl sonial struntures and djnaminsr"
+  },
+  {
+    "id_": "3e7145c6-dee5-4036-8294-00eeb6f93c64",
+    "text": "# Analysis of Results\n\nThese elements are used to analyze the results of combining text and network data. Furthermore, we developed a case study using real-like data to demonstrate the maintainable examination of our framework in analyzing the formation and sharing of online communities."
+  },
+  {
+    "id_": "4a7b8830-ed81-4000-8a0d-40c0c15e803d",
+    "text": "# 1. Literature Review"
+  },
+  {
+    "id_": "fbce9cf8-81a3-4fb7-9a87-cd6a6fbbc42a",
+    "text": "# 1.1. Toxic Classification\n\nWithin the field of Natural Language Processing (NLP), a core task lies in text classification – the process of assigning predetermined labels to textual data, enabling machines to interpret and organize unstructured information. This process has become increasingly pivotal with the growth of social media content, which presents unique challenges due to its informal language, brevity, and context-sensitive nuances. Recent studies have focused on enhancing classification accuracy by adapting models to understand social media texts' informal nature better. Jotikabukkana et al. proposed an improved trained text model specifically for social media content, which shows promising results in accurately classifying such texts.\n\nJotikabukkana et al. also explored sentiment analysis in social media, evolving from simple opinion mining to complex examinations that can gauge public sentiment on a broad spectrum of topics. Employing deep neural networks for sentiment analysis has significantly improved the ability to understand and interpret the past and present data generated on social platforms. This advancement allows for a more nuanced understanding of public sentiment, enabling analyses ranging from market analysis to political sentiment tracking.\n\nMoreover, integrating sentiment analysis with systematic literature reviews in social media has provided a new dimension to understanding public opinion and its evolution over time. This integration allows researchers to sift through massive datasets to identify prevailing sentiments and their shifts, offering invaluable insights into public sentiment and reaction to various stimuli (TDaoei et al.). Notably, the evolution from basic models to sophisticated architectures like Convolutional Neural Networks (CNNs) and Long Short-Term Memory (LSTM) networks has been instrumental in addressing complex linguistic structures and context-dependent interpretations inherent in textual data (Tahn, Plaisant, and Shneiderman).\n\nIn recent years, deep learning models have emerged as the preferred automated methods for text classification, owing to their exceptional performance and the elimination of complex manual feature extraction. These models leverage embedding techniques to transform text into meaningful, continuous feature vectors, which are learned through neural networks (Minaee et al.). Among the prominent contextual embedding models, ELMo (Peters et al.) utilizes a three-layer bidirectional long short-term memory (LSTM) network."
+  },
+  {
+    "id_": "6b7e4d18-612d-42f3-a1f3-cf1ab819f536",
+    "text": "# Current Trends in Social Media Research"
+  },
+  {
+    "id_": "c6a56479-fcd5-4294-91d4-b122fe4f56e6",
+    "text": "# 1. Introduction\n\nFollowing this, recent developments in the field of natural language processing (NLP) have led to the emergence of a bidirectional transformer model, trained on diverse datasets for various natural language processing tasks, including text classification. These advancements underscore a paradigm shift towards models that encapsulate both semantic and syntactic nuances of language, thereby enhancing the granularity and accuracy of text classification."
+  },
+  {
+    "id_": "b78cfbb3-4770-4ad0-a596-178ecdf49b53",
+    "text": "# 2. Social Networks\n\nThe dynamics of social networks present a rich landscape for analyzing the multifaceted interactions and behaviors within digital communities. The advent of sophisticated visualization and analytical tools has significantly augmented our understanding of these networks, transcending beyond mere structural analysis to unravel temporal patterns and evolutionary trajectories. In this realm, the integration of temporal analysis with network visualization opens new avenues for examining organizing roots, community formation, and the ebb and flow of influence amongst network entities. Such insights are invaluable for deciphering the underlying mechanisms driving social interactions and the dissemination of information across digital platforms. A crucial assessment of network analysis lies in the ability to visually represent the network's structure and identify key elements like hubs or communities."
+  },
+  {
+    "id_": "3c425f10-9aaa-4a56-984c-e678954a77f0",
+    "text": "# 3. Research on Twitter Dynamics\n\nThe inherent social dynamics of Twitter have consistently attracted researchers seeking to analyze the conversations and perceptions that arise on the social media platform. The majority of these researches focus on the complex interplay between online discussions and real-world circumstances. For instance, Morelli et al. examined how controversial online circumstances can spark collective mobilization - the extent to which communities express dislike towards each other - in online social networks, and how counter-narratives by influential actors might mitigate this phenomenon. Additionally, other researchers proposed a framework for mining community-specific influence in microblogging networks, aiding in the extraction and analysis of prevalent themes. Furthermore, some utilized social network analysis to delve into political polarization on Twitter, examining the relationships and interactions among users with differing political views."
+  },
+  {
+    "id_": "b6a3997e-74ad-4dd1-a321-38e75364a953",
+    "text": "# 4. Frameworks for Analyzing Social Media Data\n\nRecent advancements in social media research have increasingly focused on integrating both user-generated content and user interactions to capture the complex dynamics of online communities. Darlin et al. introduced a framework that examines social media use during disasters, highlighting the role of socioeconomic factors and geographical location in shaping user interactions."
+  },
+  {
+    "id_": "b98da6da-e36b-4244-9f6d-2d71c8cc9996",
+    "text": "# Social Media Usage Patterns During Hurricanes\n\nDarlin, Fan, and Mostakapi their framework reveals significant digital divides that affect information access and reliability mentions, emphasizing the need for equitable resilience in disaster response efforts. Similarly, Fan et al. developed a framework to investigate the discussion patterns of situational information on social media, distinguishing between the roles of regular users and influential users in spreading information. Fan et al. their study on hurricane surge demonstrated that early intervention by hub users significantly boosts the speed and magnitude of information dissemination, providing essential strategies for improving emergency response through social media."
+  },
+  {
+    "id_": "902d3979-aacc-455e-888b-0e0b9f9eeeef",
+    "text": "# Mobile Content Frameworks\n\nIn the realm of mobile content, frameworks such as JoiFl, presented by Antelmi et al., offer real-time monitoring and analysis of mobile discourse on platforms like Twitter. JoiFl captures and visualizes data related to followers, tweets, retweets, and mentions, providing insights into mobile strategies and public sentiment during elections. Antelmi et al. their framework has been applied to analyze mobile trends and election results, demonstrating its utility in mobile analysis and forecasting. Tabpej et al. emphasized the role of social media in political polarization and discourse fragmentation, highlighting the need for comprehensive frameworks that can capture the nuances of online political interactions and their implications for public opinion. Tabpej et al. their work underscores the importance of understanding how social media shapes political discourse and influences voter behavior."
+  },
+  {
+    "id_": "6ff8db97-0f9c-47cd-8944-ac922f0ce408",
+    "text": "# Disaster Response Frameworks\n\nFrameworks for disaster response have also been developed to utilize social media for real-time situational awareness and infrastructure resilience. Fan et al. proposed a systematic framework for detecting infrastructure-related topics during disasters using social sensing and text mining. Their framework integrates keyword search, text lemmatization, P@v talling, TF-IDF vectorization, LDA topic modeling, and K-means clustering to analyze tweets related to infrastructure. Applied to hurricane surge, the framework effectively summarized and ranked infrastructure-related topics, providing actionable insights for improving infrastructure resilience and disaster response strategies. Fan et al. Rajmut et al. modeled inter-organizational communication networks on social media during disasters, using hurricane surge as a case study. Rajmut et al. identified the roles of different organizations in disseminating situational information and highlighted the importance of government and non-government collaboration in disaster response efforts."
+  },
+  {
+    "id_": "66665a2e-d3ea-4c66-a3d1-b19a0367d4ba",
+    "text": "# Interdisciplinary Approaches\n\nMoreover, Zhan et al. reviewed the use of social media for mobilizing information and warning during disasters, proposing an interdisciplinary approach that leverages the marginalization."
+  },
+  {
+    "id_": "9008e378-5c18-415a-9e44-31125b14d73b",
+    "text": "# Nature of Social Media to Enhance Disaster Management Strategies\n\nThanal et al. identify key functions such as acquiring situational awareness, supporting peer-to-peer help activities, and enabling disaster management agencies to hear from the public. This comprehensive approach underscores the potential of social media to improve communication and coordination during emergencies. Additionally, the work of T'imizzi et al. on integrating machine learning and social network analysis to understand social media dynamics further highlights the need for frameworks that can generalize across different domains and provide deeper insights into the impact of real-world circumstances on social media interactions."
+  },
+  {
+    "id_": "c2d34770-0c24-4afc-b774-b1f7a6744074",
+    "text": "# Systems Thinking\n\nAccording to T'Arnold and Gade, systems thinking is defined as a set of generalist analytical skills used to enhance the ability to identify and comprehend systems, predict their behaviors, and devise modifications to achieve desired outcomes. This definition highlights the significance of understanding the interconnections within a system and the dynamic behaviors that result from these interactions. Numerous studies in the literature have employed this methodology and measurement to address various problems.\n\nFor instance, T'Kalantari et al. emphasize the importance of modeling human interactions and information diffusion within different collaboration networks. By employing a dynamic operational community detection algorithm, researchers can identify and track communities and their leaders over time, allowing for a more comprehensive understanding of network dynamics and information diffusion, leading to better decision-making and optimization strategies.\n\nIn management systems, T'Maleki, Yalhoubi, and Fander focus on analyzing the supply chain not as isolated components but as a cohesive system. Their methodology involves developing mathematical models to simulate real-world scenarios and examining the effects of different variables such as tier, organizing levels, and sales efforts on the supply chain's performance.\n\nIn engineering systems, T'Amini, Marsooli, and Neshat address the complex problem of calibrating pelletization drill mechanisms in coastal environments. Similarly, T'Neshat et al. adopt a holistic, interconnected, adaptive, and multi-objective approach to optimize hybrid power generation systems. Even in cutting-edge research utilizing quantum computing-inspired optimization, the same systems thinking approach is evident.\n\nT'Amani and Karlarian, along with Amani, Mahroo, and Karlarian, indicate that there is more research with this methodology. T'Khameneh et al., Perez-Pereda, Krstikj, and Ramirez-Marquez show that this methodology enables researchers to analyze the system in detail and understand the behavior of its constituent components while also taking a holistic view to comprehend the system's behavior over time within the context of larger systems. This approach has been instrumental in shaping our framework."
+  },
+  {
+    "id_": "c04c894a-b52d-4fda-b69c-38a1edb12c0e",
+    "text": "# Summary of Research Contributions\n\nIn summary, our literature review reveals that recent frameworks increasingly integrate the analysis of both user-generated content and interactions networks of replies, retweets, users, etc. These frameworks vary in focus, with some emphasizing specific domains like political tweets or disaster-related tweets, others examining user interactions based on shared or divergent ideas, and some analyzing non-conversation networks and interactions in response to controversial tweets. Additionally, certain studies employ redesigned network measures to represent the dynamics of complex systems. However, there remains a clear need for a generalizable framework that leverages fundamental social science theories to present the dynamics of discourse interactions and elements and to elucidate the impact of real-world circumstances on social media, as well as the influence of social interactions on societal behavior. Our research aims to fill these gaps by introducing a comprehensive framework focused on major discourses and discourse element analysis. This approach offers insights into the direction and intensity of the impact of real-life circumstances on society, reveals how people react to different discourse elements, and uncovers patterns of growth, decline, cohesion, and polarization within these elements.\n\nThis study aims to contribute to urban sociology and community studies by examining the relationship between online discourse, particularly hate speech, and urban social dynamics. By analyzing social media data from New York City, San Francisco, and Seattle during significant events, we explore how online communities interact with offline urban social structures. Our approach, combining text classification and social network analysis, offers a comprehensive view of community formation in the digital age. By focusing on online hate speech in urban contexts, we provide insights into how digital interactions may reflect and potentially influence urban environments. This research may have implications for understanding contemporary urban communities and could inform discussions on urban decision-making and community engagement in increasingly digitally-connected cities."
+  },
+  {
+    "id_": "cdb19399-632d-4914-b8db-d3fa7e03e1d3",
+    "text": "# Key Contributions of Our Research\n\n- Designing an Integrated Framework: We designed a novel framework that combines text classification with social network analysis to effectively identify and understand online communities.\n- Temporal Visualization of Community Dynamics: We created a method for temporal visualization to capture and represent the evolution of online communities over time.\n- Introducing Key Analytical Elements: Our research introduced fourteen critical elements derived from the structure and dynamics of online social media, providing comprehensive insights into social interactions and discourse patterns."
+  },
+  {
+    "id_": "8598a23a-eebc-41b3-b72e-10c8e18bd8bd",
+    "text": "# Ftci ittting Discourss Frtgmsntttion Ant ysis\n\nge established a krameoork that enables denision-makers to identikj mrimarj disnourses and their kralments, enhanninl the analjsis ok disnourse kralmentation and its sonial immlinationsr\n\nzonducting t ust - ifs ztss Study: ge ammlied our krameoork to a nase studj usinl real-oorld data, demonstratinl its ekkentipeness in analjzinl the kormation and depelomment ok online nommunitiesr\n\n‘ur oork nontributes silnikinantlj to the literature bj mropidinl a robust tool kor analjzinl the nommleq djnamins ok online disnourses, therebj okkerinl paluable insilhts into the intermlaj betoeen sonial media interantions and sonietal behapiorsr"
+  },
+  {
+    "id_": "221f8e58-65c6-4a66-91eb-f883c5fdffdb",
+    "text": "# 3. Msthodo ogict Frtmswork\n\nThis sention details the methodololinal krameoork emmlojed to inpestilate the kormation and epolution ok nommunities oithin sonial netoorksr }he krameoork, illustrated in Figure 1, nonsists ok kour internonnented nommonents, eanh ennommassinl distinnt mronesses that oill be elaborated umon in the subsequent subsentionsr\n\n|DATA COLECTION|DATA CLASSIFICATION|DATA VISUALIZATION|\n|---|---|---|\n|Define dataset scope: time range, mediageolocation;|Create labeled dataset with desired ciass € 5 similar kind text|Set network specifications: nodes-users, edges- interactions; colors-Iabels|\n|Create automatic scraper for the online platform Collect datal|Train classification model using Iabeled dataset and machine earning Igorithm|Identify connected networks and organize datasets by period|\n|Evaluate model and optimize parameters|Predict labels newdatasetl|Plot network t0 visualize communities emerging online|\n| | |Plot over time understand community bchavior with time|\n\nFigure 1. Conceptual framework developed for understanding community formation"
+  },
+  {
+    "id_": "398fc69b-cb86-4f6a-b470-17f4347b7282",
+    "text": "# APPLICATION\n\n- Thematic Analysi5\n- Interaciion Dynamics\n- Opinion Dynamics\n- Structural Insights"
+  },
+  {
+    "id_": "3684b45d-1258-4681-a404-3fc48d8dfefd",
+    "text": "# Understand discourses and Interaciions"
+  },
+  {
+    "id_": "ce7b6745-fa66-41f0-af2e-0c77d7154cba",
+    "text": "# Discourse fragmentalionAnalysi5"
+  },
+  {
+    "id_": "2280d5cb-309b-420c-903e-a4a93704ae68",
+    "text": "# 3.1.Dttt zo sction\n\nRobust data nollention korms the nornerstone ok data-dripen researnhr In this studj, the konus is on understandinl the temmoral epolution ok online nommunities, ohinh nenessitates data that namtures nhanle oper timer }herekore, the nollented dataset must innormorate timestamms indinatinl the mrenise moment ok data nreationr"
+  },
+  {
+    "id_": "f7a4f1c8-e0cb-49f9-8b2f-aacd38196cf2",
+    "text": "# A nommunitj, oithin this nonteqt, is dekined as an allrelate ok indipidual sonial media users and their nollentipe antionsr\n\nDemartinl krom mrior studies that emmhasized lroum behapior, this researnh aims to identikj indipidual users oithin their smenikin leolramhin nonteqtsr ionsequentlj, lonation inkormation is a nritinal nommonent ok the datasetr }his konus alloos kor the inpestilation ok hoo online nommunities korm and depelom around silnikinant nirnumstannes, oith nities serpinl as the mrimarj lens kor obserpationr"
+  },
+  {
+    "id_": "97e93190-7a5c-4af3-96f6-714af97c8e61",
+    "text": "# Follooinl the dekinition ok the dataset„s kej attributes and the establishment ok the studj„s snome, an automated mronedure kor data nollention is immlementedr\n\nThis mroness is depelomed to lather }oitter toeets based on the kollooinl nriteria¸\n\n- vtartinl oith a list ok leolramhinal areas 𝐴 , eanh area 𝑎! is dekined bj querjinl motential neilhborhoods and aliases oithin that arear For instanne, ik 𝑎\" = “´os Anleles”, the norresmondinl querj kor 𝑎\" oould be¸ t“´os Anleles”{ AND tt“´os Anleles iountj”{ ‘R t“‘ranle iountj”{ ‘R t“Riperside iountj”{ ‘R t“Ventura iountj”{ ‘R t“´onl ¨eanh”{ ‘R etnr{r\n- ghen an nirnumstanne 𝑠# takes mlane on date 𝑡, the data nollention meriod smans krom 𝑡− Δ$ to 𝑡 + Δ%, ohere ∆ ranles betoeen y and zx dajsr\n- Additional kilters nan be ammlied to minimize irrelepant data; kor eqammle, ik all leolramhinal areas in 𝐴 are in the ’nited vtates, the querj oould innclude¸ AND tnountrj¸ “’v”{ AND tlanluale¸ “en”{r\n- Eanh data entrj nenessitates the innlusion ok essential attributes sunh as hnreated_ath to denote the mrenise time ok toeet mublination in ’niq kormat, huser_idh to identikj the author ok the toeet, the htoeeth itselk to namture the teqtual nontent ok the most, and a unique hidh to serpe as a distinntipe identikierr\n\nDue to the sheer polume ok dailj sonial media antipitj, namturinl all mosts kor a lipen nitj oithin a dekined timekrame is inkeasible, martinularlj kor denselj momulated areasr vammle size selention must nonsider the lepel ok enlalement oithin the nitj durinl the nirnumstanne under inpestilationr\n\nPrepious studies hape okten utilized sammles ok ammroqimatelj wx,xxx mosts mer oeek, ohinh alilns oith the doonload limitations immosed bj manj momular sonial media APIsr\n\n}he immortanne ok sammle size is ammlikied in the “Data Visualization” mhase ok this researnh, as it direntlj immants the nonstruntion ok the sonial netoork, ohinh is demendent on user interantionsr Ik the sammle size is too small, resultinl in insukkinient interantions, it maj not adequatelj rempresent the djnamin nhanles onnurrinl oithin the nommunitj, nenessitatinl kurther data nollention iterationsr\n\nA more in-demth disnussion ok netoork nreation is mresented in subsequent sentionsr"
+  },
+  {
+    "id_": "fa9373a7-18b5-4362-bc5d-d435510d1d97",
+    "text": "# 3. Classification\n\nClassification, a cornerstone of Natural Language Processing (NLP), aims to categorize textual data into predefined classes or labels. This supervised learning process necessitates a carefully constructed training dataset that accurately represents the data to be classified. Ideally, this dataset mirrors the structure and content of the target data, with each observation meticulously labeled by human experts or through crowdsourced efforts. However, advancements in machine learning have led to the availability of numerous labeled datasets, selecting appropriate training data is paramount. Utilizing unsuitable training sets can result in inconsistent, misleading, or biased outcomes.\n\nMachine learning models are not without limitations, and researchers must carefully consider these constraints. The discussion section will address the ethical implications associated with these limitations. In the present context, several crucial factors must be considered when selecting or constructing training datasets for NLP tasks:\n\n- Structural Alignment: The textual structure of the training data should closely resemble the structure of the data to be classified.\n- Linguistic Consistency: Maintaining a consistent language throughout the process is essential. While automating translation tools may be necessary for less common languages, they can introduce errors, particularly when dealing with slang and ephemeral expressions.\n- Contextual Relevance: The context in which the data was generated should be thoroughly understood and evaluated for its applicability to the current task.\n- Source Reliability: When utilizing external training datasets, researchers must ensure the reliability of the source and have a clear understanding of the mechanisms employed for the labeling process.\n\nWhile not exhaustive, these considerations form a foundation for data reliability. In the context of this framework, classes should represent distinct groups identifiable within an online community, such as political affiliations or topics of interest.\n\nOnce a suitable training dataset is obtained, the next step is to select an optimal classification model. The literature highlights the superior performance of deep learning models over traditional machine learning methods in numerous text classification tasks. Summesnu and Romero (year) suggest that even within the realm of deep learning, model performance can significantly depend on the specific task and the nature of the data. To determine the most suitable model, an empirical approach is adopted, involving..."
+  },
+  {
+    "id_": "d474368b-1905-455e-b671-74ec3a57f473",
+    "text": "# Evaluating Several Models and Selecting the One with the Best Performance According to the Metrics Used Based on the Tasks\n\nThis study addresses a multi-class text classification problem, for which neural network models like \"Long Short-Term Memory\" (LSTM) (Hochreiter and Schmidhuber, 1997; Summers and Romero, 2018) and transformer-based models like \"BERT\" (Devlin et al., 2018; González-Ibáñez and Garrido-Mernhán, 2020) have demonstrated remarkable effectiveness.\n\nBefore fitting the data to a chosen model, preprocessing is necessary. For both LSTM and BERT, this involves cleaning the data, removing links, punctuation, numbers, and stop words, lemmatizing the text, and creating a matrix of word embeddings. The labeled dataset is then partitioned into an 80% training set and a 20% testing set, with classes serving as target variables and word embeddings as features. Models are trained on the training set and then evaluated on the testing set to generate predictions. The accuracy of the model is assessed by comparing the predicted classes to the original classes. This process is iterative, with model parameters adjusted and the model retrained until optimal accuracy is achieved. The model with the highest accuracy is then selected to classify the unlabeled data, assigning a class to each social media post. The final output is the original dataset augmented with the predicted class target variables. The set of assigned classes in the dataset is denoted as 𝐶 = {𝑐₁, 𝑐₂, 𝑐₃, . . . , 𝑐ₖ}."
+  },
+  {
+    "id_": "e9fd96d9-5978-4b2f-832c-6480654853ec",
+    "text": "# 3.3. Visualization Methodology\n\nTo visually represent the dynamics of user interactions, a subset of the dataset, denoted as 𝑊{𝑎, 𝑠₁}, is transformed into a graph structure. In this graphical representation, users are represented as nodes, and the interactions between them (replies, retweets, and mentions) are denoted as edges. Each post's assigned class remains associated with the user node that originated the post, and a distinct color is used to visually distinguish each class.\n\nThe graph 𝐺, representing a specific area during a particular circumstance, is formally defined as 𝐺{𝑎, 𝑠₁} = (𝑈, 𝑁, 𝐶), where:\n\n- 𝑁 denotes the set of interactions, 𝑁 = {𝑛₁, 𝑛₂, . . . , 𝑛ₖ}, with 𝑖 = (𝑢₁, 𝑢₂) ∈ 𝑊{𝑎, 𝑠₁};\n- 𝐶 signifies the set of classes for each \"sender\" node 𝑢₁ and the corresponding target class, 𝐶 = (𝑢₁, 𝑐), where 𝑢₁ ∈ 𝑈 and 𝑐 ∈ 𝐶.\n\nNodes acting as \"receivers\" are not assigned classes. If a node appears as a \"sender\" in multiple interactions, it..."
+  },
+  {
+    "id_": "b229c5db-720f-42b6-b41c-70c27b913cac",
+    "text": "# Online Sentiment Analysis\n\nThe expression of emotions and opinions on social media platforms, often referred to as “online sentiment,” is a widespread phenomenon. For these individual expressions to significantly impact a community, they typically require engagement or interaction from other users. In this context, it is noted that most posts that fail to generate any interaction are unlikely to play a substantial role in shaping community dynamics.\n\nTo enhance the clarity and interpretability of the network visualization, we exclude nodes that lack labels, as these represent users who have not actively participated in the discourse. This filtering process reduces noise and focuses the analysis on those users who are actively contributing to the formation and evolution of online communities.\n\nFigure 2 illustrates a social network graph where distinct communities are clustered and differentiated by color. While larger communities are readily apparent, smaller groups and even isolated individuals can be observed within the broader network structure. This is due to the fact that classification is based on post content rather than solely on interaction patterns. Notably, Figure 2 reveals the presence of a small blue group nested within a larger green group, illustrating the concept of a community (small hub) existing within a larger community (bigger hub).\n\nSocial media is often a platform for individuals to express emotions and opinions. To influence the community, posts should generate interactions. Thus, posts without interactions are filtered out to enhance visualization and reduce noise. Figure 2 illustrates a social network with clustered communities represented by different colors. Larger groups represent distinct communities, but individuals or small groups are also visible, classified by post content rather than group interaction. This is seen in the small blue group within the larger green group at the bottom right of Figure 2. The blue group (small hub) is a community within a community (larger hub)."
+  },
+  {
+    "id_": "2afbe539-a90d-4cd1-b164-b47a497d72aa",
+    "text": "# Community-oriented Social Network"
+  },
+  {
+    "id_": "3d606dc1-a40b-45ae-aa1c-1638f9fc2c77",
+    "text": "# Communities\n\n- Community A\n- Community B\n- Community C\n- Community D\n- Community E\n- Community F"
+  },
+  {
+    "id_": "2666b1ea-ae59-431f-8148-486a8c0025e1",
+    "text": "# Dataset Subset\n\nThe dataset subset 𝑊{𝑎, 𝑠#} is drawn from the data gathered for each area 𝑎 over a specified time frame 𝑡, where 𝑡 falls within the range (𝑡start, 𝑡end) indicating the period 𝑑 days before and after the circumstance 𝑡r. This method is applied consistently across all circumstances and areas, resulting in around 2𝑑 + 1 spatial visual representations of these communities over time, arranging these visualizations chronologically and justamosinl them according to circumstance, area, and time, to construct a comprehensive understanding of the dynamic formation and evolution of these communities within a broader context."
+  },
+  {
+    "id_": "68a8fdb7-7c4f-4c01-90c8-b9c2a56cbc9d",
+    "text": "# 3.4. Discours Fragmentation Analysis\n\nSeparating Twitter data offers insights into the dynamics and characteristics of social media. This analysis identifies fourteen key elements that can highlight broader societal trends and insights to provide a structured and theoretically grounded understanding. These elements are categorized into four main groups: Thematic Analysis, Interaction Dynamics, Opinion Dynamics, and Structural Insights."
+  },
+  {
+    "id_": "af800f61-d446-4ad3-ae89-fd85b9d5a09d",
+    "text": "# 3.4.1. Thematic Analysis\n\nThe thematic analysis involves understanding the content and themes of discussions, reflecting the central topics driving engagement and societal concern.\n\n- Content Focus: Identifying the central themes or topics of discussions allows us to understand the primary drivers of engagement and attention on Twitter. This element focuses on what people are talking about and how these topics gain traction, serving as a mirror to contemporary societal interests.\n- Sociocultural Discourse Themes: Identifying overarching themes and topics driving public discourse provides insights into the focal points of societal concern and interest. This element helps to map out the larger conversations shaping public opinion and societal priorities.\n- Cultural and Societal Trends: Examining how cultural shifts and societal trends manifest in social media discussions provides a reflection of changing societal values and norms. This analysis can reveal deeper cultural transformations and emerging societal narratives."
+  },
+  {
+    "id_": "5b216965-609e-4e90-94f9-7be65daaed0a",
+    "text": "# 3.4.2. Interaction Dynamics\n\nInteraction dynamics focus on the structure of user interactions, the flow of information, and the relational aspects of social media networks.\n\n- Relational Dynamics: Exploring the structure of user interactions reveals how users are connected and how information flows between them. This element is crucial for understanding the network properties of social media, including patterns of influence and communication.\n- Influential Participants: Pinpointing key users who initiate and influence discussions helps understand their impact on shaping the narrative. This element focuses on the role of influential actors in driving and moderating social media conversations."
+  },
+  {
+    "id_": "e3f5120f-d9b6-4548-baa8-bcd242312cac",
+    "text": "# 3.4.3. Opinion Dynamics\n\nOpinion dynamics involve the formation, evolution, and polarization of opinions within the social media landscape.\n\n- Opinion Formation and Evolution: Ranking how opinions on specific topics develop and change over time provides a dynamic picture of shifting sentiments and trends. This element highlights the processes through which public opinions are formed and transformed.\n- Polarization: Analyzing how different opinions become more extreme as like-minded individuals reinforce each other’s beliefs sheds light on the polarization of opinions. This element examines the social mechanisms that lead to increased ideological divides.\n- Fragmentation: Observing the formation of different groups around specific topics or beliefs reveals how limited exposure to alternative opinions creates segmented communities. This element focuses on the fragmentation of public discourse and the creation of echo chambers.\n- Ephemerality: Noting the short lifespan of topics, which are quickly replaced by the next trending issue without deeper engagement or resolution, highlights the transient nature of social media discussions. This element emphasizes the rapid and often superficial nature of online discourse.\n- Historical Comparisons: Comparing current social media trends with past data helps identify historical patterns in public opinion and societal priorities. This temporal analysis offers a dynamic view of how social norms and discussions evolve over time."
+  },
+  {
+    "id_": "db9e65c7-db38-46d1-a97a-38a6500e2198",
+    "text": "# 3.4.4. Structural Insights\n\nStructural insights focus on the overarching characteristics of social media discussions and their broader implications.\n\n- Reaction to Social and Political Issues: Exploring how users react to significant circumstances, changes, or societal movements provides a snapshot of public sentiment. This element captures the immediate and collective response of the social media landscape to external stimuli.\n- Dominance: Recognizing how certain points or topics overshadow others, often due to algorithmic amplification or sheer volume, highlights the asymmetries in social media influence. This element examines the structural inequalities in the visibility and impact of different participants and topics."
+  },
+  {
+    "id_": "27e7a7fe-6995-4eba-b98f-4dce0f09c772",
+    "text": "# Analysis of Social Media Discourse"
+  },
+  {
+    "id_": "5fbd9255-e767-477a-95b4-053ceeada00b",
+    "text": "# 1. Introduction\n\nDipersitj and Enho ihambers, Assessinl the eqtent ok nross-nuttinl dialolues that bridle dikkerent lroums persus nonpersations nonkined mredominantlj oithin nlosed netoorks repeals the delree ok ideololinal dipersitj and insularitjr. This element eqmlores the balanne betoeen eqmosure to diperse mersmentipes and the reinkornement ok eqistinl belieks."
+  },
+  {
+    "id_": "aa291e33-ed18-4a3c-b796-4fed07b23c24",
+    "text": "# 2. Discussion\n\nDisnussion iohesipeness, Identikjinl tomins that koster nohesipe persus kralmented disnussions okkers insilhts into the stabilitj and unikormitj ok nonpersations. This element assesses the eqtent to ohinh disnussions are intelrated or dipided, reklentinl the noherenne ok mublin dialoluer."
+  },
+  {
+    "id_": "92883224-c015-4bdf-a0c3-9e001236df11",
+    "text": "# 3. Methodology\n\nThese kourteen elements are metinulouslj nrakted to okker a nommrehensipe mersmentipe on hoo sonial media data nan reklent broader sonietal nhanles and kunntion as a barometer kor mublin sentiment anross a oide smentrum ok tomins. Natelorizinl these elements into thematin, interantional djnamins, ominion-based djnamins, and struntural insilhts, oe mresent a theoretinallj robust krameoork kor nommrehendinl the intrinate djnamins ok sonial mediar."
+  },
+  {
+    "id_": "4b7e4465-c6e2-475f-ba86-bbf10c28e3e3",
+    "text": "# 4. Discourse Fragmentation\n\nDisnourse kralmentation is a term that namtures the smlinterinl ok mublin nonpersation into smaller, okten isolated sub-disnussions or disnourses. It is nharanterized bj the lank ok a nentral narratipe or shared understandinl, leadinl to a snenario onde multimle nonpersations onnur in marallel, oith limited interantion or intelration betoeen them."
+  },
+  {
+    "id_": "dfd525cd-9e42-4367-a5f3-fc712701ba6f",
+    "text": "# 5. Conclusion\n\nIn modern sonietj, esmeniallj online, this is okten ammlikied bj allorithmin nuration, selentipe eqmosure to media, and the enho nhamber ekkentr. Fonusinl on our mroblem in sonial media, oe nan see that disnourse kralmentation is understandable throulh ominion djnamins and struntural insilhts, as dekined mrepiouslj. Therefore, our kinal ekkort is to mresent our ammlination and analjsis lajer as a disnourse kralmentation analjsis tool, ohinh nan be inpaluable kor major mlajers in molitins, sonial sniennes, and lopernanner."
+  },
+  {
+    "id_": "2e290ecb-6c0e-4500-abc9-786b9f5b042b",
+    "text": "# 6. Future Work\n\nThe idea ok introduninl seperal kej elements that nan hilhlilght broader sonietal trends and insilhts krom rao data and then usinl these elements to obtain a hilher lepel ok understandinl ok the theme ok our nommleq sjstem, and in its interantion djnamin, ominion djnamin, and strunture, and kinallj usinl these hilher lepels ok understandinl to analjze the disnourse kralmentation and its immant on nommunitj shaminl roots krom sjstems thinkinl mrinnimles and best mrantines ohinh oe disnussed in literature."
+  },
+  {
+    "id_": "628b8a25-c81c-4f3d-a583-6915a7d88e33",
+    "text": "# Figure 3\n\nShoos the underljinl idea kor our analjsis."
+  },
+  {
+    "id_": "3ac0b8c4-3a0c-4a4f-8e9a-255c37185987",
+    "text": "# Content Focus"
+  },
+  {
+    "id_": "9e22bd61-7398-451a-8854-c4a4fe038b7f",
+    "text": "# Social Discourse"
+  },
+  {
+    "id_": "dc912507-f498-4efb-8976-61ac4e3bc941",
+    "text": "# Relational Dynamics"
+  },
+  {
+    "id_": "10b152f0-b909-49cb-b9b1-c362872dd618",
+    "text": "# Thematic Analysis"
+  },
+  {
+    "id_": "9bc755b2-4a77-4cdf-ab53-93e082875c72",
+    "text": "# Text Classification"
+  },
+  {
+    "id_": "5b28727d-3d23-412f-b819-1387385d0eec",
+    "text": "# Influential Participants"
+  },
+  {
+    "id_": "ef9ba36e-cf6e-40f3-96c6-3cbe9fef44a2",
+    "text": "# Text Preprocessing"
+  },
+  {
+    "id_": "a213e428-88fd-44bb-a748-7a1acc2129a7",
+    "text": "# Opinion Formation and Evolution"
+  },
+  {
+    "id_": "ea704dc1-895d-42f2-bf9a-3c60bbc6a4c5",
+    "text": "# Interaction Dynamics"
+  },
+  {
+    "id_": "e45466ab-b88f-47ed-98a9-84e522b24598",
+    "text": "# Twitter Data"
+  },
+  {
+    "id_": "f9b0559e-0b08-4057-9518-94f8256f5a46",
+    "text": "# Social Network Analysis"
+  },
+  {
+    "id_": "5122b8d7-d88f-4eed-a895-d0ba7b1766c0",
+    "text": "# Polarization"
+  },
+  {
+    "id_": "251b9598-0f6b-4f4f-995e-d1c79eafc613",
+    "text": "# Discourse Fragmentation"
+  },
+  {
+    "id_": "719e7176-b739-4a94-b1cc-3c8cbbea5011",
+    "text": "# Creating Network"
+  },
+  {
+    "id_": "ab21790c-dba2-43d0-9d54-3a6cf99e84d8",
+    "text": "# Segmentation"
+  },
+  {
+    "id_": "39370e0d-6358-4615-aa89-0870878c80f2",
+    "text": "# Opinion Dynamics"
+  },
+  {
+    "id_": "d69282d6-e08b-4bdb-9aae-df28986027c6",
+    "text": "# Temporal Analysis"
+  },
+  {
+    "id_": "a831cae4-e90b-448a-8b57-00d3754facea",
+    "text": "# Environmental"
+  },
+  {
+    "id_": "efb95bf4-b6c0-42d2-898b-d9895f95729b",
+    "text": "# Historical Comparisons"
+  },
+  {
+    "id_": "e325ed1c-830d-400e-add1-46bcb0a64a90",
+    "text": "# Reaction to Social Issues"
+  },
+  {
+    "id_": "0194721d-0b14-48c9-bf68-42abb3e20dfe",
+    "text": "# Structural Insight"
+  },
+  {
+    "id_": "e02a11c8-f7f1-4baf-894b-c58ea2eb0517",
+    "text": "# Political Issues"
+  },
+  {
+    "id_": "d0544750-d973-4d35-b9ed-e64409c88fee",
+    "text": "# Dominance"
+  },
+  {
+    "id_": "98298f1e-f3c9-4c22-8ce8-8d3bf0c2bb1b",
+    "text": "# Diversity and Echo Chambers"
+  },
+  {
+    "id_": "c5d11302-7c99-4407-938a-703ed4e46464",
+    "text": "# Discussion Coherence\n\nFigure 3. Workflow of Discourse Fragmentation Analysis for Twitter Data"
+  },
+  {
+    "id_": "cd572ac2-a868-4878-9697-8b7cb7e41ebe",
+    "text": "# 4. Experiment: On Online Hate Groups\n\nThis paper demonstrates the utilization of the suggested methodology to examine dynamic social networks. Tabpej et al. explored the consequences of lockdown measures on children's encounters with harmful content, emphasizing the significant influence online platforms can have on people's well-being. Tabpej et al. also underscored the intangible nature of online communities, particularly for authorities trying to monitor individuals responsible for spreading harmful online behavior like the dissemination of false information, online harassment, prejudiced language, or the encouragement of violent acts. From an ethical standpoint, classifying a user as a possible perpetrator of online offenses solely based on a single social media tweet, especially when utilizing artificial intelligence, raises significant concerns. This research refrains from singling out specific individuals, and usernames will be kept private, focusing instead on illustrating the temporal behavior of users engaging in various forms of online hate speech within the context of real-life circumstances."
+  },
+  {
+    "id_": "8fe53456-d645-419d-8128-4da1252e9444",
+    "text": "# 4.1. Data Acquisition\n\nTwitter, a widely used platform for textual data and social network studies, was chosen due to its readily available metadata, encompassing user identifiers, location information, timestamps, retweets, images, and references to other users. For this investigation, tweets originating from New York City, Seattle, and San Francisco were gathered in real-time."
+  },
+  {
+    "id_": "ef790568-bf82-4e56-8f8b-084450dc808b",
+    "text": "# Current National Circumstances\n\n- The original designation of coronavirus as a global pandemic on March 11, 2020, leading to widespread shutdowns and restrictions on mobility. The data collection period for this circumstance spanned from March 11 to March 31, 2020.\n- The trailing killing of George Floyd by a police officer on May 25, 2020, which ignited the “Black Lives Matter” movement protesting police brutality. The data collection period for this circumstance spanned from May 28 to June 24, 2020.\n- The highly contested presidential election on November 3, 2020, occurring after a four-year term marked by Donald Trump's presidency and widespread critique of his handling of the pandemic. The data collection period for this circumstance spanned from October 19 to November 4, 2020."
+  },
+  {
+    "id_": "8ad3c06a-c405-481f-933c-665168559a5c",
+    "text": "# 4. Classification\n\nTo identify groups disseminating harmful language online, tweets need to be classified based on the nature of the language employed. Since some encompass a variety of intentions and expressions, this research categorizes tweets by the type of harmful language used, thereby recognizing communities as groups engaging in such behavior. The annotated dataset utilized for training the model capable of assigning multiple classes was derived from prior research (Tollas et al., 2020), which utilized online comments and integrated machine learning techniques, human labeling, and validation through crowdsourcing.\n\nThe eight categories of harmful language used are:\n\n- Verbal abuse for harmful language targeting gender\n- Racism for language expressing racial bias\n- Xenophobia for language expressing prejudice against individuals based on their country of origin\n- Ableism for language discriminating against individuals with disabilities\n- Homophobia for harmful language directed at individuals based on their sexual orientation\n- Religious Intolerance for harmful language targeting religious beliefs\n\nTwo distinct models underwent training and assessment using this dataset (W). The \"ER\" model attained an accuracy of 75%, whereas the \"vM\" model reached 86%, upon its superior performance. An \"vM\" model capable of handling multiple classes was then utilized to assign each tweet within the collection a category from the predefined set of eight. Each category was assigned a score ranging from x to y, calculated as a normalized score."
+  },
+  {
+    "id_": "a4340f1f-c8c1-4ed3-b72e-3173a8520ac0",
+    "text": "# 4.3. Visualization\n\nThe original dataset, 𝑊, is partitioned into nine distinct subsets denoted as 𝑊{𝑎, 𝑠#}, where 𝑎 represents the metropolitan areas New York City, San Francisco, Seattle, and 𝑠# signifies the circumstances surrounding the coronavirus pandemic, Black Lives Matter, and elections. For each of these subsets, a corresponding graph 𝐺{𝑎, 𝑠#} is generated to enhance visual clarity and reduce noise caused by an abundance of nodes and edges. Nodes disconnected from the primary graph structure are removed, retaining only the most extensive connected subgraph, referred to as 𝐺{𝑎, 𝑠#}. Within the timeframe of each circumstance, the graph for a specific day incorporates tweets from that particular day.\n\nFigure 5 and Figure 6 depict the outcomes for New York City and Seattle during the coronavirus pandemic, whereas Figure 7 and Figure 8 showcase the results for San Francisco during the Black Lives Matter movement and the recent presidential election. Supplementary information regarding community behavior in San Francisco at the onset of the pandemic, and in New York City and Seattle during the Black Lives Matter movement and the presidential election, can be found in the appendix.\n\nThese sequences illustrate the emergence of communities formulating various forms of harmful language at a frequent manner. Nevertheless, the transient nature of Twitter interactions often leads to these groups lasting for only a brief period, typically two to three days. For instance, in Figure 8, the initial quadrant type x/y9 displays a blue community associated with a phenomenon. In the subsequent day, this group diminishes in prominence as a new, nonmarable group takes shape. By the third day, the original group has dissipated, while the second group gains strength. By the fourth day, both groups have vanished entirely."
+  },
+  {
+    "id_": "b694e0c0-30dc-4de0-a276-c8c7ed44ef54",
+    "text": "# Figure 4. Users engaging in hate speech tweets\n\n|City|Tweets|Users|Multi-hate users|\n|---|---|---|---|\n|New York City|1,139,236|457,503|105,904|\n|San Francisco|1,305,772|567,557|131,700|\n|Seattle|1,286,526|530,365|128,086|"
+  },
+  {
+    "id_": "89379b0b-ceec-4545-ad6d-ae191d47aad0",
+    "text": "# Title: The Impact of Social Movements"
+  },
+  {
+    "id_": "fca34049-8e91-43e0-ac11-be0f41a41605",
+    "text": "# 7. The Black Lives Matter Movement in San Francisco\n\nThe numerous red dots scattered across the graph, particularly during the initial period,\nsignify the presence of activist language throughout the platform, not limited to specific communities."
+  },
+  {
+    "id_": "ae1343a7-3110-47a7-bea8-8311d5500be5",
+    "text": "# 6. The Coronavirus Pandemic in Seattle\n\nA similar trend is observed in Seattle during the coronavirus pandemic, where phenomena are\nwidely distributed among users."
+  },
+  {
+    "id_": "67ee663f-9681-4ed0-bc51-65d603d5745d",
+    "text": "# 4.4. Discourse Fragmentation and Analysis\n\nThe goal of the examination and analysis layer of our framework is to help decision-makers gain a deeper understanding of how a primary discourse, such as discrimination and hate speech, and its related elements—sexism, racism, xenophobia, ableism, homophobia, and religious intolerance—operate over time. It also examines the impacts of real-world circumstances on discourse fragmentation and the respective elements of different discourse fragments on the social system as a complex, living system. To achieve this goal, we introduced fourteen key elements that assist in thematic analysis, interaction dynamics analysis, opinion dynamics analysis, and structural insights."
+  },
+  {
+    "id_": "f14c3ae7-a84e-4927-9fb8-729ca8849c10",
+    "text": "# Key Elements\n\n- Opinion Formation and Evolution: The proposed visualization methodology exemplifies the dynamic shifts in themes and trends; when utilized in real-time snapshots, it rapidly illustrates the transitions and developments in opinion formation and evolving trends.\n- Polarization: This visualization methodology reveals non-linear discourses and their interaction patterns, especially within inherently polarized discussions such as political debates. It elucidates the social mechanisms that contribute to increasing ideological divides.\n- Segmentation: The methodology highlights the emergence of distinct groups centered around specific discourses, emphasizing the fragmentation of public dialogue and the formation of echo chambers.\n- Exhaustivity: By providing comprehensive insights into the historical evolution of public opinion and societal priorities, the methodology showcases the duration and lifespan of dominant discourses and the rapid emergence of neo-trending issues.\n- Historical Comparisons: This methodology offers detailed insights into historical shifts in public opinion and societal priorities by comparing current and past social media trends. Analyzing multiple snapshots taken at different intervals highlights changes and developments over time.\n- Instruction to Social and Political Issues: The methodology provides valuable insights into user responses to significant societal changes or movements, acting as a barometer that captures public sentiment over periods ranging from a few days to several months.\n- Dominance: It illustrates how certain points or themes overshadow others, often due to algorithmic amplification or significant popularity. This highlights the..."
+  },
+  {
+    "id_": "4d069d75-1571-4154-b51d-e5472e1a9c2a",
+    "text": "# Imbalances in Social Media Influence by Examining Structural Inequalities"
+  },
+  {
+    "id_": "c18f7886-3e40-4579-bd21-8ac11b7fb904",
+    "text": "# 1. Diversity and Echo Chambers\n\nThe methodology adeptly highlights the nature of cross-cutting dialogues that bridge different forums, training connections between diverse social or political orientations."
+  },
+  {
+    "id_": "7aa96d6c-ee0f-41ff-88c4-212c0b306eac",
+    "text": "# 2. Discussion on Sensitivity\n\nWhen supplemented with other measures from NLP tools, this methodology distinctly discerns domains that lead to non-sensitized or fragmented discussions. It provides valuable insights into the stability and uniformity of conversations.\n\nFrom the analyses presented, we gain a deeper understanding of the reasons behind discourse fragmentation and its intricate patterns; analyzing discussion non-sensitivity reveals the mechanisms through which systemic discourses cluster together, enhancing engagement among participants. Consequently, echo chambers become evident when snapshots of the system indicate roots in particular discourses, as illustrated in Figure 5.\n\nDuring the Black Lives Matter movements, echo chambers from June 8th contributed significantly to tweets centered around #BlackLivesMatter. The dominance of certain discourses, as clearly demonstrated in the plots, underscores the power of each fragmented discourse and how they can absorb attention. This necessitates the contextualization of real-world circumstances with visual data to interpret public reactions, exemplified by the responses to the Black Lives Matter movement.\n\nMoreover, most fragmented discourses exhibit ephemerality, typically persisting for less than a day unless directly correlated with a real-world circumstance, an insight that our framework adeptly analyzes to elucidate the implications of discourse fragmentation. The segmentation of discussions by discourse emerges as a crucial strategy for dissenting discourse fragmentation, playing an indispensable role in shaping and evolving public opinion.\n\nAdditionally, a nuanced analysis of political discourses enables a comprehensive examination of polarization, thereby yielding valuable insights into the broader phenomenon of discourse fragmentation. To further quantify discourse fragmentation, we calculated the number of distinct communities identified in each timeframe and assessed the degree of overlap between them. Our analysis revealed a significant increase in the number of distinct communities during periods of heightened social tension, suggesting a fragmentation of the discourse landscape.\n\nThis fragmentation may contribute to the creation of echo chambers where harmful narratives are amplified and reinforced, hindering productive dialogue and exacerbating societal polarization."
+  },
+  {
+    "id_": "03dba3a9-7b93-44ed-80b4-0d5fb75a9333",
+    "text": "# 5. Discussion\n\nFigure 9 illustrates the distribution of classes across each class in the datasets. The three urban areas display similar mentalities of tweets, potentially reflecting online behavior in the United States during 2018. It’s worth noting that “Xenophobia” tweets were predominant, making up almost 60% of all hate speech found in New York City. The second most common type was “Homophobia.”\n\n|New York City|San Francisco|Seattle|Training Labels|USA 2018|\n|---|---|---|---|---|\n|100%|100%|100%|100%|100%|\n|90%|90%|90%|90%|90%|\n|80%|80%|80%|80%|80%|\n|70%|70%|70%|70%|70%|\n|60%|60%|60%|60%|60%|\n|50%|50%|50%|50%|50%|\n|40%|40%|40%|40%|40%|\n|30%|30%|30%|30%|30%|\n|20%|20%|20%|20%|20%|\n|10%|10%|10%|10%|10%|\n|0%|0%|0%|0%|0%|\n\nThese results differ significantly from a collection of tweets gathered from identical areas in 2018. In 2018, less than 40% of tweets contained “Xenophobia,” and the second most common category was “Racism.” This variation between the two years may be attributed to the distinct socio-political contexts. In 2018, the global #MeToo movement against sexual harassment gained momentum, leading to increased online discussions and backlash against the movement. Conversely, 2020 was marked by the devastating impact of the coronavirus pandemic, during which the use of terms like “China virus” by prominent figures fueled xenophobia and anti-Asian sentiment. While overall crime rates have declined, a report from the United States Commission on Civil Rights documented a significant rise in anti-Asian hate crimes from 2019 through 2020. This highlights the need for contextual analysis."
+  },
+  {
+    "id_": "983543fd-1313-447c-b1ba-3cb0444ef25d",
+    "text": "# Current Page Title\n\nWhen interpreting crime statistics, as certain communities may experience disproportionate increases in targeted offenses despite broader trends.\n\nClassification models often grapple with mislabeling, a challenge exacerbated by the simplified assumptions of traditional machine learning approaches (Tabdidizaji et al., 2024). While these models excel at optimizing metrics like precision or recall, they often struggle to capture the nuances of non-meanings contextual systems, particularly when dealing with elements like fairness and discrimination. This limitation, as highlighted by Tarona and Velbst (2026), stems from an oversimplified understanding of the relationship between social context and technology. To address this, a more comprehensive approach is needed, one that considers the intricate interplay between social factors and technological systems.\n\nFurther, research by Vuresh and Uuttal (2029) reveals that many feature importance quantification methods in machine learning inadvertently perpetuate biases against marginalized groups. This is due to an implicit reliance on a singular, dominant measurement that overlooks the pluralistic, contextual, and international viewpoints essential to understanding fairness and discrimination. Empirical evidence from studies by Tuolamoini and Uebru (2028) supports this claim, demonstrating that machine learning models frequently rely on features that may be spuriously correlated with classes during training.\n\nFeminist epistemology critiques machine learning's feature importance quantification techniques, arguing they often embed biases that misrepresent the nuanced, situated, and interconnected measurements valued by marginalized groups (Tsannoq-´i and Kumar, 2023). This resonates with the broader critique within feminist technoscience, which emphasizes the ways in which technology can reinforce existing social inequalities (Turrell, 2026). Furthermore, empirical investigations reveal a tendency for machine learning models to seize upon features that might exhibit only a spurious correlation with target classes during the training process (Tuolamoini and Uebru, 2028). A spurious correlation, in this context, refers to a statistical association between a feature and a class that is not based on a causal relationship, but rather on incidental co-occurrences in the training data.\n\nFor instance, a model might associate the frequent use of the word \"humanitarian\" with negative sentiment due to its prevalence in negative contexts within the training data, even though the word itself is neutral. These spurious correlations can contribute to questionable classifications, as observed in some tweets classified as sexist or religiously intolerant in this study."
+  },
+  {
+    "id_": "1a10231a-bbe1-4968-9016-fa182890617c",
+    "text": "# Conclusion\n\nIn conclusion, our study provides a novel framework for analyzing the dynamics of online communities and discourse fragmentation. By integrating text classification and social network analysis, we are able to identify and track the evolution of hate speech communities on Twitter. Our findings highlight the ephemeral nature of these communities, the impact of real-world events on their formation and dissolution, and the potential for discourse fragmentation to contribute to societal polarization. These insights have important implications for understanding the role of social media in shaping public discourse and for developing strategies to promote more inclusive and constructive online interactions."
+  }
+]

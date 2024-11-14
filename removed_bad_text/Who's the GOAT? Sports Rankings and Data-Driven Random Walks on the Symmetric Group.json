@@ -1,0 +1,298 @@
+[
+    {
+        "id_": "5b12ed38-6911-4d8b-b25a-93006ca10db6",
+        "text": "# 1. Introduction\n\nThe question of which player is the greatest of all time (i.e., the GOAT) is one that brings about strong opinions from sports fanatics. Within individual sports in particular, a wide variety of individual performance criteria can be used to argue in favor or against a given player being the GOAT. These criteria are often quantitative at face value, taking the form of individual performance statistics. However, these statistics need not be consistent with one another, and thus they ultimately prompt subjective value judgments on their relative importance. To add to this, other qualitative aspects about how a specific sport develops over time might alter their significance across generations.\n\nFor instance, consider Steffi Graf and Serena Williams; two widely successful players in women’s professional tennis. Between the two, Williams leads in the number of major titles, holding 23 compared to the 22 held by Graf. However, Graf leads in the number of titles, holding 107 compared to the 73 held by Williams. Which of these statistics—the number of titles or the number of major titles—is more important? How does 1 additional major title fare against 34 additional titles? Note that these players had little overlap in competition: Graf played professionally from 1982 to 1999, whereas Williams turned professional in 1995 and only retired recently in 2022. How do the numerous differences in professional tennis from the 1980s to the 2020s (e.g., changes in equipment, training, court surfaces, and point systems; consolidation of prestige around certain tournaments; increased competition/access to the sport; a global pandemic that suspended multiple tournaments in 2020) relate to the significance of these and other performance statistics?"
+    },
+    {
+        "id_": "e536434c-9178-47ac-876d-558139044eff",
+        "text": "# 1.1. Contributions\n\nThe Graf-Williams example highlights an inherent difficulty with the problem of identifying the GOAT: individual performance statistics can only offer snapshots of history, and it is challenging to objectively contextualize them over time. Fortunately, most individual sports maintain regularly-updated rankings that reflect the moment in time.\n\nDate: September 19, 2024.\n\n2020 Mathematics Subject Classification: 60J20.\n\nKey words and phrases: sports analytics, rank aggregation, Markov chains."
+    },
+    {
+        "id_": "a5e4381d-a07f-4d52-b58e-b2964ce39b00",
+        "text": "# GOATs of the ATP"
+    },
+    {
+        "id_": "bd8f2146-a197-4709-aa72-e096f8bebbea",
+        "text": "# Top 3\n\nDjokovic, Federer, Nadal, and Sampras"
+    },
+    {
+        "id_": "59d55df9-27a2-4600-9d64-97c1ea90e74a",
+        "text": "# Top 5\n\nDjokovic, Federer, and Nadal"
+    },
+    {
+        "id_": "207623fa-458a-4864-b096-906c0c3de002",
+        "text": "# Top 10\n\nDjokovic, Federer, and Nadal"
+    },
+    {
+        "id_": "ac0ff7c3-e9f2-4df8-9110-cd6b7657ec3c",
+        "text": "# Top 20\n\nFederer and Nadal"
+    },
+    {
+        "id_": "2edabebd-135d-4347-a835-7ee2dc3c4029",
+        "text": "# Notes\n\n- All better than Connors and Lendl\n- Federer and Nadal better than Sampras\n- Djokovic and Sampras incomparable\n- All better than Connors, Lendl, and Sampras\n- Federer and Nadal better than Becker\n- Djokovic and Becker incomparable\n- Federer better than Djokovic\n- Nadal and Djokovic incomparable"
+    },
+    {
+        "id_": "d753b7e3-b9cf-432e-9126-2d8da3edff34",
+        "text": "# Table 1. Summary of GOATs of the ATP\n\nThe surnames mentioned correspond to Boris Becker, Jimmy Connors, Novak Djokovic, Roger Federer, Ivan Lendl, Rafael Nadal, and Pete Sampras (in alphabetical order). Refer to Section 4.2 for more details."
+    },
+    {
+        "id_": "c573a2e1-4f49-4afb-a7c1-ca45905b580d",
+        "text": "# GOATs of the WTA"
+    },
+    {
+        "id_": "cc899f37-7775-41fe-b599-10aaeb0c350e",
+        "text": "# Top 3\n\nGraf and S. Williams"
+    },
+    {
+        "id_": "7840fc6a-68f1-4384-80ce-a0a81080f262",
+        "text": "# Top 5\n\nGraf and S. Williams"
+    },
+    {
+        "id_": "9bd30e31-b70b-4410-90ad-305ab938fc22",
+        "text": "# Top 10\n\nGraf, Navratilova, and S. Williams"
+    },
+    {
+        "id_": "49665245-d902-4c47-bc2b-6ab2f6e1c02b",
+        "text": "# Top 20\n\nGraf, Navratilova, Seles, S. Williams, V. Williams, and Wozniacki"
+    },
+    {
+        "id_": "53e7ae00-bd02-4183-a8c1-cc0945d10fdb",
+        "text": "# Notes\n\n- Graf better than Navratilova\n- S. Williams and Navratilova incomparable\n- Graf better than Navratilova\n- Graf and S. Williams better than Seles\n- S. Williams and Navratilova incomparable\n- Navratilova better than Seles\n- Graf and Seles incomparable\n- S. Williams and Seles incomparable\n- Numerous players close to maximal"
+    },
+    {
+        "id_": "c498ec3b-442b-4998-88b5-6aad5b01daf0",
+        "text": "# Table 2.\n\nSummary of GOATs of the WTA. The surnames mentioned correspond to Steffi Graf, Martina Navratilova, Monica Seles, Serena Williams, Venus Williams, and Caroline Wozniacki (in alphabetical order). Refer to Section 4.3 for more details.\n\nPlayers such as Carlos Alcaraz in the ATP and Aryna Sabalenka in the WTA perform well as top 3 players, but that they are at a disadvantage as top 5, 10, or 20 players due to their short career lengths at the time of writing.\n\nLastly, we analyze the obtained posets and note qualitative differences between the rankings of the two associations. We find that, in the ATP, being a “good top 20 player” is correlated with being a good top 10, 5, and 3 player (with decreasing correlation in that order). However, in the WTA, being a “good top 20 player” is only mildly correlated with being a good top 10 player, and it is nearly uncorrelated with being a good top 5 or top 3 player. This highlights a measurable difference in terms of career and dominance longevity for top players across the ATP and the WTA."
+    },
+    {
+        "id_": "31fcc9aa-683d-4095-a627-9f085d548a92",
+        "text": "# 1.2. Related Work.\n\nRadicchi [14] addressed the question of who is the GOAT in men’s professional tennis using historical match-level data and a network diffusion algorithm similar to PageRank [7]. Baker and Hale [4] addressed the same question using time-varying paired comparison models and the results of matches in major tournaments. Temesi, Szádoczki, and Bozóki [20] addressed the question of who is the GOAT in women’s professional tennis using pairwise comparison matrices and the results of matches between players who were ever ranked first. Still, from a philosophical point of view, sports rankings have been criticized for their inability to capture comparisons that are “too close to call” [6].\n\nIn contrast to existing methods, we propose the aggregation of historical rankings into a single poset as an alternative to the stringent requirements of a linear order. That is, some pairs of players can be conclusively compared, others cannot, and there might be various, pairwise incomparable GOATs. Thus, our conceptualization of the problem is most closely related to that of rank aggregation [10, 18] (refer also to Lin [13] for a survey).\n\nHowever, our methods are actually most closely related to those from the theory of card shuffling—the design and analysis of methods to sample uniform random permutations. The set [n] := {1, 2, . . . , n} corresponds to a deck of n → N := {1, 2, . . .} cards, and different card shuffling procedures (e.g., riffle shuffling, shuffling by transposing two random cards, shuffling by transposing two random adjacent cards) correspond to different sampling methods."
+    },
+    {
+        "id_": "74c75810-5eb0-4105-89ad-31c05eaeb713",
+        "text": "# The central questions in this area relate to convergence rates\n\nhow many times does a given shu#ing procedure need to be repeated so that a given deck is su!ciently close to uniformly distributed? Bayer and Diaconis [5] showed that (3/2) log n + ω ri#e shu#es are necessary and su!cient for a deck of n cards to start becoming well-mixed, exhibiting a cuto” phenomenon [1] (so that a standard deck of 52 cars requires about 6 repetitions). Diaconis and Shahshahani [9] showed that the random transposition shu#e has a cuto” at (1/2)n log n, whereas Lacoin [11] showed that the random adjacent transposition shu#e has a cuto” at (1/ε2)n3 log n. Refer to Diaconis and Fulman [8] for more on card shu#ing.\n\nOur method in Section 3 is most similar to shu#ing by random (not necessarily adjacent) transpositions. However, our goal in this work is di”erent from card shu#ing in that we do not seek to sample uniform random permutations. Rather, we seek to sample permutations from a data-driven distribution that is somehow in agreement with historical ranking data. Given the large amount of existing work for the case of uniform random permutations, we anticipate analytical questions around the data-driven sampling of permutations to be challenging and of independent mathematical interest."
+    },
+    {
+        "id_": "d6a73f21-175c-4a8f-aeec-1b86920a2ac7",
+        "text": "# 1.3. Organization\n\nThe remainder of this work is organized as follows. For the purpose of self-containment, in Section 2 we summarize some necessary technical background. In Section 3 we design our methods. In Section 3 we implement our methods using data from the ATP and the WTA, and analyze the results of our numerical implementation. Lastly, in Section 5 we make concluding remarks."
+    },
+    {
+        "id_": "d7319f5e-ada3-43a7-8081-a618ec13d290",
+        "text": "# 2. Background\n\nReaders familiar with the symmetric group may choose to skip Section 2.1, whereas readers familiar with Markov chains may choose to skip Section 2.2. In Section 2.3 we formalize our problem input along with other necessary technical concepts and notation."
+    },
+    {
+        "id_": "e8c030ca-651f-4b84-80ae-77e4c86a6cbd",
+        "text": "# 2.1. Symmetric Group\n\nLet n → N := {1, 2, 3, . . .}. A permutation of [n] := {1, 2, . . . , n} is a bijection ε : [n] ↑ [n]. The symmetric group of degree n, denoted Sn, is the set of all permutations of [n] forming a group under function composition.\n\nFact 2.1. For n ↓ 1, |Sn| = n!"
+    },
+    {
+        "id_": "3602a305-e783-4ba2-b8be-995824e2ff36",
+        "text": "# Example 2.2\n\nLet ε : [5] ↑ [5] be the permutation expressed explicitly as ε(1) = 5, ε(2) = 4, ε(3) = 1, ε(4) = 2, and ε(5) = 3. Equivalently, we express ε as follows:\n\n- In one-line notation, and write ε = 54123. Here, the ith entry of the word is ε(i).\n- In cycle notation, and write ε = (153)(24). Here, the number following number i in a cycle is ε(i). For example, 5 follows 1 in (153) so that ε(1) = 5. Similarly, 1 follows 3 in (153) so that ε(3) = 1. Note that function composition is performed from right to left, so that (153) = (13)(15) and equivalently ε = (13)(15)(24).\n\nCycles of length 2 are known as transpositions, since the e”ect of a cycle (i, j) for distinct i, j → [n] is to transpose the ith and jth entries. By convention, a transposition (i, j) is written as (i, j) if i < j and as (j, i) if j < i.\n\nFact 2.3. For n > 1, every ε → Sn is a product of at most n ↔ 1 transpositions."
+    },
+    {
+        "id_": "d17841e4-c5a4-4620-b2ae-4d8ffe6273e9",
+        "text": "Moreover, every transposition can be expressed as a product of adjacent transpositions.\n\nFor ease of notation, let *sij = (i, j) denote a transposition and si = (i, i + 1) for i → [n ↔ 1]* denote an adjacent transposition. Consider the following example."
+    },
+    {
+        "id_": "f1d860d6-d357-4c13-b19b-2068be6f2433",
+        "text": "# Example 2.4.\n\nNote that\n\n- *s13 = (13) = (12)(23)(12) = s1s2s1*,\n- *s15 = (15) = (12)(23)(34)(45)(34)(23)(12) = s1s2s3s4s3s2s1*, and\n- *s24 = (24) = (23)(34)(23) = s2s3s2*.\n\nTherefore,\n\n*ε = (153)(24) = (13)(15)(24) = (12)(23)(12)(12)(23)(34)(45)(34)(23)(12)(23)(34)(23) = (12)(34)(45)(34)(23)(12)(23)(34)(23) = s1s3s4s3s2s1s2s3s2.*\n\nThe last example illustrates the following."
+    },
+    {
+        "id_": "4718ec43-a0e5-4b9b-a989-6628e2e63fd6",
+        "text": "# Fact 2.5.\n\nFor *n > 1, every ε → Sn is a product of at most n(n↔1)/2* adjacent transpositions.\n\nIn this work, we associate with *Sn two bi-directed graphs over n!* nodes (the number of nodes follows from Fact 2.1):\n\n1. The first one, depicted in Figure 1a for *n = 4, contains arcs (ε, ϑ) and (ϑ, ε) if and only if ε = ϑ · sij for some 1 ↗ i < j ↗ n. For example, if ε = 4213 → S4 and ϑ = 4312 → S4, then the graph has the arc (ε, ϑ) since 4213 · s24 = 4312 and s24* is a transposition. The undirected version of this bi-directed graph is known as the Bruhat graph.\n2. The second one, depicted in Figure 1b for *n = 4, contains arcs (ε, ϑ) and (ϑ, ε) if and only if ε = ϑ · si for some i → [n ↔ 1]. For example, if ε = 4213 → S4 and ϑ = 4231 → S4, then the graph has the edge (ε, ϑ) since 4213 · s3 = 4231 and s3* is an adjacent transposition. The undirected version of this bi-directed graph is realized as the 1-skeleton graph of the permutahedron.\n\nThe bi-directed graph in Figure 1b illustrates the commonly-used fact that adjacent transpositions suffice to generate *Sn*. However, as we explain in Section 3, the more edge-dense class of graphs illustrated in Figure 1a is better suited for the purposes of this work. The main properties of this class of graphs that we leverage in this work follow from Fact 2.3 and are summarized below."
+    },
+    {
+        "id_": "6e919538-1e20-4822-a012-6f898c332c47",
+        "text": "# Remark 2.6.\n\nFor *n > 1, the bi-directed version of the Bruhat graph on Sn is strongly-connected and has diameter n ↔ 1*.\n\nRefer to any abstract algebra textbook for more on the symmetric group."
+    },
+    {
+        "id_": "8a157ec9-c224-43ae-bfae-5403fb3f6797",
+        "text": "# 2.2. Markov Chains.\n\nThis section is based on Levin and Peres [12]. A discrete-time Markov chain is a sequence *X1, X2, X3, . . .* of random variables with the Markov property. That is,\n\n*Pr[Xt+1 = x|X1 = x1, X2 = x2, . . . , Xt = xt] = Pr[Xt+1 = x|Xt = x]*"
+    },
+    {
+        "id_": "2dbce11f-cb53-4ee6-90fe-bb780923d28c",
+        "text": "# Figure 1\n\nBi-directed graphs on S4, with nodes as permutations in one-line notation. (Bi-directed arcs are depicted as undirected edges.)\n\nfor all t → N whenever the conditional probabilities are well-defined. If the random variables share a finite co-domain, then the chain has a finite state space—say, indexed by [m] for some m → N. The chain is time-homogeneous if\n\nPr[Xt+1 = x|Xt = y] = Pr[Xt = x|Xt→1 = y]\n\nfor all t → N, so that the transition probabilities are independent of t.\n\nIn the finite and time-homogeneous case, the transition probabilities can be represented by a row-stochastic matrix P\n\nPij = Pr[Xt+1 = j|Xt = i]\n\nfor all i, j → [m]. In effect, P encodes the transition probabilities of a random walk on a directed graph Gm = ([m], A), where (i, j) → A if and only if Pij > 0. Specifically, Xt → [m] corresponds to the node visited during the tth step and, conditioned on Xt = i, the ith row of P governs the random transition to the (t + 1)th step. ω > 0.\n\nThe chain P is irreducible if, for any i, j → [m], there exists some ϖ → N such that Pij > 0.\n\nFor any i → [m], its period is defined as the greatest common divisor of {t → N : Piit > 0}. The chain is aperiodic if gcd ({t → N : Piit > 0}) = 1 for all i → [m]. Note that Pii > 0 for all i → [m] is a sufficient condition for aperiodicity.\n\nThe following are classical results in the theory of Markov chains."
+    },
+    {
+        "id_": "e585561e-2edf-4370-9ffe-c814f62a4d3c",
+        "text": "# Theorem 2.7.\n\nIf P is an irreducible finite Markov chain, then there exists a unique probability distribution μ → Rm over [m] with μ = μP. The distribution μ is referred to as the stationary distribution of P."
+    },
+    {
+        "id_": "9f696957-8d1f-408d-98f9-d1b14f1a8a05",
+        "text": "# Theorem 2.8 (Convergence Theorem).\n\nIf P is an irreducible and aperiodic finite Markov chain with stationary distribution μ, then there exist constants ϱ → (0, 1) and C > 0 such that\n\nmaxi ∈ [m](Pt)i ↔ μTV ↗ Cϱt,\n\nwhere (Pt)i is the ith row of Pt and ↘·↘TV is the total variation distance.\n\nTheorem 2.8 gives analytical grounds for the repeated application of an irreducible and aperiodic finite Markov chain to sample from its stationary distribution."
+    },
+    {
+        "id_": "99e93796-01fd-4122-bfd4-7e250ffc4fef",
+        "text": "# 2.3. Sports Rankings and Partially Ordered Sets.\n\nA partially ordered set (poset) is a pair ε = ([n], ≃ε) consisting of a ground set [n] and a partial order ≃ε satisfying:\n\n1. Reflexivity: For any i → [n] we have that i ≃ε i.\n2. Antisymmetry: For any i, j → [n] we have that if i ≃ε j and j ≃ε i, then i = j.\n3. Transitivity: For any i, j, k → [n] we have that if i ≃ε j and j ≃ε k, then i ≃ε k.\n\nFor i, j → [n], let i ⇐ε j if i ≃ε j and i ⇒= j. An element i → [n] is maximal if there is no j ⇒= i → [n] with i ⇐ε j. The definition of minimal is analogous.\n\nA poset may be represented pictorially by a Hasse diagram, which is a drawing of its transitive reduction. For example, if the edges in the graphs in Figure 1 were all oriented upwards, we would obtain Hasse diagrams of two different posets on the symmetric group of order 4, both with unique minimal element 1234 and unique maximal element 4321.\n\nA totally ordered set is a poset in which every two elements are comparable, and a chain is a subset of a poset that is totally ordered for the induced order (note that the use of the word “chain” in the context of a poset differs from its use in Section 2.2). For example, {1234, 1243, 2143, 2413, 2431, 4231, 4321} forms a chain in Figure 1b. An anti-chain is a subset of elements such that no pair of elements are comparable. For example, {1324, 2134, 1243} forms an anti-chain in Figure 1b.\n\nA poset ε ↔ = ([n], ≃ε →) is an extension of ε = ([n], ≃ε) if, for any i, j → [n] with i ≃ε j, we have that i ≃ε → j as well. An extension is a linear extension if it is totally ordered. Refer to Stanley [19, Chapter 3] for more on posets.\n\nLet [n] represent a set of players. A ranking is a totally ordered set ε = ([n], ≃ε), which we treat as a permutation ε → Sn (in explicit notation) given the natural ordering ↗ of N. In particular, we have that\n\nj ≃ε i ⇑⇓ ε(i) ↗ ε(j) for all i, j → [n]. We more generally extend the notion of ranking to proper subsets of players, so that a ranking is a totally ordered set r = (S, ≃r) for some Sr ⇔ [n], which we again treat as a bijection r : Sr ↑ [|S|] given the natural ordering r ↗ of N. In this way, our problem input is a collection R = {r1, r2, ..., rϑ} of historical sports rankings on subsets of players. In subsequent sections we will consider partial orders on the full set of players [n] together with their corresponding linear extensions as part of our problem output.\n\nLastly, note that we adopt the following notation. For i → [n], let Ri = {r → R : i → Sr} denote the sub-collection of rankings containing player i. Similarly, for distinct i, j → [n], let"
+    },
+    {
+        "id_": "f10e470f-a914-4fe1-b0ac-3be6f4ff7622",
+        "text": "# 3. Data-Driven Random Walks on the Symmetric Group\n\nIn Section 3.1 we discuss the meaning of GOAT in relation to assumptions (in particular, ranking cutoffs) on the problem input. In Section 3.2 we design a data-driven transition rule for random walks on Sn. In Section 3.3 we adopt a notion of stochastic dominance to build a poset from the stationary distribution of this random walk. In Section 3.4 we discuss sampling procedures for this random walk."
+    },
+    {
+        "id_": "3490ad6a-0d9b-4606-9de8-8e9ae3ba9201",
+        "text": "# 3.1. Cutoffs and the meaning of GOAT.\n\nRecall that [n] represents the set of players and that the problem input is a collection R = {r1, r2, . . . , rϑ} of historical sports rankings on subsets of the players, so that ↙ r↓R Sr = [n]. Now, consider any player i → [n] and any ranking r → R. Certainly, player i being “top ranked” in r is consistent with them being the GOAT, but how “top” is top ranked? A full sports ranking might involve thousands of players. However, player i being among the top 10 in r is much more indicative than them being among the top 100, which is itself even much more indicative than them being among the top 1000. In some sense, we must adopt a definition for the concept of being at the top.\n\nIn the experimental part of this work, we restrict the rankings in R to involve the top 3, 5, 10, and 20 players as cutoffs from the full ranking data that might be available. We do this for two reasons:\n\n1. The first reason is conceptual. As argued previously, the difference between a player being ranked 100 or 101 (let alone 1000 or 1001) is not particularly relevant in relation to them being the GOAT, whereas the difference between them being ranked 1 or 2 very much is. By experimenting with different cutoffs we gain insights into the consequences of this subjective choice.\n2. The second reason is computational. Indeed, if each ranking r → R involved thousands of players, the set [n] would be very large and n! would be astronomically large. In our experiments, the different cutoffs always keep the size of the set under 300 players. Note that 300! is still an astronomically large number, with 615 decimal digits.\n\nIn short, we assume that being the GOAT is consistent with being a “good top ς” player, and we experiment with the choice of ς → N. In this way, having ever made it to the top ς is a necessary condition for being the GOAT, which restricts the set of contenders."
+    },
+    {
+        "id_": "b7b72826-3a62-469f-bcb2-f8ccb8bd3c55",
+        "text": "# 3.2. Transition Rule.\n\nLet W → R ↗0 n↑n be a matrix with entries\n\nWij = 1 + prevalence ratio· |{r → Rij : i beats j}| / |R| / |Rj| (1)\n\nfor all distinct i, j → [n]. The second term in the product, |{r → Rij : j ⇐ ri}|, encodes the number of (cut off) historical rankings in which player i is ranked better than player j. We scale this quantity by the first term in the product, |R| / |Rj|, which is the players’ relative prevalence above the cutoff. The motivation for this is as follows."
+    },
+    {
+        "id_": "bed6b905-8cb5-4da9-905f-cb7e32461f90",
+        "text": "# Remark 3.1.\n\nSuppose players i and j have short and long prevalence in the (cut off) historical rankings, respectively. In particular, it might be that player i made it to the top of the ranking for a brief period of time, consequently beating player j during this period. However, since the prevalence of player i is short, there might be significant periods of time during which player i fell below the cutoff while player j did not—by definition, player j beat player i during these periods. This artifact of cutoffs is not captured by the term |{r → Rij : j ⇐ ri}|, which by itself favors player i over player j. We correct for this in the model using their prevalence ratio |R| / |Rj|.\n\nIntuitively, the term |R| / |Rj| ensures that if the players have similar prevalence above the cutoff, the data points in which player i beats player j are taken at face value. Conversely, if the prevalence of player i is much smaller than that of player j, the data points in which player i beats player j are proportionally discounted. Finally, the additive unit is included to later on obtain an irreducible random walk. Note that (1) can be pre-computed efficiently.\n\nNext, for each ε → Sn and each 1 ↗ i < j ↗ n, let W(sij |ε) ∝ {Wji, if j ⇐ ε; Wij, otherwise} (2) form a probability distribution over (not necessarily adjacent) transpositions. The interpretation of W(sij |ε) is as follows:\n\n- j ⇐ εi =⇓ i ⇐ sij · εj, whereas\n- i ⇐ εj =⇓ j ⇐ sij · εi.\n\nIn other words, the probability of selecting transposition sij given ε is proportional to the agreement between the resulting permutation sij · ε and the historical data, particularly with respect to the relative order between players i and j."
+    },
+    {
+        "id_": "32c8faba-1a1a-41e4-9cda-3756acb59c65",
+        "text": "# Remark 3.2.\n\nNote that (1)-(2) highlight the need to consider the set of all transpositions, not just those that are adjacent (recall the difference in Figure 1). Indeed, depending on the structure of R and the indexing of the players, it is possible that |Rij| = 0 for a large fraction of the adjacent choices of 1 ↗ i < j (= i + 1) ↗ n, in turn rendering (1) uninformative. For example, this could occur if the players are indexed in such a way that adjacent players generally cannot be compared pairwise because of their prevalence during non-overlapping time periods.\n\nNext, we use (2) to compactly define a row-stochastic matrix P → Rn!↑n! ↗0 such that, for any given ε → Sn, we have the transition probabilities:\n\n|Condition|Probability|\n|---|---|\n|if ϑ = sij · ε for some 1 ↗ i < j ↗ n|1/2 · W(sij |ε)|\n|if ϑ = ε|1/2|\n|otherwise|0|\n\nThe matrix P governs a data-driven random walk on Sn. Note that its support along any given row is of size O(n2) and can be evaluated efficiently on the fly."
+    },
+    {
+        "id_": "805ebf76-10c2-47b8-8f17-3afb5e1fe0c4",
+        "text": "# Lemma 3.3.\n\nGiven (3), P is irreducible and aperiodic."
+    },
+    {
+        "id_": "130944c3-a95c-4661-b56e-2d5025b03297",
+        "text": "# Proof\n\nThe additive 1 term in (1) implies the support graph of P is the bi-directed Bruhat graph, with the addition of self-loops. Fact 2.3 implies this graph is strongly connected, so that P is irreducible. Moreover, the non-zero probability of a lazy step in the second case of (2) implies P ε,ε > 0 for all ε → Sn, so that P is aperiodic."
+    },
+    {
+        "id_": "e8c7eb59-dde5-460f-b473-9e7a02fd4a71",
+        "text": "# Corollary 3.4\n\nP has a unique stationary distribution μ over Sn."
+    },
+    {
+        "id_": "c223bd0f-24f0-4685-a05d-1e408a9af835",
+        "text": "# 3.3. Partial Ordering\n\nIn light of Corollary 3.4, consider the stationary distribution μ of P. We combine this distribution with a suitable notion of stochastic dominance to obtain a partial order ([n], ≃ μ) over the players. In particular, for each i, j → [n], let\n\nj ≃ μ i ⇑⇓ X↘μ Pr[X(i) ↗ k] ↓ X↘μ Pr[X(j) ↗ k], ′1 ↗ k ↗ n.\n\nRecall that μ is a distribution over Sn, so that X is a random permutation (in explicit notation) and X(i) → [n] denotes the ranking of player i → [n]. Therefore, at an intuitive level, (4) states that player i is conclusively “better” than player j in ≃ μ if and only if, given that X ∞ μ, player i is across the board more likely to rank better than player j.\n\nLet L(≃ μ) denote the set of linear extensions of ≃ μ (refer to Section 2.3). In the experimental part of this work, we will consider the average rank of a player with respect to a random linear extension as a summary statistic of the player’s career performance. In particular, for each i → [n] we will consider\n\n¯(i) = N∑X (i),T\n\nX 1 , X 2 , . . . , X T are sampled uniformly at random from L(≃ μ)."
+    },
+    {
+        "id_": "340bf5a5-9e42-48dd-9fd0-ff8bc4bb96ef",
+        "text": "# 3.4. Sampling\n\nOur next goal is to obtain independent samples from the stationary distribution μ induced by (3) to form an empirical poset according to (4). Based on Theorem 2.8, this can be achieved through the repeated execution of (3). At this point, the question of speed of convergence comes to the forefront. If we knew the mixing time ϖ → N of this Markov chain for a desired tolerance to error, we could execute the random walk collecting every ϖ th sample. However, based on the discussion in Section 1.2, we anticipate this is a very challenging theoretical question. Neither is it easy to obtain numerical upper bounds based on the eigenvalues of the transition matrix P due to its n! ∈ n! size.\n\nGiven the sports analytics scope of this work, we do not attempt to answer these questions and simply acknowledge that analytical questions around data-driven random walks on the symmetric group are of independent mathematical interest. In the experimental part of this work, we execute this random walk for a large number of steps collecting every 2(n ↔ 1)th sample. Given the n ↔ 1 diameter noted in Remark 2.6 and the 1/2 probability of taking a lazy step in (3), this is the expected number of steps needed for the entire state space to be reachable from any given state."
+    },
+    {
+        "id_": "57068fc4-2d73-4477-a33b-9751de86a177",
+        "text": "# 4. Numerical Implementation\n\nIn this section, we implement our methods using singles rankings from the “Open Era” of the ATP and the WTA. As discussed in Section 3.1, we experiment with taking the top 3, 5, 10, and 20 players as different cutoffs from the full ranking data that is available."
+    },
+    {
+        "id_": "854e701b-8fff-442b-9e46-a4ee271ed274",
+        "text": "For each experiment, we execute a random walk as described in Section 3.4 until we collect 100,000 samples. We then use these samples to obtain data-driven posets over the players, as described in Section 3.3. We illustrate these posets as horizontal Hasse diagrams with maximal elements on the right-hand side (the full diagrams can be found in the Appendix). To estimate the average rank of the players in a given poset, we first sample 100,000 linear extensions uniformly at random using SageMath [17] and then follow (5).\n\nThe remainder of this section is organized as follows. In Section 4.1 we further describe the datasets we use for our experiments. In Section 4.2 we present our results using rankings from the ATP, whereas in Section 4.3 we present our results using rankings from the WTA. Refer to Tables 1 and 2 for a summary of some of the results. Lastly, in Section 4.4 we compare the results obtained for the ATP and the WTA to note qualitative differences between the two associations. All mentioned statistics that are external to our numerical implementation can be verified online [3, 22]."
+    },
+    {
+        "id_": "fa1cd6bc-e602-4520-8d7e-d3b021df7742",
+        "text": "# 4.1. Ranking Data.\n\nBoth the ATP and the WTA singles rankings are based on rolling 52-week period systems that award points to individual players according to their placement in different tournament categories. Rankings are typically published on Mondays, and points are dropped 52 weeks after being awarded. Note that the point systems have changed over the years: details on the current systems are available online in the official rulebooks [2, 21].\n\nWe retrieved historical rankings from the repositories compiled by Sackmann [15, 16] for both the ATP and the WTA. In the case of the ATP, this corresponds to 2230 weekly rankings from 1973 to 2023 (Sackmann notes that this data is complete from 1985, but that it is intermittent from 1973 to 1984 and that it is missing 1982). In the case of the WTA, this corresponds to 2052 weekly rankings from 1984 to 2023.\n\nNaturally, the limitations of the data we use induce limitations on our experimental results. Aside from missing data points, we in particular do not consider the “Amateur Era” and only partially capture players that were active during the onset of the “Open Era” rankings. As a concrete example, we do not consider Margaret Court; a widely successful player in women’s professional tennis that was active from 1960 to 1977. This data availability issue speaks to the difficulty of capturing the Amateur Era due to the lack of a centralized ranking system."
+    },
+    {
+        "id_": "699636f6-b3ab-4357-8a1f-e57f9f22c82c",
+        "text": "# 4.2. Rankings from the ATP.\n\nIn Figure 2 we plot the top portion of the Hasse diagram of the poset over “top 3 players,” where Djokovic, Federer, Nadal, and Sampras are incomparable maximal elements—no one of these players is conclusively better than another. Note also that they all have a similar average rank. Conversely, we conclude that each of Djokovic, Federer, Nadal, and Sampras is better than Connors and Lendl as a top 3 player. Similarly, as top 3 players, Connors is better than Andre Agassi, who is better than Björn Borg, who is better than Andy Murray, who is better than Carlos Alcaraz. In other words, these players form a chain in the poset. Formally, this is:\n\nDjokovic ∋ μ Connors ∋ μ Agassi ∋ μ Borg ∋ μ Murray ∋ μ Alcaraz.\n\nThis is also reflected by significant jumps in the average rank from one player to the next. Interestingly, Alcaraz is near the top of the Hasse diagram despite turning professional most recently, in 2018."
+    },
+    {
+        "id_": "3f42be03-e625-4669-a2a0-ce955a816c01",
+        "text": "# Current Page"
+    },
+    {
+        "id_": "3aac41bb-41ce-4128-9d70-c02018ac2789",
+        "text": "# Average Rank\n\n|Gustavo Kuerten|Roger Federer|Lleyton Hewitt|Andy Roddick|John McEnroe|Jimmy Connors|Rafael Nadal|\n|---|---|---|---|---|---|---|\n|Stefan Edberg|Bjorn Borg|Jim Courier|Andre Agassi|Ivan Lendl|Novak Djokovic|Andy Murray|\n|Carlos Alcaraz|Pete Sampras|Pete Sampras|Pete Sampras|Pete Sampras|Pete Sampras|Pete Sampras|"
+    },
+    {
+        "id_": "01373062-1ac4-4bff-97a0-9c3e6a4c44ea",
+        "text": "# Figure 2.\n\nCuto” at top 3 of full ATP rankings.\n\n| | | |Stefan Edberg|Pete Sampras|Roger Federer|Lleyton Hewitt|Bjorn Borg|Andre Agassi|Boris Becker|Jimmy Connors|Rafael Nadal|\n|---|---|---|---|---|---|---|---|---|---|---|---|\n| | | | |Jim Courier|Andy Murray|John McEnroe|Ivan Lendl|Novak Djokovic|Mats Wilander|20| |\n|15|10|5|0| | | | | | | | |"
+    },
+    {
+        "id_": "1518bae2-2acd-467c-b9f3-aab553099318",
+        "text": "# Figure 3.\n\nCuto” at top 5 of full ATP rankings.\n\nIn Figure 3 we plot the top part of the Hasse diagram of the poset over “top 5 players,” where Djokovic, Federer and Nadal remain incomparable maximal elements, although Federer fares slightly better than the other two in terms of average rank. However, Sampras is"
+    },
+    {
+        "id_": "233378c1-1a33-46e4-a42f-9819d738dc49",
+        "text": "# Average Rank\n\nNo longer a maximal element: as a top 5 player, he is worse than both Federer and Nadal, and he is incomparable to Djokovic. Lendl (both of whom he was better than as a top 3 player). Note that Djokovic and Connors are incomparable as top 5 players: their difference in average rank favors Djokovic, but it is not sufficiently conclusive. Moreover, note that Alcaraz no longer appears near the top of the Hasse diagram, having been displaced by other players who are better top 5 players than they are top 3 players, such as Guillermo Vilas (this is reflected in the average rank plot).\n\nFirst, note that Alcaraz and Vilas did not overlap in competition: Vilas played professionally from 1968 to 1992. Second, note that Alcaraz transitioned very quickly from below the top 20 to within the top 3 from February to September of 2022, and has consistently prevailed within the top 3 until the time of writing. His prevalence within the top 3 is significant independently of his short career at present. However, when the cutoff is relaxed to top 5, his short career-to-date puts him at a disadvantage compared to retired players with significant career-long prevalence in the top 5 (but perhaps not in the top 3), such as Vilas."
+    },
+    {
+        "id_": "fa10482b-d6c7-4577-a1ed-b4bbfb164bf6",
+        "text": "# Figure 4\n\nWe plot the top part of the Hasse diagram of the poset over “top 10 players,” where Djokovic, Federer, and Nadal once again remain incomparable maximal elements. However, unlike the previous cutoff, we conclude that Djokovic is better than Connors as a top 10 player. Qualitatively, we observe the inclusion of more players near the top of this Hasse diagram compared to the previous cases, indicating that there are more “good top 10 players” than there are good top 3 or top 5 players. For example, Becker (who was far from maximal in Figures 2 and 3) is now close to maximal: only Federer and Nadal are better than him, and he is incomparable to Djokovic."
+    },
+    {
+        "id_": "8b4b7ab9-41bd-46c2-8e9c-a0512b4ec2a9",
+        "text": "# Players\n\n|David Ferrer| | | |Jimmy Connors| |\n|---|---|---|---|---|---|\n| |Guillermo Vilas| |John McEnroe| |Rafael Nadal|\n|Jim Courier| |Andy Murray| |Ivan Lendl| |\n| |Alexander Zverev| |Stefan Edberg| |Novak Djokovic|\n|Michael Chang| |Bjorn Borg| |Boris Becker| |\n| |Mats Wilander| |Andre Agassi| |Roger Federer|\n|Lleyton Hewitt| | | |Pete Sampras| |\n| |Yevgeny Kafelnikov| | | | |\n\nFigure 4. Cutoff at top 10 of full ATP rankings."
+    },
+    {
+        "id_": "45c8e1b9-01a0-40d7-a5e7-d39fdc3426a9",
+        "text": "# Figure 5\n\nLastly, in Figure 5 we plot the top part of the Hasse diagram of the poset over “top 20 players.” Interestingly, only Federer and Nadal remain incomparable maximal elements."
+    },
+    {
+        "id_": "83e58e82-49f0-4aea-9235-bda506a15566",
+        "text": "# Average Rank\n\nDespite this, only Federer is conclusively better than Djokovic as a top 20 player—Djokovic and Nadal are incomparable as top 20 players. Qualitatively, we again observe the inclusion of even more players near the top of this Hasse diagram compared to the previous cases. For instance, the Djokovic ∋ μ Connors ∋ μ Agassi chain from Figure 2 is broken in Figure 5, where all three of these players are equally close to the top of the Hasse diagram and form an anti-chain."
+    },
+    {
+        "id_": "eecf8e5e-4b8b-4606-b198-45237f508cfe",
+        "text": "# Players\n\nMichael Stich\n\nAlexander Zverev\n\nMichael Chang\n\nRichard Krajicek\n\nYevgeny Kafelnikov\n\nGoran Ivanisevic\n\nJimmy Connors\n\nGuillermo Vilas\n\nBjorn Borg\n\nPete Sampras\n\nDavid Ferrer\n\nIvan Lendl\n\nRoger Federer\n\nTim Henman\n\nJuan Carlos Ferrero\n\nJohn McEnroe\n\nStefan Edberg\n\nNovak Djokovic\n\nRafael Nadal\n\nVitas Gerulaitis\n\nMats Wilander\n\nBoris Becker\n\nAndy Murray\n\nAndre Agassi\n\nLleyton Hewitt\n\nAndy Roddick\n\nTomas Berdych\n\nStan Wawrinka\n\nThomas Muster"
+    },
+    {
+        "id_": "06f03ea6-1de2-48df-b090-89d6ffa4eee2",
+        "text": "# Figure 5\n\nCuto” at top 20 of full ATP rankings."
+    },
+    {
+        "id_": "d153a2f7-7708-49a6-9215-fe5fda236a84",
+        "text": "# 4.3. Rankings from the WTA.\n\nIn Figure 6 we plot the top portion of the Hasse diagram of the poset over “top 3 players,” where Graf and S. Williams are incomparable maximal elements—no one of these players is conclusively better than the other. Note also that they both have a similar average rank, albeit with a slight advantage for Graf. Note that S. Williams and Martina Navratilova are incomparable. On the other hand, we conclude that, as top 3 players, Graf is better than Navratilova, who is better than Justine Henin, who is better than Aryna Sabalenka. In other words, these players form a chain in the poset. Formally, this is Graf ∋μ Navratilova ∋μ Henin ∋μ Sabalenka.\n\nWe also conclude that, as a top 3 player, Sabalenka, Kim Clijsters, and Maria Sharapova are pairwise incomparable (i.e., they form an anti-chain).\n\nIn Figure 7 we plot the top portion of the Hasse diagram of the poset over “top 5 players,” where Graf and S. Williams are again incomparable maximal elements. Note that while Graf is better than Navratilova, S. Williams and Navratilova are incomparable. Moreover, note that unlike the case in Figure 6, as top 5 players, both Clijsters and Sharapova are better than Sabalenka. This is a similar effect to that seen with Alcaraz in Section 4.2: Sabalenka turned professional in 2015 and had little overlap in competition with Sharapova."
+    },
+    {
+        "id_": "73509167-0449-4b85-b0dd-b4540f6e2ad9",
+        "text": "# Maria Sharapova"
+    },
+    {
+        "id_": "ff9331cf-49ad-4f0e-8f06-e52290397b36",
+        "text": "# Average Rank\n\n|Caroline Wozniacki|Monica Seles|Chris Evert|\n|---|---|---|\n|Victoria Azarenka|Martina Navratilova|Steffi Graf|\n|Simona Halep|Ashleigh Barty|Lindsay Davenport|\n|Amelie Mauresmo|Martina Hingis|Serena Williams|\n|Aryna Sabalenka|Justine Henin|Iga Swiatek|\n|Kim Clijsters| | |"
+    },
+    {
+        "id_": "efce69cd-6157-44f7-93f0-51fb22c0fc0b",
+        "text": "# Figure 6.\n\nCuto” at top 3 of full WTA rankings.\n\n|Steffi Graf|Serena Williams|Martina Navratilova|Martina Hingis|Iga Swiatek|Lindsay Davenport|Ashleigh Barty|Chris Evert|\n|---|---|---|---|---|---|---|---|\n|Monica Seles|Justine Henin|Caroline Wozniacki|Simona Halep|Maria Sharapova|Aryna Sabalenka|Victoria Azarenka|Venus Williams|\n|Kim Clijsters|Amelie Mauresmo|Arantxa Sanchez Vicario|Dinara Safina| | | | |"
+    },
+    {
+        "id_": "ff5790c9-424f-4a62-a403-2f5031cfbd3e",
+        "text": "# Figure 7.\n\nCuto” at top 5 of full WTA rankings.\n\n|Steffi Graf|Serena Williams|Lindsay Davenport|Martina Navratilova|Martina Hingis|Monica Seles|Maria Sharapova|Chris Evert|Simona Halep|\n|---|---|---|---|---|---|---|---|---|\n|Ashleigh Barty|Kim Clijsters|Justine Henin|Venus Williams|Iga Swiatek|Arantxa Sanchez Vicario|Caroline Wozniacki|Aryna Sabalenka|Amelie Mauresmo|\n|Gabriela Sabatini|Karolina Pliskova| | | | | | | |\n\nwho retired in 2020, and Clijsters, who retired in 2012 except for a brief comeback between 2020 and 2022. In particular, her prevalence within the top 3 is significant independently of her short career at the time of writing. However, when the cuto” is relaxed to top 5, her"
+    },
+    {
+        "id_": "b9f60cad-cdbb-4140-b619-3e2764f6934b",
+        "text": "# Average Rank\n\nShort career-to-date puts her at a disadvantage compared to long-established players with significant career prevalence in the top 5, such as Clijsters and Sharapova. Qualitatively, we observe the inclusion of more players near the top of this Hasse diagram compared to the previous cases, and that chains of players that were comparable as top 3 players become anti-chains and close to maximal as top 5 players (e.g., Lindsay Davenport and Seles)."
+    },
+    {
+        "id_": "db605475-1acc-4134-8f5e-748396b0a09e",
+        "text": "# Figure 8\n\nWe plot the top portion of the Hasse diagram of the poset over “top 10 players,” where now the three of Graf, Navratilova, and S. Williams are incomparable maximal elements. In other words, while Navratilova is close to but not quite the GOAT as a top 3 or top 5 player, she is conclusively one of the GOATs as a top 10 player. As a top 10 player, Navratilova is better than Seles. However, Graf and S. Williams cannot be conclusively compared to Seles (even though they fare slightly better than her in terms of average rank).\n\n|Pam Shriver|Chris Evert|\n|---|---|\n|Gabriela Sabatini| |\n|Arantxa Sanchez Vicario|Martina Hingis|\n|Martina Navratilova|Conchita Martinez|\n|Amelie Mauresmo|Monica Seles|\n|Justine Henin|Venus Williams|\n|Steffi Graf|Karolina Pliskova|\n|Caroline Wozniacki|Lindsay Davenport|\n|Kim Clijsters|Maria Sharapova|\n|Serena Williams|Petra Kvitova|\n|Ashleigh Barty|Simona Halep|\n\nFigure 8. Cuto” at top 10 of full WTA rankings."
+    },
+    {
+        "id_": "fca7606e-c36e-42cd-af3a-04658b6f0cd8",
+        "text": "# Figure 9\n\nLastly, in Figure 9 we plot the top portion of the Hasse diagram of the poset over “top 20 players,” where now all six of Graf, Navratilova, Seles, S. Williams, V. Williams, and Wozniacki are incomparable maximal elements. Qualitatively, we observe a significant and across the board increase in the number of players near the top of the Hasse diagram. This indicates that, in the WTA, there are many more good top 20 players than there are good top 3, 5, or 10 players."
+    },
+    {
+        "id_": "1b7a6d5d-0dd4-4433-8f80-29690ed12697",
+        "text": "# 4.4. Comparing the Associations.\n\nFigures 5 and 9 are qualitatively different in that, as top 20 players, the number of players close to maximal is much larger for the WTA than it is for the ATP. Comparing the results from Sections 4.2 and 4.3, this difference is not nearly as apparent for the posets over top 3, 5, or 10 players. Here, we further investigate this difference from a more quantitative point of view. In particular, we ask questions of"
+    },
+    {
+        "id_": "c2f2b59d-df1a-4b34-94c5-489dc4d5de8e",
+        "text": "# Current Page Analysis"
+    },
+    {
+        "id_": "4462e57d-3287-4247-bbdc-19f365385355",
+        "text": "# Average Rank of Players\n\n|Chris Evert|Justine Henin|Hana Mandlikova|Jelena Jankovic|Pam Shriver|Vera Zvonareva|Victoria Azarenka|Helena Sukova|Kim Clijsters|Martina Navratilova|\n|---|---|---|---|---|---|---|---|---|---|\n|Na Li|Claudia Kohde Kilsch|Angelique Kerber|Maria Sharapova|Zina Garrison|Steffi Graf|Amanda Coetzer|Ana Ivanovic|Mary Joe Fernandez|Petra Kvitova|\n|Svetlana Kuznetsova|Caroline Wozniacki|Anke Huber|Nathalie Tauziat|Karolina Pliskova|Gabriela Sabatini|Manuela Maleeva Fragniere|Monica Seles|Naomi Osaka|Garbine Muguruza|\n|Mary Pierce|Arantxa Sanchez Vicario|Agnieszka Radwanska|Venus Williams|Iga Swiatek|Elina Svitolina|Jennifer Capriati|Conchita Martinez|Simona Halep|Serena Williams|\n|Ashleigh Barty|Aryna Sabalenka|Lindsay Davenport|Jana Novotna|Nadia Petrova|Elena Dementieva|Martina Hingis|Amelie Mauresmo| | |"
+    },
+    {
+        "id_": "42267bb5-a9fb-4d02-9128-7aafb239629e",
+        "text": "# Figure 9\n\nCuto” at top 20 of full WTA rankings."
+    },
+    {
+        "id_": "1e00b73b-ef6e-433c-b811-e708da751bd2",
+        "text": "# Analysis of Player Rankings\n\nThe form: to what extent is being “a good top player” a predictor of being “a good top player,” where the stronger we expect the correlation to be. Intuitively, the smaller the difference between the two rankings, the stronger the correlation.\n\nIn Figure 10, we consider the set of players that appear among the first 25 by average rank for all cutoffs ς = 3, 5, 10, 20. This amounts to 15 players in both the ATP and in the WTA. Then, for each of these sets of 15 players, we plot a matrix of scatter plots of average rank and varying cutoffs. In this way, each point represents a player, and its coordinates correspond to the player’s average rank for a combination of cutoffs. For each scatter plot, we also fit a linear model and report its coefficient of determination r².\n\nFrom Figure 10 we note that, in both associations, being a good top 5 player is a reasonable predictor of being a good top 3 player, as is being a good top 10 player a reasonable predictor for being a good top 5 player. In both cases, being a good top 10 player is still correlated with being a good top 3 player, although much less so than with being a good top 5 player.\n\nHowever, when we consider being a good top 20 player as a predictor, we observe a major difference between the two associations. In the ATP, being a good top 20 player as a predictor is correlated with being a good top 10, 5, and 3 player (with decreasing correlation in that order). Conversely, in the WTA, being a good top 20 player is only mildly correlated with being a good top 10 player, and it is nearly uncorrelated with being a good top 5 or top 3 player.\n\nThis quantitative finding highlights a major difference in terms of career and dominance longevity for top players across the two associations. While we do not delve into causality in this work, we believe it would be practically important to further study the reasons and broader implications of this phenomenon."
+    },
+    {
+        "id_": "a5de344a-9d9f-448e-8475-85ccd0b52347",
+        "text": "# Cutoff 3Cutoff 5Cutoff 10Cutoff 20ATP Top 25 by Average Rank (from Linear Extensions)  WTA Top 25 by Average Rank (from Linear Extensions)\n\n|Cutoff 3|Cutoff 5|Cutoff 10|Cutoff 20| | |\n|---|---|---|---|---|---|\n| |20|20|10|10| |\n| |20|20|10|10| |\n| |20|20|10|10| |\n| |20|20|10|10| |\n| |r² = 0.71| |r² = 0.71| | |\n| |20|20|10|10| |\n| |r² = 0.43|r² = 0.74| |r² = 0.39|r² = 0.82|\n| |20|20|10|10| |\n|r² = 0.37|r² = 0.64|r² = 0.88|r² = 0.05|r² = 0.23|r² = 0.41|"
+    },
+    {
+        "id_": "dfb8c28f-e594-4736-bae1-a1c9af92325c",
+        "text": "# (a) Rankings from the ATP."
+    },
+    {
+        "id_": "3ceb8f81-ceb6-4e34-b91c-2652d85c600f",
+        "text": "# (b) Rankings from the WTA."
+    },
+    {
+        "id_": "78d2fba4-622d-445d-a85b-5aff9299fff2",
+        "text": "# Figure 10. Average ranks (from linear extensions) with varying cutoffs."
+    },
+    {
+        "id_": "272caf86-6112-412a-8d88-42b8be6550ca",
+        "text": "# 5. Conclusion\n\nIn this work, we proposed a mathematical framework to compare players, and in particular players spanning across different time periods in sports history. We aggregated cutoffs of historical ranking data into a single poset over top players by i) sampling from a data-driven random walk over the symmetric group and ii) adopting a notion of stochastic dominance. Ultimately, some pairs of players can be conclusively compared while others cannot. This approach departs from existing methods in that it relies on ranking data (rather than match-level data, which may or may not exist/be available) and formally comes to terms with the possibility that some comparisons are “too close to call.” The two steps in our framework leave ample room for further modeling choices, namely by adapting the construction of (1) and (4) as needed for the particular application in mind. These applications also motivate the analytical study of data-driven sampling of permutations.\n\nWe implemented our methods using data from both the ATP and the WTA to find the GOATs in the respective categories. Our experimental results suggest that Nadal, Federer, and Djokovic are the ones that tend to come ahead as GOATs of the ATP under most circumstances, whereas Graf and S. Williams are the ones that do so in the case of the WTA. Through our experiments, we also noted major differences in terms of career and dominance longevity for top players across the two associations."
+    }
+]

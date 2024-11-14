@@ -1,0 +1,342 @@
+[
+    {
+        "id_": "14db7f95-b90a-4c0d-a90a-c3bf002e8322",
+        "text": "# 1. Introduction\n\nUnderstanding traffic interactions and the way they affect future vehicle trajectories is inherently complex [1]. In mixed traffic environments, where human-driven and automated vehicles coexist, this complexity is amplified, requiring precise interaction representation and behavior modeling for reliable motion prediction [2, 3, 4]. These scenarios often present dynamic interaction topologies with underlying relations, with interaction patterns as well topologies continuously evolving depending on the surrounding context as exemplified by lane change maneuvers.\n\n⇤Corresponding authors: Yang Zhou (yangzhou295@tamu.edu), Haotian Shi (hshi84@wisc.edu);\n\nPreprint submitted to Elsevier September 19, 2024"
+    },
+    {
+        "id_": "9d5025e5-b983-4b58-a5d3-f365a82686d3",
+        "text": "# Vehicle Interactions and Driving Behaviors\n\nThese relationships play a crucial role in guiding each vehicle’s decision-making processes. Additionally, each vehicle can display multiple possible modalities in driving intentions and behaviors, including both longitudinal (e.g., acceleration and braking) and lateral (e.g., lane-changing and lane-keeping) maneuvers. Furthermore, collective behaviors, arising from interactions within a group of vehicles and encompassing both cooperative and competitive behaviors, further complicate the understanding of these interactions. Figure 1 describes the interaction among multi-vehicles and the corresponding multi-modal driving behaviors. Therefore, it is necessary to model the interaction and multi-modality and reason the interaction relation to accurately capture interactions and forecast their future behaviors."
+    },
+    {
+        "id_": "97332df7-a690-40b5-943a-352290905e83",
+        "text": "# Figure 1: Major challenges\n\n- (a) Vehicle interaction\n- (b) Behavior multi-modality\n- (c) Interaction relational reasoning"
+    },
+    {
+        "id_": "c1a35bab-e1c5-474d-8fa3-1f662a9f9e89",
+        "text": "# (a) Interaction between vehicles"
+    },
+    {
+        "id_": "7a38ca7a-c3ca-4c3c-9461-c60971f73bbe",
+        "text": "# (b) Multi-modality of driving behaviors\n\nLeft lane change\n\nLane keeping\n\nRight lane change"
+    },
+    {
+        "id_": "f0373647-e230-4e42-b81d-3a4c54f09ee4",
+        "text": "# (c) Interaction relation between vehicles and behaviors\n\n|vehicletarget|agent|\n|---|---|\n|surrounding vehicle|behavior node|\n|interaction|interaction graph|\n|predicted trajectory|historical marking|\n|potential conflict| |\n\nE↵orts have been made to address the challenges of vehicle interactions and driving behavior multi-modality. Three primary approaches have been developed: social operation methods, attention-driven methods, and graph-based techniques. Social operations use pooling mechanisms to generate socially acceptable trajectories by capturing the influence of surrounding agents. Attention-driven approaches use attention mechanisms to dynamically weigh neighboring agents’ information. Graph-based methods leverage graph structures to model non-Euclidean spatial dependencies, effectively handling varying interaction topologies and predicting dynamic interactions. These complex interactions create uncertainty, complicating the accurate forecasting of a single future trajectory with high confidence due to varying driving behaviors in identical situations, driven by individual driver characteristics and psychological factors. Addressing the multi-modality of driving behaviors often involves introducing latent variables, categorized into those with explicit semantics and those without. Models with explicit semantics use latent variables to clearly represent driving intentions, identifying."
+    },
+    {
+        "id_": "60226bdd-36f4-4066-ac14-277b00d90ef1",
+        "text": "# Specific Maneuvers and Behaviors for Multi-Modal Trajectory Predictions\n\nModels without explicit semantics employ generative deep learning techniques, such as Variational Autoencoders (VAEs) and Generative Adversarial Networks (GANs), to produce diverse trajectories by adding noise to encoded features. While these models generate a wide range of possible trajectories, they often struggle with issues related to interpretability and identifying the most effective strategies for sampling from the generated trajectories.\n\nDespite the advances in modeling vehicle interactions and probabilistically forecasting multi-modal future trajectories, the inherent complexity of social dynamics in traffic systems continues to present significant challenges, with limitations arising from the complex nature of agent interactions in two key aspects:"
+    },
+    {
+        "id_": "7c26eb38-88d6-435e-8436-30cd636a4eaa",
+        "text": "# 1. Focus on Pair-Wise Interactions\n\nPrevailing methods primarily focus on pair-wise interactions rather than group-wise interactions. In multi-vehicle systems, dynamic interactions among vehicles often exhibit cooperative and competitive behaviors, which have been rarely explored. Effectively capturing the collective influence of vehicle groups is vital for understanding complex social dynamics, especially in scenarios where vehicles engage in multi-modal behaviors such as lane changes, acceleration, and deceleration. In such contexts, vehicles need to make decisions based on the actions and intentions of several surrounding agents simultaneously, further complicating the task of accurate behavior prediction.\n\nFor example, competitive behaviors, such as overtaking and lane-changing, can lead to conflicting objectives between vehicles. In the lane changing scenario as depicted in Figure 2, vehicle 1 attempts a right lane change (R) while vehicle 3 maintains lane-keeping (K) and vehicle 4 performs a left lane change (L). Conversely, cooperative interactions, such as car-following, are illustrated by vehicles 1, 3, and 4 forming a platoon, all maintaining lane-keeping while potentially responding to vehicle 2’s left lane change. These examples highlight the need for models that can effectively capture the complexities of both individual and group dynamics in multi-modal traffic scenarios."
+    },
+    {
+        "id_": "678647a8-c45a-4ac8-a377-da5998315302",
+        "text": "# 2. Limitations of Traditional Graph-Based Methods\n\nWhile traditional graph-based methods excel at capturing pair-wise relationships, they are limited in representing the more intricate group-wise interactions. This limitation arises because graph-based approaches model interactions between pairs of agents with fixed topologies, making it difficult to capture the simultaneous influence of multiple agents on each other’s behaviors. Unlike standard graphs, where each edge connects only two nodes, hypergraphs are capable of connecting an entire group of nodes within a shared context through a single hyperedge.\n\nAs a result, a hypergraph, which is a generalization of a graph where hyperedges can connect multiple nodes to represent the higher-order relationships, offers a more accurate reflection of the group-wise interactions and allows for a more accurate representation of the collective influence of multiple agents in varying traffic conditions. This adaptability is essential for addressing the stochastic nature of human behavior, as hypergraph models can more effectively manage the uncertainty and variability inherent in the interactions resulting from collective behaviors, thereby facilitating more socially inspired automated driving."
+    },
+    {
+        "id_": "3ac68dae-cff9-47f7-a26e-3c44d58eaed6",
+        "text": "# Proposed Method\n\nTo address the aforementioned challenges, this paper presents a novel hypergraph-based method for multi-modal trajectories prediction with relational reasoning. The proposed framework contains two parts: Graph-based Interaction-aware Anticipative Feasible Future Estimator (GIRAFFE) and Relational Hypergraph Interaction-informed Neural motion generator (RHINO). GIRAFFE enables multi-agent, multi-modal motion prediction of preliminary multi-vehicle trajectories, based on while RHINO framework, which utilizes an innovative Agent-Behavior Hypergraph to capture."
+    },
+    {
+        "id_": "7d505f2b-6b75-4817-b74f-76cbec414e92",
+        "text": "# Overtaking"
+    },
+    {
+        "id_": "2477f935-5f0e-43ad-b6f7-b11a5e1f559f",
+        "text": "# Lane-changing"
+    },
+    {
+        "id_": "9f9d03bf-0e3b-477c-ac74-d6b449e05c70",
+        "text": "# Car-following"
+    },
+    {
+        "id_": "2331b3f6-d536-4d8f-aee1-af3993adfd56",
+        "text": "# Merging\n\nFigure 2: Pair-wise interaction and group-wise interaction in different scenarios.\n\nLeveraging GroupNet [41] as its backbone, RHINO learns a multi-scale hypergraph topology in a data-driven manner to model group-wise interactions. Through neural message passing across the hypergraph, this approach integrates interaction representation learning and relational reasoning, enhancing the social dynamics of automated driving. Furthermore, a Conditional Variational Autoencoder (CVAE) framework is employed to generate diverse trajectory predictions by sampling from hidden..."
+    },
+    {
+        "id_": "8fcf73b4-64c1-4026-8283-716dfe26410d",
+        "text": "# 4"
+    },
+    {
+        "id_": "7ae0df41-ab7d-4dbd-9e5e-893a39a36e38",
+        "text": "# Current Page"
+    },
+    {
+        "id_": "90978006-0871-4c70-a757-4e5dce921cc0",
+        "text": "# Key Contributions\n\nTo summarize, the key contributions of this work are as follows:\n\n1. The framework adopts multi-scale hypergraphs to represent group-wise interactions among different modalities of driving behavior and the corresponding motion states of multiple agents in a flexible manner.\n2. This framework incorporates interaction representation learning and relational reasoning to generate motions that are plausible and concurrently in a probabilistic manner depicted by the learned posterior distribution.\n\nThe remainder of this paper is structured as follows: Section 2 outlines the problem statement of this research. Section 3 introduces the methodology. Section 4 details the experimental setup and analysis of the results obtained. Section 5 concludes this paper."
+    },
+    {
+        "id_": "568b97d4-889a-4f6e-a978-8e9d74b99764",
+        "text": "# 2. Problem Statement"
+    },
+    {
+        "id_": "a1146241-b3d3-4823-8f11-762dcf67b820",
+        "text": "# 2.1. Problem Definition\n\nThe vehicle trajectory prediction in the dynamic realm of multi-vehicle interaction context of multi-lane highways involves determining the future movements of a target vehicle based on historical data and multi-modal predictions of its own state and the states of surrounding vehicles. This domain addresses two primary challenges: (i) multi-agent multi-modal trajectory prediction and (ii) prediction-guided motion generation after reasoning.\n\nThe objective of trajectory prediction is to estimate the future trajectories of the target vehicle and its surrounding vehicles, given their historical states. The historical states, spanning a time horizon [1, . . . , T], are represented as <math>X_{1:T} = \\{X_1, X_2, \\ldots, X_T\\} \\in \\mathbb{R}^{T \\times N \\times C_1}</math>, where N denotes the number of vehicles and <math>C_1</math> denotes the number of features, including longitudinal and lateral positions and velocities. Each historical state <math>X_t = \\{x_{ti} | \\forall i \\in [1, N], \\forall t \\in [1, T]\\} \\in \\mathbb{R}^{C_1}</math> at time step t captures these details for each vehicle i. Notably, the superscript refers to vehicle indices with i = 1 representing the target vehicle, and the subscript to time steps, with <math>C_1 = 4</math> for the input data.\n\n<math>RF^{\\times N \\times M \\times \\text{Pred}(\\cdot)}</math> provides preliminary predictions of multi-modal trajectory candidates <math>X_{M+1:T+F}</math>. The prediction model <math>H_{C2}</math> for all the N vehicles over the future time horizon [T + 1, . . . , T + F] with M modes of driving behaviors. This model takes historical data <math>X_{1:T}</math> as the input and outputs <math>m_i | \\forall m</math> future longitudinal and lateral positions, where <math>C_2 = 2</math>. The forecasted states <math>X_{f}^{\\hat{M}} = \\{x_f | \\forall i \\in [1, N], \\forall f \\in [1, F]\\}</math> aim to estimate each vehicle’s future trajectory for each behavior mode m at time step <math>T + f</math>. This is mathematically formulated as:\n\n<math>X_{M+1:T+F}^{\\hat{T}} = H_{\\text{Pred}}(X_{1:T})</math> (1)\n\nBased on that, the motion generation model <math>H_{\\text{Gen}}(\\cdot)</math> is further developed to generate plausible trajectories considering the implicit group-wise interactions, using both historical states <math>X_{1:T}</math> and preliminary multi-modal future trajectory candidates <math>X_{M+1:T+F}</math> provides K plausible trajectory <math>Y_{K+1:T+F}</math> time steps. Each generated state <math>\\hat{T}_{K+f}, \\ldots, \\hat{T}_{K+F} \\in \\mathbb{R}^{[1, K]}, \\forall i \\in [1, N], \\forall f</math> is given as input. The generation model <math>Y^{\\hat{T}} = \\{\\hat{k}_{i+f} | \\forall k y_{T} \\in \\mathbb{R}^{[1, F]}\\} \\in \\mathbb{R}^{F \\times N \\times K \\times C_2}</math> for all the N vehicles for the next F."
+    },
+    {
+        "id_": "bbb1b492-6198-4e69-8bd3-4347801234f7",
+        "text": "RC2 represents the k-th generated longitudinal and lateral positions of the i-th vehicle at time step T + f. The formulation for this generation problem is:\n\nYK +1:T +F ˆT= HGen(X1:T, XM +1:T +F)ˆT"
+    },
+    {
+        "id_": "40dddd01-8baa-41a2-93c9-93f057f5b1b4",
+        "text": "# 3. Methodology\n\nGiven the aforementioned problem, we first develop a customized framework architecture. Then, the vital components are further elaborated."
+    },
+    {
+        "id_": "796c5e9b-b379-4646-a42a-cc58ac1675b4",
+        "text": "# 3.1. Framework Architecture\n\nThe proposed framework adopts an integrated architecture, as shown in Figure 3, which involves two major components:\n\n- GIRAFFE: Graph-based Interaction-aware Anticipative Feasible Future Estimator, which leverages graph representations to capture pair-wise interactions during both the historical and future time horizons, providing preliminary multi-modal trajectories prediction candidates for vehicles.\n- RHINO: Relational Hypergraph Interaction-informed Neural motion generator, which utilizes multi-scale hypergraph representations to model group-wise interactions and reason the interaction relations among the multi-modal behaviors. Built upon the preliminary multi-modal trajectories by GIRAFFE, RHINO will further generate plausible future trajectories for all vehicles in a probabilistic manner.\n\nThe subsequent sections will provide an in-depth explanation of the two principal frameworks."
+    },
+    {
+        "id_": "03eb02a1-82c0-402c-9f30-1b512e3fa681",
+        "text": "# 3.2. GIRAFFE: Graph-based Motion Predictor\n\nIn our context, a graph representation G is adopted by modeling N vehicles as nodes V 2 N⇥CRN and the pair-wise interaction as the edges E 2 R|N⇥N|. Further, the feature matrix X 2 R containing vehicle states (i.e., longitudinal and lateral position and speed) and the adjacency matrix A 2 RN⇥N describing the interactions among nodes are further utilized to describe the graph. By that, we can define an Agent Graph as:"
+    },
+    {
+        "id_": "3b6998d0-7863-443c-a3cb-fdd4f6def876",
+        "text": "# Definition 1 (Agent Graph)\n\nLet Ga be a graph representing the motion states and interaction of N agents, with each agent represented as a node. Ga is expressed as:\n\nGa = (Va, Ea; Xa, Aa)\n\nwhere Va 2 RN denotes the node set, Ea 2 R|N⇥N| denotes the edge set, Xa 2 RN⇥C represents the feature tensor, Aa 2 RN⇥N indicates the adjacency matrix.\n\nTo better represent the interaction and relations of the predicted multi-agent multi-modal trajectory candidates with graphs, we expand each agent node to multiple nodes of the number of behavior modes based on our previous work [25], which further renders an Agent-Behavior Graph."
+    },
+    {
+        "id_": "4ced847a-8a54-4443-b418-3ff249f0c51b",
+        "text": "# Motion Generation Framework Architecture\n\n|Input:|Intermediate Output:|Output:|\n|---|---|---|\n|Historical Trajectory|Prediction Model|Preliminary Multi-modal Trajectory Generation|\n|XI:T|XY+1T+F|Yf+1t+F|\n|HPred: Xi:t + XY+1:T+F|HGen: Xit XY+1T+F|Y#+IT+F|\n\nGIRAFFE: Graph-based Interaction-aware Multi-agent Multi-modal Motion Prediction\n\nRHINO: Hypergraph-based Interaction Relational Reasoning for Motion Generation\n\nFuture\n\n|XIt|Interaction Encoder|Multi-modal Derader|\n|---|---|---|\n|Xut|Hypergraph Relational Encoder|Posterior Distribution|\n| |Motion Generator| |\n| |eatner| |\n\nHistorical Hypergraph Relational Encoder"
+    },
+    {
+        "id_": "ee546959-d862-4aa6-86b6-b8cc7f0cbc2f",
+        "text": "# Definition 2 (Agent-Behavior Graph)\n\nLet Gb be a graph representation of the multi-modal motion states of N agents, with each of M behavior modes for each agent represented as a node. Gb is expressed as:\n\nGb = (Vb, Eb; Xb, Ab)\n\nwhere Vb ∈ R|MN| denotes the node set, Eb ∈ R|MN×MN| denotes the edge set, Xb ∈ R|MN|×C represents the feature tensor, Ab ∈ R|MN|×|MN| indicates the adjacency matrix.\n\nThe transition from an Agent Graph Ga to an Agent-Behavior Graph Gb is by an expansion function Fexpand(·) as:"
+    },
+    {
+        "id_": "c66b0a4e-b6d7-4918-bf39-742b0bd74302",
+        "text": "# 8\n\nGb = Fexpand (Ga),\n\nXb = [[Xia,mN M (3)\n\nAb = [[nAi j ⌦ ⇤mn N N a | 8m, n 2 {1, . . . , M}o\n\nAs shown in Figure 4, in this process, each agent node via 2 Va in the Agent Graph is expanded into M behavior-specific nodes vib 2 Vb, corresponding to the M potential behavioral modes of the vehicle. These newly generated behavior nodes, which may exhibit significant interdependencies, are interconnected through edges ei jb, forming a more complex interaction structure. Consequently, the adjacency matrix Ab is extended to accommodate the expanded node set, resulting in increased dimensionality. Here, ⇤ is a behavior correlation matrix, and each element ⇤mn in the matrix represents the correlation between behavior mode m of one agent and behavior mode n of another agent. The feature tensor Xb of the behavior nodes encodes the possible motion states under each behavioral mode, capturing the multi-modal nature of vehicle behavior."
+    },
+    {
+        "id_": "be7b1604-1f6d-4cc1-b444-06f7397a07e2",
+        "text": "# Definition"
+    },
+    {
+        "id_": "2a62b41d-6b13-4706-a9dc-3f6a2fb9224b",
+        "text": "# Definition 2\n\nAgent-Behavior Graph\n\nAgent Graph\n\nAdjacency Matrix\n\n(Va,E\";X\" A\") R Agent-Behavior Graph Adjacency Matrix RIMNIxIMNI\n\nFigure 4: Definitions of graphs\n\nBased on that, a deep neural network is designed to capture interactions between the target vehicle and surrounding vehicles by Ga, and to represent the output, which consists of predicted multi-agent multi-modal trajectories, by Gb, as illustrated in Figure 5. Three key modules of GIRAFFE HPred(·) are introduced below:"
+    },
+    {
+        "id_": "b2aba3f4-d9f6-4965-85b9-6682268628ae",
+        "text": "# Interaction Encoder\n\nThe Interaction Encoder utilizes a Di↵usion Graph Convolution Network (DGCN) architecture to encode the dynamic graph embeddings, as described in Appendix B. The DGCN captures the bidirectional dependencies among vehicles by applying di↵usion convolutions, which consider both forward and reverse processes to model the influence of surrounding."
+    },
+    {
+        "id_": "fe999898-e970-4174-921a-2e2fd132def2",
+        "text": "# GIRAFFE: Graph-based Interaction aware Multi-agent Multi-modal Motion Prediction\n\n|Input:|Output:|\n|---|---|\n|Historical States Xr € RNxTxz|Predicted multi-modal Trajectory RY+l:T+F RNx3xFx2|"
+    },
+    {
+        "id_": "0acb0485-2347-484d-b56b-c305d9d45bc5",
+        "text": "# Interaction Encoder\n\nIntention Predictor\n\n|Historical|states|Future|Hidden states|\n|---|---|---|---|\n|Historical DGCN Module| |DGCN Module| |"
+    },
+    {
+        "id_": "10be85fc-3a0c-471e-bf0b-765a55ed1a72",
+        "text": "# Intention Predictor\n\n| | | | |Predicted|intentions|\n|---|---|---|---|---|---|\n| | |1|0|3|1|"
+    },
+    {
+        "id_": "4e125a9f-9919-4fe4-ab1a-5a2987df95bf",
+        "text": "# Multi-modal Decoder\n\n|Whid|Hdec|GRU|Predicted multi-modal trajectory|\n|---|---|---|---|\n|1| | |RT+1T+F|\n\nFigure 5: GIRAFFE Framework.\n\nvehicles and the target vehicle’s impact on them [43, 44]. This encoder adopts a DGCNH (·) to generate graph embeddings for historical of and a DGCNF (·) to generate future embeddings, merging them into a comprehensive representation that spans the entire time window of interest.\n\nH˜T = DGCNH (XT) (4)\n\nH˜F = DGCNF (XT) (5)\n\nH˜ = [ H˜T , H˜F ] (6)"
+    },
+    {
+        "id_": "7d5e0e7d-a27d-4540-969e-c95f47082d40",
+        "text": "# Intention Predictor\n\nThe Intention Predictor addresses the classification of future driving intentions, both laterally and longitudinally. Using the encoded graph representation, two MLP layers reduce the dimensions and encode the features into a latent space. The LatMLP layers with softmax activation then classify the lateral intentions over the future time horizon. These predictions help in understanding the potential maneuvers the vehicle might take, such as lane changes or speed adjustments.\n\nHIP = MLP(MLP( H))\n\nmlat = softmax(LatMLP( HIP))"
+    },
+    {
+        "id_": "c3f55e29-02f5-4c4e-a2f0-dd9a188f85b1",
+        "text": "# Multi-modal Decoder\n\nFinally, the Multi-modal Decoder fuses the predicted intentions of multiple agents with the latent space to produce multiple future trajectory distributions for each agent. This decoder uses a trainable weight matrix to combine features from distinct historical and future time steps, emphasizing the importance of sequential motion patterns. The GRU-based decoder ensures temporal continuity in the predicted trajectories, mapping the fused features to a bivariate Gaussian distribution representing the future vehicle positions. This approach allows the model to generate probabilistic predictions for multiple agents.\n\nWhid = softmax(Wmap ⌦ Mˆ)\n\nHdec = Whid · H˜\n\nXM +1:T +F ˆT= MLP(GRU(MLP(Hdec, Mˆ)))"
+    },
+    {
+        "id_": "c0d35bdd-a106-42a1-a00f-8aa9796e0e60",
+        "text": "# 3.3. RHINO: Hypergraph-based Motion Generator\n\nUnlike traditional graph representations, which are confined to pair-wise relationships, hypergraphs offer a more sophisticated and comprehensive framework for representing group-wise interactions. By connecting multiple vehicles that exhibit strong correlations through hyperedges, hypergraphs enable a more robust analysis and optimization of the complex network of interactions. The concept of an Agent Hypergraph to represent agents and their group-wise interactions is introduced as follows:"
+    },
+    {
+        "id_": "9a7a5fad-710e-4538-bcb5-b64758254509",
+        "text": "# Definition 3 (Agent Hypergraph)\n\nLet Hb be a hypergraph representation of the motion states of N agents, with each agent represented as a node. The hypergraph Ha is expressed as:\n\nHa = (Va, Ua; Xa, Ha)\n\nwhere Va ∈ RNa denotes the node set, Ua ∈ RL denotes the edge set, Xa ∈ RN×C represents the feature tensor, H ∈ RN×L indicates the incidence matrix, where Hi j indicates whether node vi is part of the hyperedge uj.\n\nTo convert an Agent Graph Ga into an Agent Hypergraph Ha, we introduce a transformation function Ftransform(·). This function enables the shift from a pairwise interaction framework to a higher-order interaction model represented by the hypergraph. Formally, the transformation is expressed as:"
+    },
+    {
+        "id_": "7cd34722-9e77-4584-a80d-ee0cec8dffff",
+        "text": "# Definition 2"
+    },
+    {
+        "id_": "59510f8e-95a4-48dd-b6a0-5bd67df79d16",
+        "text": "# Agent-Behavior Graph\n\n|Agent Graph|Adjacency Matrix|\n|---|---|\n|(V\",E4;X\",A\")|R|"
+    },
+    {
+        "id_": "9c3b7445-4f93-49ab-aa04-1e1d409e470b",
+        "text": "# Definition 3"
+    },
+    {
+        "id_": "c7288c46-14ec-4ace-91ba-34b17491f422",
+        "text": "# Agent Hypergraph\n\n|Agent Hypergraph|Incidence Matrix|\n|---|---|\n|H\"|RNXL|"
+    },
+    {
+        "id_": "202f0ab4-45cc-4672-890f-27d4f04e55b9",
+        "text": "# Definition 4"
+    },
+    {
+        "id_": "7f078bef-a27d-4710-b94e-f246dd56f620",
+        "text": "# Agent-Behavior Hypergraph\n\n|Agent-Behavior Hypergraph|Incidence Matrix|\n|---|---|\n|(Ve| |\n\nFigure 6: Definitions of graphs and hypergraphs\n\nVa = [{vi a}N\n\nUa = [nuj\n\nHa = Ftrans form (Ga),\n\nXa = [XiaN\n\nIn this transformation, the node set Va and the feature tensor Xa remain consistent between the graph and the hypergraph representations. However, the primary modification occurs in the edge formulation. The transformation replaces the pairwise edges of the original Agent Graph with hyperedges that can connect multiple nodes simultaneously. This redefinition of edges as hyperedges within the hypergraph Ha allows for the modeling of group-wise interactions, where a single hyperedge u 2 Ua can link more than two nodes, capturing higher-order relationships among agents. The incidence matrix Ha is updated to reflect this change, where each entry Hai j"
+    },
+    {
+        "id_": "e13f2022-d48b-4b8c-b9ad-acf894888098",
+        "text": "# Agent-Behavior Hypergraph\n\nindicates whether agent vi participates in hyperedge u.j. As a result, Ha can represent multi-agent interactions that involve multiple agents simultaneously, providing a richer and more flexible structure for modeling the dynamics of the system.\n\nTo enhance the understanding of complex group-wise interactions in multi-agent systems, it is essential to extend the traditional Agent Hypergraph model to account for the diverse behavioral modes of each agent. This is achieved by decomposing each agent node in the Agent Hypergraph Ha into multiple behavior-specific nodes, which correspond to the different modes of behavior each agent can exhibit. The result of this decomposition is the Agent-Behavior Hypergraph, denoted as Hb."
+    },
+    {
+        "id_": "cd2eff03-e311-4048-a63f-e47a4e164df3",
+        "text": "# Definition 4 (Agent-Behavior Hypergraph)\n\nLet Hb be a hypergraph representation of the multi-modal motion states of N agents, with each of M behavior modes for each agent represented as a node. The hypergraph Hb is expressed as:\n\nHb = (Vb, Ub; Xb, Hb)\n\nwhere Vb ∈ ℝ|MN| denotes the node set, Ub ∈ ℝL denotes the edge set, Xb ∈ ℝ|MN|×C represents the feature tensor, Hb ∈ ℝ|MN|×L indicates the incidence matrix, where Hij indicates whether node vi is part of the hyperedge u.j.\n\nTo formally describe the process of transitioning from an Agent Hypergraph Ha to an Agent-Behavior Hypergraph Hb, the expansion function Fexpand(·) is applied. This function decomposes each agent node into multiple behavior-specific nodes and updates the hyperedge structure accordingly. The behavior-specific nodes correspond to the different behavior modes, while the hyperedges represent the higher-order interactions among the behavior modes of different agents.\n\nLet:\n\n|Vb|=|[[nvi,moN M|\n|---|---|---|\n|Ub|=|[[[nuj,mn | uaj LM M, 0 and ∗mn, 0|\n|Hb|=|Fexpand(Ha)|\n|Xb|=|Xia,m|\n\nThe node set Vb expands each agent vi into multiple behavior-specific nodes vib,m, where each m represents a different behavioral mode of the agent. The hyperedges Ub are formed between the behavior-specific nodes based on the group-wise interactions present in the original hypergraph, with the correlation between behavior modes captured by ∗mn. The feature tensor Xb captures the state of each behavior node, inheriting the feature data from the original hypergraph. The incidence matrix Hb records whether a behavior-specific node vib,m is part of a hyperedge ubj,mn."
+    },
+    {
+        "id_": "4c104e0b-aae4-4376-850c-0c65cdcdc28e",
+        "text": "This extended framework, hyperedges can represent these aforementioned complex group-wise interactions by connecting behaviors of multiple vehicles that are influenced simultaneously by a shared context, as illustrated in Figure 6. Therefore, an Agent-Behavior Hypergraph is defined to model the multi-agent, multi-modal system for reasoning about group-wise interaction relations.\n\nIn addition to the expansion process, the transformation function Ftrans form(·) converts an Agent-Behavior Graph Gb into an Agent-Behavior Hypergraph Hb. This transformation replaces the pairwise edges of the graph with hyperedges that capture higher-order interactions between behavior modes across multiple agents. The transformation is guided by the adjacency matrix Ab of the original graph and the behavior-mode correlation matrix ⇤mn. The transformation function Ftrans form(·) is expressed as:\n\nHb = Ftrans form(Gb)\n\nThis structure allows for the connection of behavior nodes across different agents, enabling the representation of interactions among diverse behaviors of multiple agents in a shared context. Hence, the Agent-Behavior Hypergraph not only captures the individual behavior of each agent but also models how these behaviors interact and influence one another within a multi-agent system."
+    },
+    {
+        "id_": "94b257dc-2294-4612-a045-4176a09e796e",
+        "text": "# 3.3.1. RHINO Framework Architecture\n\nThe core of RHINO is to learn a multi-scale Agent-Behavior Hypergraph, where nodes represent the behaviors of agents and hyperedges capture their group-wise interactions. This hypergraph is then used to learn agent and interaction embeddings to better understand the underlying interaction relations. We also incorporate a basic multi-agent trajectory generation system based on the CVAE framework to handle the stochasticity of each agent’s potential behaviors and motion states, generating plausible trajectories for each vehicle.\n\nThus, as illustrated in Figure 7, RHINO comprises the following modules:\n\n- Hypergraph Relational Encoder, which transforms both the original historical states and predicted multi-agent multi-modal trajectories into hypergraphs, modeling and reasoning the underlying relation between the vehicles.\n- Posterior Distribution Learner, which captures the posterior distribution of the future trajectory given the historical states and the predicted multi-modal future motion states of all the vehicles in the vehicle group."
+    },
+    {
+        "id_": "6a9db603-71ff-4368-8d46-ba5617413802",
+        "text": "# BLIYO"
+    },
+    {
+        "id_": "093e5af0-5cd6-4048-b648-004215df217a",
+        "text": "# Future Hypergraph Relational Encoder"
+    },
+    {
+        "id_": "31e7fc7a-b694-421c-8655-223c5ad0cc99",
+        "text": "# Posterior Motion Distribution Generator Learner"
+    },
+    {
+        "id_": "b39f850d-71c5-4049-a81c-e7918644c79b",
+        "text": "# Historical Hypergraph Relational Encoder\n\nMotion Generator, which decodes the embeddings by concurrently reconstructing the historical states and generating the future trajectories."
+    },
+    {
+        "id_": "133ed7b0-3051-420c-93de-8bb3f75a4195",
+        "text": "# 3.3.2. Hypergraph Relational Encoder\n\nWe employ two Hypergraph Relational Encoder modules: a Historical Hypergraph Relational Encoder for handling historical states and a Future Hypergraph Relational Encoder for predicted multi-agent multi-modal trajectories from GIRAFFE. For the Historical Hypergraph Relational Encoder, the input historical states XT form an Agent Hypergraph HTa. For the Future Hypergraph Relational Encoder, the predicted multi-agent multi-modal trajectories XˆT +1:T +F form an Agent-Behavior Hypergraph HFb, where each agent node is expanded into three lateral behavior nodes with corresponding predicted future states. Both modules share the same structure regardless of the input hypergraph types."
+    },
+    {
+        "id_": "50b20ecd-6b1c-42cf-8564-93bfed610694",
+        "text": "# Multi-scale Hypergraph Topology Inference\n\nTo comprehensively model group-wise interactions in the hypergraphs at multiple scales, we infer a multi-scale hypergraph to reflect interactions in groups with various sizes. Let H = {H(0), H(1), · · · , H(S)} be a multi-scale hypergraph, and V = {v1, v2, · · · , vN(s) = {u1}} be a set of nodes. As shown in Figure 8, at any scale s, H(s) = (V, U(s)) representing group-wise relations with J hyperedges. A = (V, U(s)) has a hyperedge set U, uJ larger s indicates a larger scale of agent groups, while H(0) = (V, U(0)) models the finest pair-wise agent connections. The topology of each H(s) is represented as an incidence matrix H(s).\n\nTo understand and quantify the dynamic interactions between agents within a given system, we adopt trajectory embedding to distill the motion states of agents into a compact and informative representation. To infer a multi-scale hypergraph, we construct hyperedges by grouping agents that have highly correlated trajectories, whose correlations could be measured by mapping the."
+    },
+    {
+        "id_": "4b65583d-6748-4c99-ab49-c808515c76c1",
+        "text": "# Figure 8: Hypergraph encoder.\n\nTrajectories as a high-dimensional feature vector. For the i-th agent in the system, the trajectory embedding is denoted as q. This embedding is a function of the agent’s motion states, defined over a temporal window extending from time 1 to time T. The embedding function Xi, denoted as fq, which is a trainable MLP, is responsible for transforming the motion states into a vector qi where d is the dimensionality of the embedded space. Mathematically, the trajectory embedding is represented as:\n\nqi = f(Xi) (15)\n\nThe affinity between agents is represented by an affinity matrix A ∈ ℝN×N, which contains the pairwise relational weights between all agents. The affinity matrix is defined as:\n\nA = {Aij | ∀i, j = 1, ..., N} (16)\n\nEach element Aij is computed as the correlation between the trajectory embeddings of the i-th and j-th agents. The correlation is the normalized dot product of the two trajectory embeddings, expressed as:\n\nAij = \\frac{q⊤qj}{||q||2 ||qj||2}}  (17)\n\nHere, k·k2 denotes the L2 norm. The relational weight Aij measures the strength of association between the trajectories of the i-th and j-th agents, capturing the degree to which their behaviors."
+    },
+    {
+        "id_": "afc79bcc-59dc-4456-8308-638a0834137d",
+        "text": "# Hypergraph Neural Message Passing\n\nare correlated. This enables the assessment of interaction patterns and can uncover underlying social or physical laws governing agent dynamics.\n\nThe formulation of a hypergraph necessitates the strategic formation of hyperedges that reflect the complex interaction between the nodes in the system. At the outset, the 0-th scale hypergraph H(0) is considered, where the construction is based on pair-wise connections. Each node establishes a link with another node that has the highest affinity score with it.\n\nAs the complexity of the system is scaled up, beginning at scale s = 1, the methodology shifts towards group-wise connections. This shift is based on the intuition that agents within a particular group should display strong mutual correlations, suggesting a propensity for concerted action. To implement this, a sequence of increasing group sizes {J(s)}s=1S is established. For every node, denoted by v, the objective is to discern a group of agents that are highly correlated, ultimately leading to s groups or hyperedges at each scale s. The hyperedge associated with a node vi at a given scale s is indicated by ui(s). The determination of the most correlated agents is framed as an optimization problem, aiming to link these agents into a hyperedge that accounts for group dynamics:\n\nui(s) = arg maxA,\n\n1\n\ns.t. ||A|| = J(s); vi ∈ A; i = 1, . . . , N\n\nThe culmination of this hierarchical structuring is a multi-scale hypergraph, encapsulated by the set {H(s) ∈ RN×N}s=1S, where each scale s embodies a distinct layer of abstraction in the representation of node relationships within the hypergraph."
+    },
+    {
+        "id_": "472a3fc1-3229-4e88-9dc2-bdb4a1453633",
+        "text": "# Hypergraph Neural Message Passing\n\nIn order to discern the patterns of agent motion states from the inferred multi-scale hypergraph, we have tailored a multi-scale hypergraph neural message passing technique to construct the hypergraph topology. This method iteratively acquires the embeddings of vehicles and the corresponding interactions through node-to-hyperedge and hyperedge-to-node processes, as depicted in Figure 9.\n\nThe node-to-hyperedge mapping aggregates agent embeddings to generate interaction embeddings. Initially, for any given scale, the initial embedding for the ith agent, vi = qi ∈ Rd. Each node vj is associated with a hyperedge ui, given that vj is an element of ui. This mapping facilitates the definition of the hyperedge interaction embedding. The hyperedge interaction embedding for a hyperedge ui is defined as a function of the embeddings of the nodes contained within it, modulated by the neural interaction strength ri and categorized through coefficients ci,l. The per-category function Fl models the interaction process for each category, which is crucial for capturing the nuances of different interaction types. Each Fl is a trainable MLP, responsible for processing the aggregated node embeddings within the context of a specific interaction category. The mathematical formulation is:\n\nui = ri ∑l=1L ∑j Bvj ∈ ui ci,l Fl(Bvj)"
+    },
+    {
+        "id_": "8df4c235-bfbc-4039-815d-5e9884aa0565",
+        "text": "# Strength"
+    },
+    {
+        "id_": "d0c77f39-4fb5-4673-bbbe-d08ec7795b7b",
+        "text": "# Catekony\n\n|H(0)|FC:|\n|---|---|\n|Scale|embeddli|"
+    },
+    {
+        "id_": "5b9c6478-0c8a-4aa5-9072-b931a334ced3",
+        "text": "# Caterony\n\n|H(1)|FC:|\n|---|---|\n|Scale|cmbcddlr|"
+    },
+    {
+        "id_": "ac7677f0-0f8b-402e-9649-62a9a1d91331",
+        "text": "# Streneth\n\n|J(2)|FC:|\n|---|---|\n|Scale 2|ARent|\n\nFigure 9: Hypergraph encoder.\n\nThe neural interaction strength ri encapsulates the intensity of the interaction within the hyperedge and is obtained through a trainable model F, applied to a collective embedding zi with a sigmoid function as Eq.(21). This collective embedding zi is represented as the weighted sum of the individual node embeddings within the hyperedge, signifying the aggregated information of agents in a group as Eq. (22). The weight wj for each node is determined by a trainable MLP Fw as Eq. (23).\n\nri = (F(z))Xwjivjr (21)\n\nzi = Σ(v ∈ uij) 0 B Bvj,X 1 C (22)\n\nwj = Fw(B B vm2uivm) (23)\n\nThe neural interaction category coefficient ci represents the model’s reasoning about which type of the interaction is likely for hyperedge u, where j ci,l denotes the probability of the l-th neural interaction category within L possible categories. These coefficients are computed using a softmax function applied to the output of another trainable MLP F, which is further adjusted by an i.i.d. sample Gumbel distribution g as described in Appendix C, which adds some random noise and a temperature parameter τ which controls the smoothness of the probability distribution [45]:"
+    },
+    {
+        "id_": "47843659-4af3-49b4-b511-c1a0aef8955c",
+        "text": "# 3.3.3. Posterior Distribution Learner\n\nIn our study, we incorporated multi-scale hypergraph embeddings into a multi-agent trajectory generation system using the CVAE framework [46] to address the stochastic nature of each agent’s behavior, as shown in Figure 10. Here, we denote the historical trajectories as XT and denote the predicted future trajectories XT +1:T +F as XF. Let log p(XF |XT) denote the log-likelihood of predicted future trajectories XF given historical trajectories XT. The corresponding Evidence Lower Bound (ELBO) is defined as follows:\n\nX1:T as XT, and\n\nF(z) + g!ci\n\nci = softmax\n\nThese components, including neural interaction strength, interaction category coefficients, and per-category functions, provide a comprehensive mechanism for reasoning over complex, higher-order relationships, allowing the model to adapt its understanding of how agents collectively behave in diverse scenarios.\n\nThe process of hyperedge-to-node mapping is a pivotal step that allows for the update and refinement of agent embeddings within the hypergraph framework. Each hyperedge uj is mapped back onto its constituent nodes v, assuming every vi is included in uj. The primary objective of this phase is to update the embedding of an agent. This is achieved through the function F, which is a trainable MLP. The updated agent embedding ˜i v is the result of the function applied to the concatenation of the agent’s current embedding and the sum of the embeddings of all hyperedges that the agent is part of. Formally, the update rule for the agent embedding is represented as:\n\n˜i v = F(v, B6B6v, B6, B6, B6, B6, B6, @4 i u 2Uiuj)\n\nwhere Ui = {uj | vi 2 u} j denotes the set of hyperedges associated with the i-th node v, and [ ·, · ] symbolize the operation of embedding concatenation. This operation fuses the individual node embedding with the collective information conveyed by the associated hyperedges. This amalgamation is crucial as it encapsulates the influence exerted by the interactions within the hyperedges onto the individual agent.\n\nThe Hypergraph Relational Encoder applies the node-to-hyperedge and hyperedge-to-node phases iteratively, allowing agent embeddings to be refined and enriched as relationships within hyperedges evolve. Upon the completion of these iterations, the output is constructed as the concatenation of the agent embeddings across all scales. The final agent embedding matrix V˜a is composed of the embeddings of all agents, where each agent embedding vi is a concatenation of the embeddings from all scales, expressed as:\n\nVa ˜ = [˜i v(0), ˜i (1), . . . , ˜i (S)]\n\nwhere v˜i = [˜i v, v]"
+    },
+    {
+        "id_": "e672f8f5-0e13-45dd-b0a0-718e0b2cd913",
+        "text": "# Futug"
+    },
+    {
+        "id_": "1e63fd7b-33d8-4535-a62e-c24d1c3fdab8",
+        "text": "# Hyperaraph"
+    },
+    {
+        "id_": "bd5a8154-2d01-4a02-8c07-97d747dae7df",
+        "text": "# RelatronalEncoder"
+    },
+    {
+        "id_": "c9dfa9bd-3691-4642-9ea5-caf32e653271",
+        "text": "# Figure 10: Posterior Distribution Learner.\n\nlog p(XF | XT) = Eq(Z | XF, XT) log p(XF | Z, XT)\nKL(q(Z | XF, XT) || p(Z | XT)),\n\nwhere Z ∈ ℝN×dz represents the latent codes corresponding to all agents;\np(Z | XT) is the conditional prior of Z, modeled as a Gaussian distribution.\nKL represents the Kullback–Leibler divergence function. In this framework,\nq(Z | XF, XT) is implemented through an encoding process for embedding learning,\nand p(XF | Z, XT) is realized via a decoding process that forecasts the future trajectories XF.\n\nThus, the goal of the Posterior Distribution Learner is to derive the Gaussian parameters for the approximate posterior distribution.\nThis involves computing the mean μq and the variance q based on the final output embeddings Va and the target embeddings VT.\nThese parameters are generated through two separate trainable MLPs, Fμ and F, respectively.\nThe latent code Z, representing possible trajectories, is then sampled from a Gaussian distribution parameterized by these means and variances.\nThe final output embeddings Vp are a concatenation of the latent code Z, the final output embeddings Va, and the target embeddings VT.\n\nThe equations governing these processes are as follows:\n\nμq = Fμ(F Va, VT a)\n\nq = F(F Va, VT a)\n\nZ ∼ N(μq, Diag(q2))\n\nVp = [Z, Va]T\n\nIn these notations, μq and q represent the mean and variance of the approximated posterior distribution.\nFμ and F are the trainable MLPs that produce these parameters.\nZ denotes the latent code of possible trajectories, and Vp stands for the output embeddings, which fuses the latent code and the historical embeddings.\n\n19"
+    },
+    {
+        "id_": "7df673e6-85a6-4ede-beba-226fe9f5bdc8",
+        "text": "# 3.3.4. Motion Generator\n\nThe Motion Generator’s objective is dual: to predict future trajectories and to reconstruct past\ntrajectories from the given embeddings. The decoder accomplishes this by applying successive\nprocessing blocks, each contributing a residual that refines the trajectory estimates, as shown in\nFigure 11. The first processing block, FRes1, takes the output embeddings V and the target past\ntrajectory XT to generate initial estimates of the future and reconstructed past trajectories XˆF,1 and\nXˆT,1 respectively.\n\nXˆF,1, XˆT,1 = FRes1(˜p, XT ) V (33)\n\nSubsequently, the second block, FRes2, refines these estimates by considering the output embeddings and the residual of the past trajectory, which is the difference between the target past trajectory and the initial reconstructed past trajectory XT - XˆT,1. This results in the second set of\nresiduals XˆF,2 and XˆT,2:\n\nXˆF,2, XˆT,2 = XRes2(˜p, XT - XˆT,1) V (34)\n\nBoth FRes1 and FRes2 are composed of a GRU encoder for sequence encoding and two MLPs\nserving as the output header. The final predicted future trajectory YˆF and the reconstructed past\ntrajectory XˆT are obtained by summing the respective residuals from both processing blocks:\n\nYˆF = XˆF,1 + XˆF,2 (35)\n\nXˆT = XˆT,1 + XˆT,2 (36)\n\nThis approach enables the model to iteratively refine its predictions and reconstructions, leveraging the capability of deep learning models to capture complex patterns in the data through a series of non-linear transformations."
+    },
+    {
+        "id_": "41024ac6-91fb-473f-a369-8df666665f65",
+        "text": "# 4. Experiments and Results"
+    },
+    {
+        "id_": "e0704a8f-5d99-47e9-8a4e-1a7d83494058",
+        "text": "# 4.1. Data Preparations\n\nThis research leverages two open-source datasets for the purpose of model training and validation: the Next Generation Simulation (NGSIM) dataset [47],[48] and the HighD dataset [49]. The NGSIM dataset provides a comprehensive collection of vehicle trajectory data, capturing activity from the eastbound I-80 in the San Francisco Bay area and the southbound US 101 in Los Angeles. This dataset encapsulates real-world highway scenarios through overhead camera recordings at a sampling rate of 10Hz. The HighD dataset originates from aerial drone recordings executed at a 25 Hz frequency between 2017 and 2018 in the vicinity of Cologne, Germany. Spanning approximately 420 meters of bidirectional roadways, it records the movements of approximately 110,000 vehicles, encompassing both cars and trucks, traversing an aggregate distance of 45,000 km. After data pre-processing, the NGSIM dataset encompasses 662 thousand rows of data, capturing 1,380 individual trajectories, while the HighD dataset comprises 1.09 million data entries, including 3,913 individual trajectories. For the purpose of training and evaluation of the model, the partition of the data allocates 70% to the training set and 30% to the test set. For the temporal parameters of the model, we adopt T = 30 frames to represent the historical horizon and F = 50 frames to signify the prediction horizon."
+    },
+    {
+        "id_": "c8b5a5e2-0835-421f-bbdb-be79696eeb03",
+        "text": "# 4.2. Training and Evaluation Metrics\n\nTraining loss of GIRAFFE. The training loss function for GIRAFFE is a summation of three terms:\n\nLPRED = Lpred + Lint + Lfut (37)\n\nThe first component, Lpred, is the mean squared error (MSE) between the fused predicted trajectory and the ground truth future trajectory:\n\nLpred = k ŶF - YF k22 (38)\n\nThe second component Lint represents the negative log-likelihood (NLL) of the predicted driving intentions, treating it as a classification task:\n\nLint = NLL( M̂; M) = Σm∈M log P( ˆ|XT)m (39)\n\nThe third component Lfut is the loss associated with the inference of the future-guided graph feature matrix, which is an intermediate output:\n\nLfut = k ĤF - HF k22 (40)"
+    },
+    {
+        "id_": "bc72f805-5ccd-4857-9006-677289d6f869",
+        "text": "# Training loss of RHINO\n\nThe training loss function for RHINO is also a summation of three components:\n\nLGEN = Lelbo + Lrecon + Lvar (41)\n\nThe first component, Lelbo, corresponds to the ELBO loss [46] commonly used in variational autoencoders. It consists of a reconstruction loss term and a regularization term based on the Kullback-Leibler divergence between the learned distribution and a prior distribution:\n\nLelbo = &alpha; k YˆF - YF k2 + KL&theta;N (μq, Diag(q22) N (0, I)) (42)\n\nThe second component, Lrecon, represents the Historical Trajectory Reconstruction loss, which measures how accurately the reconstructed historical trajectories match the true historical data:\n\nLrecon = k XˆT - XT k22 (43)\n\nThe final component, Lvar, is the Variety loss, inspired by Social-GAN [21]. This loss encourages diversity in the predicted future trajectories by minimizing the error across multiple sampled future trajectories:\n\nLvar = mink k Y(k) - YF k2k  YˆF (44)"
+    },
+    {
+        "id_": "9c84c394-e8b1-49ba-a7c9-9fcd9f6ace6d",
+        "text": "# Table 1: Hyperparameter Settings\n\n|Parameter|Value|Parameter|Value|\n|---|---|---|---|\n|T|30|decaying factor|0.6|\n|F|50|&alpha;|1|\n|neuron # of MLPs|128| |0.8|\n|learning rate|0.001| |0.5|"
+    },
+    {
+        "id_": "1aee6586-6752-4d70-a5a7-558b70bc41e0",
+        "text": "# Evaluation metrics\n\nTo ascertain the predictive accuracy of the model, we employ the Root Mean Square Error (RMSE) as the evaluative criterion. This metric quantitatively measures the deviation between the predicted position, expressed as (Ylf,lat, Ylf,lon), and the ground truth position, indicated by (Ylf,lat, Ylf,lon) for all time steps within the predictive horizon [T + 1, T + F].\n\nRMS E = 1 / LF &sum;l=1L &sum;f=T + 1T + F ( (Yˆlf,lat - Ylf,lat)2 + (Yˆlf,lon - Ylf,lon)2 ) (45)\n\nwhere the superscript l denotes the l-th test sample from the aggregate test sample set with length L."
+    },
+    {
+        "id_": "1f06f9ee-88ef-4073-9fbb-997852fd30d9",
+        "text": "# 4.3. Results of Trajectory Generation\n\nThe experimental results for trajectory generation of the K trajectories using the HighD dataset are presented in Figure 12. As can be found that, RHINO demonstrates strong generative capabilities, effectively producing plausible motion in a dynamic interactive traffic environment. To provide a more quantitative analysis, trajectory generation inaccuracies are illustrated in Figure 13. The generated longitudinal and lateral trajectories, along with the error box plots and heatmaps, are displayed. The box plot reveals that errors in both axes increase with the prediction time step by the nature of error propagation. However, the errors remain within an acceptable range, indicating decent model performance, which demonstrates high precision in trajectory generation. Notably, the model maintains a lower error margin for shorter prediction horizons, which is critical for short-term planning and reactive maneuvers in dynamic traffic environments.\n\n|Longitudinal Position (m)|Longitudinal Position (m)|Longitudinal Position (m)|Longitudinal Position (m)|\n|---|---|\n|0|E|0|]|\n|1|]|5| |\n|0|Longitudinal Position (m)|0| |\n|Longitudinal Position (m)|Historical Trajectory|Generated Trajectory|Historical Trajectory|\n|Ground Truth - Sun|Predicted Trajectory - Sum|Ground Truth - Tar|Best Prediction|\n\nFigure 12: Trajectory generation results in highway scenarios.\n\nThe experiment focused on predicting vehicle trajectories within mixed traffic environments on highways by employing hypergraph inference to model group-based interactions. Through the application of hypergraph models at varying scales s = 2, 3, 5, the experiment captured the evolution of multi-vehicle interactions across both historical and future horizons. The figures depict these dynamics through three distinct columns: the first column presents vehicle trajectories."
+    },
+    {
+        "id_": "63a468c2-49d7-47aa-a9a3-ce518a5d5c70",
+        "text": "# Figure 13: Longitudinal and lateral trajectory generation error analysis.\n\n|Longitudinal Position (m)|Time (frame)|Time (frame)|\n|---|---|---|\n|0|0|4.5|\n|1|1|4|\n\nand the corresponding hyperedges, visualized as polygons that encapsulate groups of interacting vehicles. The second column illustrates the affinity matrix, where both rows and columns represent vehicles, and the strength of their relationships is indicated by the matrix values. The third column shows the incidence matrix, detailing the relationship between nodes and hyperedges, with each column representing a hyperedge and each vehicle’s involvement in that hyperedge marked by a 1 in the corresponding row.\n\nThe hypergraph-based approach is particularly effective in modeling complex, higher-order interactions that are beyond the scope of traditional pairwise models. By forming hyperedges that encompass multiple vehicles, the model captures the collective influence that a group’s behavior exerts on an individual vehicle. For instance, in the scenario shown in Figure 14, at scale s = 5, when the target vehicle TAR initiates a lane change, the hypergraph reflects the interaction not only with a single neighboring vehicle but also with multiple surrounding vehicles, such as following vehicle F, preceding vehicle P, and preceding vehicle RP in the right lane. More examples are illustrated in Appendix A. This capability to model group-wise interactions across different scales is 24."
+    },
+    {
+        "id_": "c79f936c-33c3-4506-aeb9-f4a536dbdb39",
+        "text": "# Trajectory Generation"
+    },
+    {
+        "id_": "aa7815f8-6b3d-4a2b-9939-36882a60f1ae",
+        "text": "# Historical States Affinity Matrix\n\n|540|1250|1|\n|---|---|---|\n|iuU| | |\n|Tofol| | |\n|Longitudinal Position (m)|240|75.0-|\n|1| | |\n|Mn -| | |\n|Longitudinal Pain (m)|250 -|3|\n|Longitudinal Facitan (r)|Hvpenuze| |\n|Future States|540| |\n|Interaction Hypergraph Inference|Affinity Matrix|Incidence Matrix|\n|1| |E|\n|#50,|ee|~up|\n|IAKT URI|No|4|\n|~inn 76.0-4.0-100.0 20 40 6.0 8.0| |eapa|\n|Lateral Position (m)| | |\n|Historical surrounding| | |\n|Ground Truth Founding|1| |\n|Fnuicedcuruunding| | |\n|Historical Target| | |\n|Ground Truth Target|URI F UFRF|TAE|\n|4e|Node| |\n\nFigure 14: Trajectory generation with hypergraph inference.\n\nEssential for accurately predicting vehicle trajectories in congested highway environments, where the actions of one vehicle can trigger ripple effects that influence an entire group. The hypergraph’s dynamic formation of hyperedges ensures that predicted trajectories remain adaptable and responsive to broader traffic conditions."
+    },
+    {
+        "id_": "833da57a-a3d2-4bba-9789-8fd6cd0a5579",
+        "text": "# 4.4. Comparisons and Ablation Study\n\nTo evaluate the privileges of our proposed method, the state of art methods (i.e., Social-LSTM (S-LSTM) [20], Convolutional Social-LSTM (CS-LSTM) [31], Planning-informed prediction (PiP) [50], Graph-based Interaction-aware Trajectory Prediction (GRIP) [26], Spatial-temporal dynamic attention network (STDAN) [22]) are compared.\n\nThe compared results presented in Table 2 and Figure 15. As can be found that, the proposed framework demonstrates good performance with respect to the RMSE across a prediction horizon of 50 frames when compared with existing baseline models. It exhibits a reduced loss in comparison to C-LSTM, CS-LSTM, PiP, and GRIP. These outcomes suggest that the proposed model.\n\n25"
+    },
+    {
+        "id_": "8e963cc5-8426-4f61-9a09-ddd89b40f3c0",
+        "text": "# Effectively captures salient features pertinent to long-term predictions.\n\nIn summary, the proposed framework outperforms baseline models on the HighD dataset and delivers commendable performance on the NGSIM dataset.\n\nSince the RHINO adopts the GIRAFFE, we further compare the trajectory generation capability of RHINO with our previous work [25] and its enhanced version GIRAFFE. Both RHINO model and the enhanced GIRAFFE model consistently outperform the baseline models, demonstrating superior performance in various metrics. This suggests that our proposed approaches effectively address the limitations present in prevailing models by robustly capturing complex interactions."
+    },
+    {
+        "id_": "a41a9cfc-3dd7-4a44-8f3c-ff3718218fe5",
+        "text": "# Table 2: Prediction Error Obtained by Different Models in RMSE (m)\n\n|Dataset|Horizon (Frame)|S-LSTM|CS-LSTM|PiP|GRIP|STDAN|GIRAFFE|RHINO|\n|---|---|---|---|---|---|---|---|---|\n|NGSIM|10|0.65|0.61|0.55|0.37|0.42|0.38|0.32|\n| |20|1.31|1.27|1.18|0.86|1.01|0.89|0.78|\n| |30|2.16|2.08|1.94|1.45|1.69|1.45|1.34|\n| |40|3.25|3.10|2.88|2.21|2.56|2.46|2.17|\n| |50|4.55|4.37|4.04|3.16|3.67|3.24|2.97|\n|HighD|10|0.22|0.22|0.17|0.29|0.19|0.19|0.19|\n| |20|0.62|0.61|0.52|0.68|0.27|0.42|0.26|\n| |30|1.27|1.24|1.05|1.17|0.48|0.81|0.42|\n| |40|2.15|2.10|1.76|1.88|0.91|1.13|0.65|\n| |50|3.41|3.27|2.63|2.76|1.66|1.56|0.89|"
+    },
+    {
+        "id_": "0f38201a-10a1-455c-8d3f-79b551af7de9",
+        "text": "# Figure 15: Prediction error obtained by different models in RMSE on NGSIM dataset (left) and HighD dataset (right).\n\nAblation study is conducted to provide more insights into the performance of our RHINO model, especially the impact of different components on the prediction performance by disabling the."
+    },
+    {
+        "id_": "84806036-bae4-41e1-bba2-202b6ba47ef8",
+        "text": "# Table 3: Ablation Test Results of RHINO in RMSE (m)\n\n|Horizon (Frame)|RHINO w/o HG|RHINO w/o MM|RHINO w/o PDL|RHINO|\n|---|---|---|---|---|\n|10|0.21|0.22|0.24|0.19|\n|20|0.31|0.37|0.42|0.26|\n|30|0.68|0.73|0.80|0.42|\n|40|0.97|1.06|1.18|0.65|\n|50|1.25|1.34|1.57|0.89|"
+    },
+    {
+        "id_": "b0d6fec8-5272-4976-b9c5-a164859da299",
+        "text": "# Ablation Test Results in RMSE\n\n1.5 RHINO w/o HG\n\nRHINO w/o MM\n\nRHINO w/o PDL\n\nRHINO\n\nE 10 _\n\nd 0.5\n\n0.0 10 Future Time Horizon (Frame) 5020 30 40"
+    },
+    {
+        "id_": "d2ec6a63-4497-4caa-beb4-e9901f12313b",
+        "text": "# Figure 16: Ablation Study of RHINO.\n\ncorresponding component from the entire RHINO. In particular, we consider the following four variants:\n\n- RHINO w/o HG (hypergraph) variant does not use the multi-scale hypergraphs representation but only adopts the pair-wise connected graph representations in the Hypergraph Relational Encoder.\n- RHINO w/o MM (multi-modal) variant does not adopt the multi-agent multi-modal trajectory prediction results and only use the single predicted future states for each agent as the input of the RHINO.\n- RHINO w/o PDL (posterior distribution learner) variant skips the Posterior Distribution Learner and directly input the graph embedding into the Motion Generator.\n\nAn investigation into the effects of model design variations, as presented in Table 3 and Figure 16. The removal of various components from RHINO invariably leads to performance degradation to varying degrees. Compared to the full RHINO, omitting the multi-scale hypergraphs results in\n\n27"
+    },
+    {
+        "id_": "80c74700-746d-4be0-aae7-f7448b109fd5",
+        "text": "# 5. Conclusions\n\nIn this study, we proposed a hypergraph enabled multi-modal probabilistic motion prediction framework with reasonings. This framework consists of two main components: GIRAFFE and RHINO. GIRAFFE focuses on predicting the interactive vehicular trajectories considering modalities. Based on that, RHINO, leveraging the flexibility and strengths on modeling the group-wise interactions, facilitate relational reasoning among vehicles and multi-modalities to render plausible vehicles trajectories. The framework extends traditional interaction models by introducing an agent-behavior hypergraph. This approach better aligns with traffic physics while being grounded in the mathematical rigor of hypergraph theory. Further, the approach employs representation learning to enable explicit interaction relational reasoning. This involves considering future relations and interactions and learning the posterior distribution to handle the stochasticity of behavior for each vehicle. As a result, the framework excels in capturing high-dimensional, group-wise interactions across various behavioral modalities.\n\nThe framework is tested using the NGSIM and HighD datasets. The results show that the proposed framework effectively models the interactions among groups of vehicles and their corresponding multi-modal behaviors. Comparative studies demonstrate that the framework outperforms prevailing algorithms in prediction accuracy. To further validate the effectiveness of each component, ablation studies were conducted, revealing that the full model performs best.\n\nSeveral potential extensions of the framework include incorporating road geometries, vehicle types, and real-time weather data to improve trajectory prediction. By integrating weather information from sources like the OpenWeather API, the system could adjust predictions based on conditions such as temperature, wind, and precipitation, enhancing safety and route optimization [51]. Additional enhancements, like traffic signal integration, V2V and V2I communication, and human driver intent, could further improve accuracy and reliability in dynamic urban environments, minimizing disruptions and fostering safer, more informed autonomous driving."
+    }
+]

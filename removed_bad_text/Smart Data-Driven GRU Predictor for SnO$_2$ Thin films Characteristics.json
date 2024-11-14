@@ -1,0 +1,250 @@
+[
+    {
+        "id_": "19a83e5d-d3a5-40cb-b111-4c8289134c7b",
+        "text": "# 1 Introduction\n\nX-Ray diffraction, discovered by Röntgen in 1895[1], is a crucial method for understanding and extracting structural properties of crystalline materials, which are usually resumed in lattice parameters a, b, c, grain size D and strains[2]. This diffraction technique plays a pivotal role in characterizing material properties across various fields, from minerals to advanced technological raw materials. The X-Rays diffraction principle consists on the interaction of X-rays with solid materials, resulting in diffraction patterns that provide insights into the periodicity of atomic structures. Unlike this, availability and exponential cost of X-ray diffraction make its use very challenging for researchers and engineers, but mainly because that X-ray diffraction requires significant samples of experimental data due to the high number of parameters. Furthermore, the ab-initio calculation methods are emerging nowadays as a promising alternative for characterizing the atomic structure and properties of materials.\n\nUnfortunately and instead of the progress of theoretical and simulation methods, the structural characterization still be too limited because of the current available computing capacity of machines, especially when dealing with complex crystalline structures with high number of atoms[3] [4]. Thus, more new explorations have been done to search for soft and less costly."
+    },
+    {
+        "id_": "3161ae4e-f650-4fe6-b01c-548cd1d9db13",
+        "text": "# Faiza Bouamra, Mohamed Sayah, and al.\n\nalternatives, particularly around the fields of advanced simulation and artificial intelligence techniques that were enhanced by the evolution in modeling approaches but also technological computing capacities. In fact, new and innovative data-driven methods were considered to estimate or even forecast physical properties of materials. These well known artificial intelligence (AI) techniques are now widely adopted in various domains such as machinery, chemistry, physics, and PHM (Prognostics and Health Management) [5][6][7][8][9].\n\nWe notice that when studying materials and dealing with complex crystalline structures in the context of limited access to equipment, artificial intelligence networks such as the GRU - Gated Recurrent Unit models and others are gaining prominence, value and trust and are currently considered as the more favorite techniques to enhance XRD’s capabilities and strengthen predictions of materials’ structural properties [10]. Indeed, it is worth noting that in our context, thin films samples are elaborated experimentally by the technique Sol-Gel Dip-Coating [11][12] with some defined conditions such as catalysis, velocity of dip, time of dip, number of dip. The obtained samples are characterized with X-ray diffraction technique and then analyzed with HighScore tool [13], to have the structural parameters a, b and D. Next, using the collected data samples dictionary from the real experiences, our proposed GRU neural network Predictor of the structural properties, is generated after a learning and testing processes. Finally, the designed AI-based GRU model [14] along with the elaborated experiments show the benefits of our approach for material characterization and prove the relevance and insights of implementing data-driven models for material properties prediction. Later in the recent future, the use of more robust and complex AI models should certainly boost the material characterization domain and this will cover a wide range of materials."
+    },
+    {
+        "id_": "ce13f637-6462-430f-a984-62af16d98e7a",
+        "text": "# 2 Data-Driven Material Characterization Framework\n\nIn the depicted framework below (see Figure 1), we illustrate the different stages of our data-driven characterization process. When fully developed, the proposed AI GRU model [15] will facilitate the materials characterization by estimating the cristal properties using the experimental dataset.\n\nWe notice that there are three different stages or modules interrelated in order to help experts in their final decisions:\n\n1. Experiment Stage: At this stage - see Figure 1, the engineers and researchers do real physical experiments, define relevant properties that may fit the physical or chemical situation and collect concrete samples to construct a data dictionary that summarises the experimental specifications. These collected data are then used in modeling, simulation, or even to design data-driven models.\n2. Information Stage: This stage - Figure 1 - mainly concerns the data-driven model development. The data dictionary is pre-processed and the data are prepared using normalization, regularization and features reduction to respond to a task or goal oriented request. Finally an AI model is designed and tested to get better of its performances.\n3. Decision Stage: In this stage we integrate the constructed AI driven model in the decision process. Here, the data-driven model will be tested to see its compliance by regards to the client and user requirements."
+    },
+    {
+        "id_": "9181b6ac-862c-4f01-a702-83891573f352",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics"
+    },
+    {
+        "id_": "4c1378b2-6369-46c6-bf29-76374ae81d51",
+        "text": "# PHYSICAL LEVEL"
+    },
+    {
+        "id_": "09f1e247-0d5f-48bf-995f-2bd00d2ed1a1",
+        "text": "# Materials\n\n|1|X-Diffraction|2|Phi-Characterization|PHYSICAL SYSTEM|\n|---|---|---|---|---|\n|Input: Materials|Input: Materials|Input: Materials|Input: Materials|Input: Materials|\n|1. Sampling|1. Sampling|1. Sampling|1. Sampling|1. Sampling|\n|2. Physical properties|2. Physical properties|2. Physical properties|2. Physical properties|2. Physical properties|\n|Data Dictionary|Data Dictionary|Data Dictionary|Data Dictionary|Data Dictionary|\n|Output|Output|Output|Output|Output|\n|Data Dictionary|Data Dictionary|Data Dictionary|Data Dictionary|Data Dictionary|"
+    },
+    {
+        "id_": "e0d46af7-18ee-4b6a-a644-41110f23913f",
+        "text": "# IT SYSTEM"
+    },
+    {
+        "id_": "a7af47e2-1a2f-4a12-8034-7948f5e4e67b",
+        "text": "# Model Generation\n\nInput: DataSet3. Pre-processing4. Features-Goal5. Learning/TestingOutputGRU-Estimator"
+    },
+    {
+        "id_": "4fe1ae80-d688-4bc2-a789-b339b5ddd024",
+        "text": "# DECISION LEVEL"
+    },
+    {
+        "id_": "b97a5910-a0e3-4d84-90c1-75b58c0b450d",
+        "text": "# GRU-Estimator\n\nInput: Materials6. GRU Estimation7. Characterization8. DecisionContext-Based Decisions (8)\n\nFig. 1: AI-Based Materials Characterization Framework."
+    },
+    {
+        "id_": "b1857715-120c-44ad-ab8f-56c331e0be6a",
+        "text": "# X-ray Diffraction for SnO2 Characterization\n\nIn this section, we will describe in details the process of structure materials characterization using the non destructive X-ray diffraction technique - see Figure 2. This latter shows a derivation of Bragg’s law, where a sample of crystal material is placed at the center of the instrument, and an incident beam of X-ray is directly oriented towards this sample - see details in Figure 2. Then, the outgoing beam, who makes a 2ω with awards one, is obtained as a result of interaction with the atoms of the crystal. Every wavelength ε of the X-ray beam should be proportional to the spacing of the set of crystal planes (hkl), d and the reflection will occur if Bragg’s law below is satisfied - See the equation 1, where, n is a positive integer, ε a wavelength and d is gain size.\n\n2dsin(ω) = nε, Where ε = 1.540A↑ (1)\n\nNext, to compute lattice parameters a and c, we use the equation 2 obtained from lattice spacing formula for a tetragonal crystal system [16], where h,k and l are Miller indices defining an (hkl) plane in the lattice:\n\n1 = h2 + k2 + l2 (2)\n\nd2 = a2 + c2\n\nBy applying the Bragg law’s and considering the constants A = ε2 /(4a2) and C = ε2 /(4c2), we obtain:\n\nsin2(ω) = A(h2 + k2) + Cl2. (3)"
+    },
+    {
+        "id_": "b23c1681-56c1-45ac-a6b3-1a07d65ed2e0",
+        "text": "# Faiza Bouamra, Mohamed Sayah, and al."
+    },
+    {
+        "id_": "ac414400-ab64-459f-a9ee-99d8dbdc2c31",
+        "text": "# Incident beams"
+    },
+    {
+        "id_": "e39047f3-fc5c-4cab-a344-a0e45a6c847f",
+        "text": "# Diffracted beams"
+    },
+    {
+        "id_": "7e06d986-3043-408b-87a4-2b4d4a628b17",
+        "text": "# Fig. 2: XRD Diffraction Scheme.\n\npatterns, we determine the C value in : sin2(ω) → A(h2 + kk 2) = Cl2. Finally, the Grain size D, is calculated using Scherrer relation [17]:\n\nD = K ↑ ε\n\nϑ ↑ cos(ω)\n\nWith K the Scherrer constant, on which depends the crystallites, and is typically in [0.9, 1.0]. ϑ is the full width at the half-maximum (FWHM).\n\nWe notice that the obtained patterns has interference maxima (peaks) corresponding to the diffracted X-ray by the regularly planes of the crystal lattice - see Figure 3. It’s worth nothing to know that X-ray diffraction techniques involves two main methods resumed in (1) powder or (2) single crystal diffraction.\n\nIn our research work, we especially have a focus on the diffraction of X-ray for single crystal of thin oxide SnO2. In addition, samples of SnO2 thin films were elaborated with sol-gel dip coating technique. After getting a reliable thin films, we have optimized some experimental parameters such as solution, speed of dip, number of dip and others and finally we get these parameters that correspond to the final output sample with its proper characteristics.\n\nIn the Figure 3, we represent some results patterns from X-ray diffraction technique that were treated with HighScore software [13]. The first pattern represent theoretical sheet obtained from data based on the perfect SnO2 thin films, and the others are the different cases obtained with changing experimental parameters, as mentioned clearly in the Figure 3. These collected data are considered and examined during the development of the GRU model."
+    },
+    {
+        "id_": "4272b319-f670-4ea2-ab1f-7a056f2e04c9",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics"
+    },
+    {
+        "id_": "f26a3ec2-a893-4fad-b858-8287eb04406b",
+        "text": "# Fig. 3: X-Ray diffraction patterns of SnO2 thin films obtained by Sol-Gel (Dip Coating) technique.\n\na) ideal pattern of Sno2, b) pur SnO2, c) SnO2 with HCI solution, d) SnO2 with DEA solution, e) SnO2 with acetic acide."
+    },
+    {
+        "id_": "3209bdcf-7754-4fc0-9bec-a2a2c1120555",
+        "text": "# 4 GRU-Based Predictor\n\nAs a streamlined version of complex AI models [18][19][20][21][22], the gated recurrent unit (GRU) [23] achieves good performance and do faster computing. A GRU model contains a reset gate and an update gate. These gates are composed by sigmoid activations functions ϖ to force their output values to lie in the interval [0, 1]. The reset gate controls at what extent the previous states should we remembered. In the same way, the update gate tracks how much of the new states are just a copy of the old ones - See Figure 4.\n\nHere are the analytical equations that map the GRU cell’s computation states at each time step t. Let consider the notations, where W→, W’ →, and b → weight matrices and biases for each gate referred to as index sigmoid function. The current input is X t, and R, Z are the reset and update gates respectively, H t↓1 denotes the previous iteration’s hidden state, whereas H t corresponds to the current hidden state.\n\nZ t = ϖ(W Z X t + W R H t↓1 + b Z)\n\nR t = ϖ(W R X t + W R H t↓1 + b R)\n\nG t = tanh(W G X t + W G(R t H t↓1) + b G)\n\nH t = Z t H t↓1 + (1 - Z t) G t"
+    },
+    {
+        "id_": "fc051c71-358f-41a2-9f32-41dad7c08867",
+        "text": "# 6 Faiza Bouamra, Mohamed Sayah, and al.\n\nThe flowchart below illustrates the inputs for both the reset and update gates in a GRU, given the input of the current time step Xt and the hidden state Ht-1 of the previous time step. The outputs of the gates are given by two fully connected layers with a sigmoid activation function.\n\nFig. 4: GRU Cell/Unit Computation[24]."
+    },
+    {
+        "id_": "a56c6c72-9076-4b76-ab74-5d706e477724",
+        "text": "# 4.1 Performance Measurements\n\nThe adopted performance metrics below will be used to depict and to prove the performance of the proposed regression GRU model, and this enables the identification of a good performing parameters that best fits the requirements of our defined problem. In fact, the mean squared error MSE in the equation (6) computes the error between the experimental ground truth values and the GRU estimated values.\n\nMSE = 1/n Σi=1n(ci ↔ → ci)2\n\nAgain, the R2 score, the Coefficient of determination, is a regression metric. This metric is a normalized version of the MSE that makes it easier to compare ML models. The closer R2 is to 1 (ideal), it means the regression was able to capture:\n\nR2 = 1 → 1/n Σi=1n(ci → c)2\n\nWith n the total number of samples in testing data set, and c, ci respectively the actual coefficient value and the estimated coefficient."
+    },
+    {
+        "id_": "cf584470-5793-415a-862b-e5dd1d115c98",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics\n\nIn addition, the scores S measurement in formula (8) track the sensitivity of the learning and shows its smoothness.\n\nS =\n{\nς ↑ (exp|ei|\n10 → 1) |e| i >= φ\n0 |e| i < φ\n}\n\nWhere, S is the sensitivity score of the learning/generalization functions. ς is the amplification factor, and ei is the deviation between the learning loss and the generalization val-loss parameters. When, the absolute positive error |ei| is exactly less than φ the sensitivity tends to zero (0) and the learning/generalization process is good. Conversely, in contrast, for every error |ei| greater or equal to φ, the learning is not stable even if the loss decreases considerably."
+    },
+    {
+        "id_": "c3dfd696-2b4e-476b-afb4-58f30381e328",
+        "text": "# 5 GRU Model: Design and Experiments\n\nIn this section, we design a GRU-Based Predictor for structural properties of SnO2, and its possible adoption for the characterisation of various other materials. Clearly, we depicted in the following the different steps that are used to construct, tune and test the GRU model, starting by the essential data collection and preparation phase for each AI data-driven modeling."
+    },
+    {
+        "id_": "9080b5d2-5933-4e8f-b3e5-43a98074b0af",
+        "text": "# Step 1: Problem Identification\n\n?"
+    },
+    {
+        "id_": "7460bbf7-c73a-4688-a58d-9221b64203a3",
+        "text": "# Step 2: Collect Data samples D that describe the Context of the Problem"
+    },
+    {
+        "id_": "3915aed8-5f9f-4a77-877c-30598e1ac12b",
+        "text": "# Step 3: Data Pre-Processing of D"
+    },
+    {
+        "id_": "cc5f779f-a686-46a5-8568-f53729288937",
+        "text": "# Step 4: Feature Selection on D for a given goal g"
+    },
+    {
+        "id_": "6a53c72d-136f-4714-969c-841b28214085",
+        "text": "# Step 5: Design and Tune Network AI model using &lt; P, D &gt; and get best performance that better fits the goal g\n\nFig. 5: GRU-Based Model Implementation"
+    },
+    {
+        "id_": "ad9de424-c22f-4b98-9e15-cab93a0121f0",
+        "text": "# 1. Problem Identification:\n\nAs mentioned in section 1, the objective of this work consists to analyse the obtained X-Ray diffraction spectra using other programs such as High-Score [13], Origin [25] and to compare them to a specters in the program data base. The spectra properties is resumed in lattice characteristics a, b and grain size D. We notice"
+    },
+    {
+        "id_": "5cb67d5f-2572-43d3-9a82-596eab72c58c",
+        "text": "# Faiza Bouamra, Mohamed Sayah, and al.\n\nthat the comparison with previous existing results in the literature, enables us to verify the nature of the structure and proves that it concerns tetragonal phase of Tin Oxide SnO2 thin films."
+    },
+    {
+        "id_": "62770166-adf9-446b-8b85-4e207dea9667",
+        "text": "# 2. Data Sample Collection:\n\nTo determine a structure for 1d, 2d and 3d materials we must determine structural parameters as well as: lattice parameters a, b and c to classify them among the seven systems and fourteen Bravais lattices as mentioned in the crystallography."
+    },
+    {
+        "id_": "0a8055b2-abf2-40b7-8d1f-bc8977887c9a",
+        "text": "# 3. Data Pre-processing:\n\nData pre-processing techniques are applied, including duplicate detection and removal, missing data imputation, outlier detection and treatment. Data transformation techniques such as normalization and standardization are also employed to ensure data consistency."
+    },
+    {
+        "id_": "e3507791-49ce-47b0-bb6b-7684f49bd0df",
+        "text": "# 4. Feature Selection:\n\nRelevant features are selected, with the assistance of domain experts possessing deep knowledge and expertise in the field. These experts provide valuable insights into the key characteristics that define part quality and prioritize the most important features."
+    },
+    {
+        "id_": "d80c61be-35eb-4a49-8a09-46af0a8782e0",
+        "text": "# 5. Design and Tuning of Network AI model:\n\nA GRU model is generated after the learning process and its performance is proven using testing."
+    },
+    {
+        "id_": "b1a41c06-df1a-435c-bbd9-38143560cb03",
+        "text": "# 5.1 Data Preparation"
+    },
+    {
+        "id_": "18bcdb32-091f-4b73-aff8-88bf7b08fd13",
+        "text": "# – Data Description and Collection\n\nExperts in material physics specify precisely the parameters that should be considered for the characterization of structural materials. Also, all the pipeline tools that are used during the characterization process are identified and configured. After, a data dictionary is constructed as illustrated in the Table 1. Thus, physical symbols and their respective designations are specified and validated by material physics experts. We note that this step is crucial and should be done correctly to get adequate data-driven models that fit precisely the situation of characterization. After, the task of data collection has to be considered with care, knowing its sensitivity and determination in the learning process. It is important to notice here that inaccurate data with poor quality should lead to catastrophic decisions. Many AI models are ineffective because of the lack of data and/or the quality of data."
+    },
+    {
+        "id_": "1f1da390-6d72-43da-b4a2-c23adb2fd56c",
+        "text": "# – Data Pre-processing\n\nOnce the data has been specified and then collected, we can analyze statistically their nature, either by visualization or by computing statistical characteristics, such as the mean μ, the standard variation ϖ, the Median and others. This will enable us to choose the best data preparation technique to use - See Table 2. We have noticed that the parameters Tsec(%s) and Time(%s) are constants because their standard deviations are null (See Table 1, ϖ= 0.0†) and there are multiple scalings in the data set (See Table 1, μ(Vdip) = 06.09 →  << μ(Trec) = 454.55 → and ϖ(ω) = 03.68 → << ϖ(Trec) = 52.22 →) and this is not sane to use the data set without normalization and reduction. Thus, we have applied a normalization on the data to have a single scaling for our data and to avoid the multi-scaling bias."
+    },
+    {
+        "id_": "3bb41974-ae8f-4f9e-b0aa-714a6dc3efe0",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics"
+    },
+    {
+        "id_": "a82efee0-453c-4253-adfd-25aaac6ec08a",
+        "text": "# Table 1: Parameters specification including input or system variables and decision variables, with their respective numerical types.\n\n|Symbol|Definition|Type|\n|---|---|---|\n|ω|Angle between thin films planes and incident beam|float|\n|Ndip|Number of dip|Integer|\n|Vdip|Velocity of dip|Integer|\n|Tsec|Drying temperature|Integer|\n|Trec|Annealing time|Integer|\n|Time|Drying time|Date|\n|P sol|Pure SnO2|Boolean|\n|D sol|Diethanolamine ’DEA’ Solution|Boolean|\n|H sol|Hydrochloric acid Solution|Boolean|\n|A sol|Acetic acid solution|Boolean|\n|a|Lattice parameter for tetragonal structure in tow direction x and y|float|\n|b|Lattice parameter for tetragonal structure in z direction|float|\n|D|Grain size|float|"
+    },
+    {
+        "id_": "75cd9adf-825b-4c26-aa1a-4a5169aa5be9",
+        "text": "# Table 2: Description of Data Set distributions of the different features and statistical metrics μ, ϖ and Median.\n\n|t|ω|Ndip|Vdip|Tsec|Trec|Time|Psol|D sol|Hsol|Asol|a|b|D|\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|t 0|34.2599|35|7|100|500|120|1|0|0|0|2.62|2.61|99.58|\n|t 1|34.36|7|7|100|500|120|1|0|0|0|2.61|2.60|212.94|\n|t 2|27.0841|35|7|100|500|120|0|1|0|0|4.65|2.61|112.11|\n|t 3|27.08|7|7|100|500|120|0|1|0|0|4.65|2.60|182.07|\n|t 4|26.96|35|7|100|500|120|0|0|1|0|2.60|2.60|602.63|\n|t 5|34.4126|35|7|100|500|120|0|0|0|1|2.60|2.60|602.63|\n|t 6|34.0546|6|7|100|400|120|1|0|0|0|2.63|2.63|1351.28|\n|t 7|26.827|7|7|100|400|120|1|0|0|0|4.69|0|630.41|\n|t 8|26.82|8|7|100|400|120|1|0|0|0|4.69|0|882.48|\n|t 9|27.0714|35|2|100|400|120|1|0|0|0|4.65|2.61|124.65|\n|t k|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|· · ·|\n|t n|27.02|35|2|100|400|120|0|1|0|0|4.66|2.60|171.09|\n|μ|29.63|22.27|06.09→|100|454.55→|120|00.55|00.27|00.09|00.09|04.55|02.07|52.22|\n|ε|03.68→|14.63|02.02|0.0†|52.22→|0.0†|00.52|00.47|00.30|00.30|00.23|00.69|51.46|\n|Median|27.08|35.00|07.00|100|500.00|120|01.00|00.00|00.00|00.00|04.65|02.28|31.50|\n\nSometimes and to overcome the lack of the real experimental data, Gaussian augmentation to the dataset are applied. Each data transaction t is used to generate new mutant."
+    },
+    {
+        "id_": "452601f9-bd9b-4655-aaac-e2c5995eba93",
+        "text": "# Feature Selection and Reduction\n\nAt this stage of data preparation, features are splitted in input and output variables and some parameters may be just dropped. This techniques called features reduction should be done under the advice of experts in materials physics. In our context, the considered system variables are: ω, N dip, V dip, T rec, P sol, Dsol, H sol, Asol, and the decision variables a, b, D."
+    },
+    {
+        "id_": "c94f2dcc-571f-4570-bc75-1989ea58cff7",
+        "text": "# 5.2 GRU Predictor Models: Learning and Testing\n\nWe have generated experimentally the best configuration of the GRU model and the optimal learning parameters are depicted below. In fact, the description of the parameters and their values used along the following experimentation section are introduced right after.\n\n- Tsteps (Time steps refers to the sequence length in the input data.): 24\n- IN:#Features + OUT:#Decisions (Indicates the number of distinct attributes measurements in input.): 8 (input parameters) + 1 (decision variable features #a, #b, #D).\n- Loss (This function measures the dissimilarity between the predicted values and the ground truth values during training.):\n- Metrics (These custom functions are used to evaluate the model’s performance during training and testing.): MSE, R2, S.\n- #Layer (It denotes the number of layers in the neural network model.): 2\n- #Cells (It specifies the number of cells or units per layer of the GRU model.): 64\n- #Epochs (This parameter represents the number of times the model iterates over the entire training dataset.): limit <= 800 + StopEarling (SE)\n- #Batch (It refers to the number of samples or data points processed in each training iteration.):\n- Act func (It is a mathematical function that controls the outputs of each neuron in the GRU neural network.): Relu\n- %Dropout (Dropout is a regularization technique used during training to avoid overfitting and to boost the training.): 20%\n- #FCDense (Known as fully connected layers.): 1\n- Adamlr (They are used to configure the lr learning rate.): lr = 0.0001"
+    },
+    {
+        "id_": "8153c149-af74-4565-b290-65bdebfbc789",
+        "text": "# Table 3: Tuning hyper-parameters of the learning process GRU64, GRUb64 and GRU64Models.a D\n\n|Model|Metrics|Tsteps|#Layers|#Cells|#Epochs (Early Stopping)|#Batch|Act func|Adamlr|\n|---|---|---|---|---|---|---|---|---|\n|GRU64a|MSE/S|50|3|(8, 64, 1)|450|25|Relu|0.001|\n|GRUb64|MSE/S|50|3|(8, 64, 1)|480|25|Relu|0.001|\n|GRUD 64|MSE/S|50|3|(8, 64, 1)|270|25|Relu|0.001|"
+    },
+    {
+        "id_": "49abcb8d-e230-452e-96b7-0e0eac722073",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics\n\nAfter the tuning of the GRU model training parameters, we will now define an experimental protocol that consists first, in the adoption of the latter fixed learning parameters in Table 4. Second, for each crystal materials characteristics a, b, and D, we have determined respectively the corresponding models as GRUa(8,64,1), GRU(8,64,1), and GRUD(8,64,1) - see Table 4.b. These are trained and then tested using the metrics MSE and S included in the section 4."
+    },
+    {
+        "id_": "74fb6799-99f0-4b6d-9ebd-49423b791d5a",
+        "text": "# Table 4: Performance of the GRU models based on Metrics:\n\n(a) MSE: Mean Square Error, (b) μS: Mean scores S, and (c) ModeS: Mode Scores\n\n|Model|MSE|μS|Mode S|#Cells|Act func|\n|---|---|---|---|---|---|\n|GRU 64|7.2901e-14|0.0659|0.5970|(8, 64, 1)|Relu|\n|GRUb 64|7.7273e-05|0.0675|0.8797|(8, 64, 1)|Relu|\n|GRUD 64|1.8649e-09|0.0166|0.1749|(8, 64, 1)|Relu|\n\nAt this time, we have depicted the traceability of the training and the testing of our designed models GRUa(8,64,1), GRUb(8,64,1), and GRUD(8,64,1). Three figures are presented to define the dynamics of the GRU predictor models. In green curve, we have the learning loss function (loss), and the purple curve represents the generalization or the val-loss function. Finally, the red sensitivity function determines whether the learning is stable or not - see Figures 6, 7, 8."
+    },
+    {
+        "id_": "186e50ba-8508-4a84-9875-2d228315d005",
+        "text": "# Loss and Training Loss VS. Epochs\n\nTraining loss\n\nLoss\n\n0.5\n\n0.4\n\n0.3\n\n0.2\n\n0.1\n\n100 200 300 400\n\nEpochs"
+    },
+    {
+        "id_": "2b2d24ad-97ff-4a25-8701-53d0880c8e9c",
+        "text": "# Fig. 6: GRU(8,64,1) Model - Learning loss, Generalization val-loss and Sensitivity scores"
+    },
+    {
+        "id_": "81e572d5-8ba0-43ee-9a5f-75a8e5b1977d",
+        "text": "# Loss and Training Loss VS. Epochs"
+    },
+    {
+        "id_": "979e18de-5f27-41e4-80f7-8ca54342f129",
+        "text": "# Training loss\n\n|0.8|Loss|0.8|\n|---|---|---|\n|0.7| |0.7|\n|0.6| |0.6|\n|0.5| |0.5|\n|0.4| | |\n|0.3| |0.3|\n|0.2| |0.2|\n|0.1| |0.1|\n\n100 200 300 400 500\n\nEpochs\n\nFig. 7: GRU(8,64,1) Model - Learning loss, Generalization val-loss and Sensitivity scores"
+    },
+    {
+        "id_": "3db62e69-6f7a-408d-b85a-37e1cfe78bdf",
+        "text": "# Loss and Training Loss VS. Epochs"
+    },
+    {
+        "id_": "37fa4bc1-0ec4-4d86-b7ba-0535db59171f",
+        "text": "# Training loss\n\n|0.175|Loss|0.175|\n|---|---|---|\n|0.150| |0.150|\n|0.125| |0.125|\n|0.100| |0.100|\n|0.075| |0.075|\n|0.050| |0.050|\n|0.025| |0.025|\n|0.000| |0.000|\n\n100 150 200 250\n\nEpochs\n\nFig. 8: GRU(8D,64,1) Model - Learning loss, Generalization val-loss and Sensitivity scores\n\nWe notice in the Figure 6, relative to the generation of the GRU(8,64,1) predictor model for the crystal geometric feature, that the learning process is unstable until the 200 epochs. Before this stage, the learning and generalization are entangled, which means that the learning and training processes are not yet separated. After that, at the stage of epochs in the range [20, 310], the learning and the generalization seem to be efficient and go to a convergence point around the 310 epoch, well with less sensitivity. Finally, when the"
+    },
+    {
+        "id_": "f747a8fd-eac1-40d3-a011-043926517dfd",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics\n\nepochs parameter is greater than 310, the dynamics of the training converges to optimal GRU network weight values.\n\nIn Figure 7, we can clearly see that the learning is very sensitive around the epoch, but converges around epoch = 300 and demonstrates better performances in terms of learning and generalization for the generated model GRUb(8,64,1).\n\nFor the model GRUD(8,64,1) generation - see Figure 8 -, we note that the learning converges earlier and gives steady results in epochs 80 without any sensitivity."
+    },
+    {
+        "id_": "94079bcb-6d65-4fbb-94c1-d0feaac3394e",
+        "text": "# 5.3 GRU Model Predictions\n\nAfter the GRU model construction and the performance evaluations for each GRU model predictor of the different structural parameters #a, #b, and #D, we will now apply the predictor models to predict the crystal properties considering the truth experimental values in the dataset dictionary.\n\nFor each structural feature, we use the corresponding model named GRUX(8,64,1), where X is in the set {a, b, D}. Thus, the truth and the estimated properties a, b, and D are depicted in Table 5 using the above predictor models - see the subsection 5.2. We noticed that in Table 5 (a), the estimated lattice parameter a in the transactions t0, t2, and t6 are exactly the same as the truth experimental values. The remaining estimated values in {t1, t3, t4, t5} have an absolute difference at most equal to 3.00e-7 compared to the truth experimental values. This finding can be observed in the case of the lattices b and D. In fact, the largest absolute difference 2.00e-2 is shown in the transaction t5.\n\nThe range of [4.0e-6, 5.9e-5]. The Figures 9, 11, 13 below show in detail the lattice is in addition, the difference between the estimated and truth values for the D R2 metric which demonstrates the statement that test truth estimated values of a, b, and D lattices and the predicted computed values are almost equal. In addition, the truth/predicted discrepancies in the Figures 10, 12, 14, are very small and even zero 0."
+    },
+    {
+        "id_": "9164568f-406c-4521-845e-9e790c90018e",
+        "text": "# Table 5: Experimental parameters\n\n|Prediction of the Lattice parameter| |27.0714|26.8273|34.4126|34.0546|26.9573|27.0812|34.3569| | | | | | | | | | | | |\n|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|\n|Prediction of the Gain Size parameter| |357|35357| |N dip|357|35357|N dip| | | | | | |358|35357|N dip| | | |\n|Estimated|V dip|400|400|400|500|500|500|T rec| | | | | | | | | | | | |\n|Est| |1|1|1|0|0|0|1|solP| | | | | | | | | | | |\n|G 64a| |0|0|0|0|0|1|0|D| | | | | | | | | | | |\n|Est| | |0|0|0|0|1|0|0|solH| | | | | | | | | | |\n|G 64b| | |0|0|0|1|0|0|sol| | | | | | | | | | | |\n| |Exp|0|0|0|1|0|0|sol| | | | | | | | | | | | |\n| | | | | |Est| |1.1e-04|2.2|2.2|2.2|2.277|2.270|2.19| | | | | | | |"
+    },
+    {
+        "id_": "358da119-3008-41b1-8870-6c3bd98e7e31",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics"
+    },
+    {
+        "id_": "e34a7993-f86b-402a-b233-4a03571d630b",
+        "text": "# Actual vs Predicted Values\n\n|1.0|R2 = 1.00| | | | | |\n|---|---|---|---|---|---|---|\n|1|0.4| | | | | |\n|0.2|0.0| |0.4|0.6| |1.0|\n\nFig. 9: GRU(8a,64,1) Square R2 Metric."
+    },
+    {
+        "id_": "25d05c88-8593-496e-bfe3-a32e0f4af792",
+        "text": "# Truth/Prediction Discrepancies\n\n|1.0|9|\n|---|---|\n|L|0.6|\n|9|0.4|\n|1|0.2|\n\nTesting Space Size\n\nFig. 10: GRU(8,64,1) Truth-Prediction Discrepancies."
+    },
+    {
+        "id_": "032b327c-3ceb-4837-baf5-9833e08802df",
+        "text": "# Actual vs Predicted Values\n\n|1.0|R2 = 1.00|\n|---|---|\n|0.8| |\n|0.4| |\n|0.2| |\n|0.0| |\n\nActual Values\n\nFig. 11: GRU(8,64,1) Square R2 Metric.b"
+    },
+    {
+        "id_": "d0109acb-5b8a-4036-9c14-35dcbb56639a",
+        "text": "# Truth/Prediction Discrepancies\n\n1.00.80.60.40.2\nTesting Space Size\n\nFig. 12: GRU(8,64,1) Truth-Prediction Discrepancies.b"
+    },
+    {
+        "id_": "84e7c67c-3868-473a-8826-dd5b6ee4313d",
+        "text": "# Smart Data-Driven GRU Predictor for SnO2 Thin films Characteristics"
+    },
+    {
+        "id_": "1244ae1c-7796-4288-9091-b15816bb1fe7",
+        "text": "# Actual vs Predicted Values\n\nR2 = 1.00\n\n| |0.0|0.1|0.2|0.3|0.4|0.5|0.6|\n|---|---|---|---|---|---|---|---|\n|0.4| | | | | | | |\n|0.3| | | | | | | |\n|0.2| | | | | | | |\n|0.1| | | | | | | |\n\nFig. 13: GRU(8D,64,1) Square R2 Metric."
+    },
+    {
+        "id_": "66ad4d67-7f6e-49d0-a1e8-9250ef04db5b",
+        "text": "# Truth/Prediction Discrepancies\n\nTesting Space Size\n\nFig. 14: GRU(8D,64,1) Truth-Prediction Discrepancies."
+    },
+    {
+        "id_": "d5baf742-92d7-479b-bfb8-0f8796bce718",
+        "text": "# Conclusion\n\nThis research work is very beneficial in the sense that it simplifies the hard and complex task of real experiments in materials physics. Indeed, the crucial role of characterization techniques in material physics, particularly emphasizing the significance of gathering data on various physical properties, is not always easy, especially for some methods such as X-ray diffraction that are widely used but still be challenging due to cost, complexity and safety. In brief and to streamline this process, X-ray diffraction outcomes for tin oxide (SnO2) thin films are produced via the Dip-Coating methods deposited onto glass substrates. Then, Various experimental parameters were adjusted to enhance the thin film properties for specific applications. In addition, The structural characteristics, including lattice parameters a and c and the grain size D, are computed, confirming the tetragonal phase of thin films in most cases. Finally, due to the extensive array of experimental parameters to be optimized across multiple samples, the use of artificial intelligence can be highly desirable to be considered. We have adopted the use of artificial intelligence techniques, particularly a Gated Recurrent Unit (GRU) model to predict but also estimate structural characteristics and many physical properties of materials.\n\nThe relevance and benefits of the proposed data-driven GRU-Based model Predictor for material properties characterization highlight the importance of AI in material physics and leverage discussion about this new pivotal AI methods for understanding and extracting structural properties of crystalline materials. Again, this may show the emphasizing on AI and its role in characterizing material properties across various fields, when limitations in terms of computation capacity for ab-initio calculation and simulation methods. Our GRU models have gained prominence in enhancing X-ray diffraction’s capabilities and strengthening predictions of materials’ structural properties in an easy and safe thin films SnO2 characterization. Furthermore, we proposed a data-driven framework for material characterization, focusing on the proposed AI GRU model among others. In the soon future, we will continue exploit derive crystal properties through experimental data to design specific AI models that can facilitate and revolutionize the field of material science and characterization, offering solutions to the challenges faced by engineers and researchers when using traditional techniques and computational constraints."
+    }
+]

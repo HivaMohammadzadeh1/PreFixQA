@@ -1,0 +1,742 @@
+[
+    {
+        "id_": "58fae36d-928a-430d-8f8c-b7f4948a4293",
+        "text": "# Chapter 1"
+    },
+    {
+        "id_": "ff96223e-5c83-4bff-b26c-57615aa794da",
+        "text": "# Introduction\n\nNowadays, robotic systems are becoming increasingly present in society and industry as an alternative to human labour for repetitive and dangerous tasks. Along with the recent developments of computers, communication networks, and intelligent sensing devices; modern robots can eventually be equipped with high-end technologies to produce improved throughput and better accuracy than human workers. However, this increase in autonomous robots exposes sensitive systems to adversaries. In fact, Upstream1 has recorded a soar of 225% in malicious attacks on autonomous systems in the past three years [1].\n\nThis danger arises from within-system communications between intelligent sensors and electrical control units over shared transmission networks. By executing cyber attacks, malicious attackers can compromise the integrity of robotic systems and deteriorate their performance [2]. Such vulnerabilities open the door to adversarial entities that seek to exploit these systems, which can compromise people’s safety.\n\nMalicious attacks can be executed on various modules, such as the sensors and actuators, the communication network, and the physical interface of a system. For instance, Iranian air forces captured an American Lockheed Martin RQ-170 Sentinel unmanned aerial vehicle (UAV) in 2011 by spoofing its Global Position System (GPS) data [3]. Two years later, some attackers tricked a yacht’s navigation system by spoofing its GPS and putting it off course [4]. The authors of [5] described in fine detail how a hacker may attack an industrial robot and the consequences this may have on surrounding entities.\n\nAlthough robotic systems’ stability and safety issues have received much attention in recent years, with promising results being reported [6], [7], previous works could not\n\n1 A cybersecurity and data management platform."
+    },
+    {
+        "id_": "ae30d58e-3751-4d9b-9fb4-d7333aec6a16",
+        "text": "# Current Research on Secure Robot Learning Framework\n\nTo protect robots’ performance from deterioration or even destruction, the study of designing robotic systems with high assurance is a hot topic, attracting researchers from the control and computer science communities.\n\nThis study intends to establish a secure robot learning framework for cyber attack scheduling and countermeasures. It analyses how an adversary with limited attack energy can construct an optimal false data injection attack scheme to disrupt a robot’s tracking performance and proposes a secure control algorithm against such adversaries. Finally, we hope our paper will open the way to future research on this hot security challenge. The source code for our learning-based controller and open-source environment for reinforcement learning research on Agilicious can be found in https://github.com/SamySam0/BaBee."
+    },
+    {
+        "id_": "4dd6ee69-ef30-4510-bc8d-eccb8e03259e",
+        "text": "# 1.1 Motivations\n\nIn the control community, none of the existing methods adequately address optimal attack and countermeasure design problems on underactuated nonlinear complex systems. The method in [8] focused on typical control problems without attack, while the method in [9] focused on state estimation problems and cannot be applied to the secure control problem. We draw inspiration from [10], which deals with ground vehicles of greater linearity. However, under attacks, the secure control problem for underactuated dynamical systems cannot be solved by applying the methods in [10]."
+    },
+    {
+        "id_": "f6ce9529-87a9-4805-8422-f6421c93a73a",
+        "text": "# 1.2 Objectives and Contributions\n\nIn this paper, we develop an autonomous control system, called a nominal controller, and two reinforcement learning-based methods to solve the optimal false data injection attack and countermeasure design problems for underactuated nonlinear systems. To this end, our study provides:\n\n- (a) a nominal controller for a robot under no attacks. Such a controller is capable of flying and stabilising the system.\n- (b) a learning-based malicious adversary employing false data injection attacks is constructed to perturb the control signals sent by the nominal controller and deteriorate its tracking performance with minimal cost.\n- (c) a learning-based countermeasure is developed to mitigate attacks with minimum control cost and recover the tracking performance."
+    },
+    {
+        "id_": "7ff5f81f-24b3-41cc-b6ef-862801a08e57",
+        "text": "disturbed by the attacker. All the above algorithms are provided and described following the proximal policy optimisation approach.\n\nWe base our work on unmanned aerial vehicles, particularly on X-shaped quadrotors. As a study case, we deploy our framework on the Agilicious quadrotor, a state-of-the-art quadcopter for autonomous flying deployed in 2023 by the University of Zurich. In fact, our team was the first in the United Kingdom to deploy this quadrotor and implement reinforcement learning on its platform. Therefore, on top of the proposed adversary attack and defence countermeasure frameworks, our work introduces (d) a comprehensive breakdown of Agilicious quadrotors, including software designs and hardware alternatives, (e) a detailed reinforcement-learning framework to train autonomous controllers on Agilicious-based agent, and (f) a new open-source environment that builds upon PyFlyt for future reinforcement learning research on Agilicious platforms. These aim to promote easy reproducibility with minimal engineering overhead for future research on this promising quadrotor. As a little caviar, our team pre-designed various tasks, including hovering, obstacle avoidance, and trajectory tracking, to allow for straightforward experimental work on this framework.\n\nThe three learning-based controllers are evaluated against their respective objectives through a series of experiments. This includes experimenting in simulation to obtain metrical results, and testing their ability to be deployed in real-world scenarios. Results are compared to the state-of-the-art when they exist in order to provide the reader with a clear comparison to successful works."
+    },
+    {
+        "id_": "0b7288f7-a96a-485e-ab36-0dbd2c0894a9",
+        "text": "# 1.3 Report Structure\n\nThe rest of this paper is organised as follows. Chapter 2 introduces background knowledge in quadrotor dynamics, cyber-attacks and countermeasures, and deep reinforcement learning. Chapter 2 Section 2.4 describes and refers the reader to related works. Chapter 3 provides the experimental setup for our experiments. This includes our simulation and the assembly of the physical quadrotors used, i.e. Agilicious and Crazyflie, with detailed information on their hardware components and software stacks. Chapter 4 introduces our objectives and formulates the problems to be solved. Then Subsection 4.2 presents the design of our autonomous control system, Subsection 4.3 gives the learning-based false data injection attack algorithm, and Subsection 4.4 the secure robot learning framework for mitigating attacks. Chapter 5 provides simulation and"
+    },
+    {
+        "id_": "1e0541dc-7b99-4c06-853f-665b1f1d8f04",
+        "text": "NO_CONTENT_HERE"
+    },
+    {
+        "id_": "b176f772-aca8-44cc-a761-cf1bc59045b6",
+        "text": "# Chapter 2"
+    },
+    {
+        "id_": "1c0ba82a-e0fa-4a53-9705-cac996f90f64",
+        "text": "# Background"
+    },
+    {
+        "id_": "f6b96fd7-4922-488e-ae47-3f42f1e480de",
+        "text": "# 2.1 Quadrotor Dynamics\n\nIn order to properly design aerial platforms according to our objectives, it is essential to understand the geometry and mechanics of a quadrotor. This section describes the dynamics of an X-shaped quadrotor and defines its kinematic model for later calculations.\n\nA quadrotor is a rigid aircraft with hardware components at its centre and four engines at the end of equally spaced arms. By definition, its motion has six degrees of freedom which are defined as follows: ! = [x, y, z] represents translation motions, i.e. the position of the quadrotor’s centre, and ∀ = [#, ∃, %] denotes rotation motions, i.e. the orientation of the quadrotor, also known as pitch, roll and yaw angles. An illustration of a quadrotor model is displayed in Figure 2.1."
+    },
+    {
+        "id_": "f8c10bd2-0bdc-4996-9add-32515f4e2fa5",
+        "text": "# 2.1.1 Coordinate System and Reference Frames\n\nIn our work, we use two reference frames to describe the motions of a quadrotor, where the first is fixed and the second is mobile. The mobile coordinate system called the inertial frame (Ix, Iy, Iz) describes an earth-fixed coordinate system with its origin located on the ground at a chosen location. In this system, we consider the first Newton’s law to be valid. On the other hand, the mobile coordinate system called the body frame (bx, by, bz) has its origin located at the centre of gravity of the quadrotor. Note that we attribute linear positions and velocities to the inertial frame, and angular positions and velocities to the body frame."
+    },
+    {
+        "id_": "f3e0a2d9-6ef3-4cb3-91ee-c3e3777897da",
+        "text": "# 2.1.2 Thrust and Moments\n\nThe quadrotor’s attitude and position can be controlled by altering the speeds of its four motors to control thrust and rotations. The following forces and moments can be performed on the quadrotor: the thrust generated by spinning rotors, the pitching and rolling moments resulting from the speed difference between the four rotors, the gravity, gyroscopic effects, and yawing moments. However, the gyroscopic effect can be ignored as it is only noticeable in lightweight quadrotor constructions. Additionally, the yawing moments arise from imbalances in the rotational speeds of the four rotors, which can be countered by having two rotors spinning in opposite directions.\n\nTherefore, the propellers are grouped into pairs, with two diametrically opposed motors in each group, easily identifiable by their rotation direction. Namely, we group:\n\n- the front and rear propellers, rotating counterclockwise; and\n- the left and right propellers, rotating clockwise.\n\nBy varying the rotational speeds of each motor, we can control the motion in the six degrees of freedom including forward and backward movements, lateral movement,"
+    },
+    {
+        "id_": "f4f6e4e9-b856-45d1-aed3-cfcd120681c8",
+        "text": "# 2.2 Motion Control of Quadrotors\n\nVertical motion, roll motion, pitch motion, and yaw motion. However, we can directly influence only four of those six motions.\n\nVertical\nYaw\nPitch\nRoll\nFigure 2.2: Simplified illustrations of Altitude (vertical), Yaw, Pitch and Roll motions. The front propeller is highlighted in green for convenience.\n\nDepending on the rotational speed of each propeller, it is possible to identify the four basic movements of the quadrotor illustrated in Figure 2.2. Those are:\n\n1. (a) The roll motion (∃), being when left and right motors do not rotate with equal speed. Rolling increases when the left motor spins faster than the right one.\n\n∃ = l · (F2 → F4 )\n\n= l · k · (w22 → w42) (2.1)\n2. (b) The pitch motion (#) when the front and rear motors do not rotate with equal speed. Pitching increases when the front motor spins faster than the rear one."
+    },
+    {
+        "id_": "edb0719a-08fe-41d8-9700-cfba661098b0",
+        "text": "# = l · (F1 → F3 )\n\n= l · k · (w12 → w32) (2.2)\n3. (c) The yaw motion (%) when the two motor groups do not sum to the exact same rotational speed. Yawing increases when the left and right motors spin faster than the front and rear ones.\n\n% = b · (w42 + w22 → w12 → w32) (2.3)\n4. (d) The torque and thrust caused by each rotor act particularly in the body’s z-direction. Accordingly, the vertical motion (Fz) is the net propulsive force in the z-direction given by the sum of forces produced by each motor,\n\nFz = F1 + F3 + F2 + F4 → mg\n\n= k · (w12 + w32 + w22 + w42) → mg (2.4)\n\nwhere k and b are the lift and drag constants defined empirically, mg is the force of"
+    },
+    {
+        "id_": "d2d848ca-204b-4094-8564-3c22fd087da1",
+        "text": "# 2.1.3 Kinematic Model of a Quadrotor\n\nFrom the definitions above, we can infer the kinematic model of our quadrotor, i.e. the physical model on which we can act to control the vehicle. This section aims to show how the quadrotor’s orientation and position change with respect to its angular velocities and (collective) thrust.\n\nThe translation of the quadrotor in the inertial frame is given by its position vector ! = [x, y, z]. The change in position over time, i.e. the linear velocity in the inertial frame, can be expressed as the time-derivative of the linear positions,\n\nd! = ∋.\n\nHere ∋ = [ ˙, ˙, ˙] represents the inertial frame velocities. In order to relate these xyz velocities to those in the body frame, we must apply a rotation transformation."
+    },
+    {
+        "id_": "5a7177f2-f976-487c-b341-e46e357bce55",
+        "text": "# Euler angles\n\nEuler angles represent a sequence of three elemental rotations, i.e. rotations about the three axes of a coordinate system. The sequence is formed by the following rotation matrices [12]:\n\nWe will use ZYX Euler angles [11] to describe the orientation of"
+    },
+    {
+        "id_": "48693668-3a43-461b-9df2-650d89e541a1",
+        "text": "# Rotation Matrices\n\nThe rotation matrices are defined as follows:\n\n|R x (∃) =|<br/>1|0|0|\n|---|---|---|---|\n|0|cos(∃)|→ sin(∃)|\n|0|sin(∃)|cos(∃)|\n\nR y (#) =\n\n|cos(#)|0|sin(#)|\n|---|---|---|\n|0|1|0|\n|→ sin(#)|0|cos(#)|\n\nR z (%) =\n\n|cos(%)|→ sin(%)|0|\n|---|---|---|\n|sin(%)|cos(%)|0|\n|0|0|1|\n\nTherefore, the inertial position coordinates and the body reference coordinates are related by the rotation matrix R zyx (∃, #, %), which describes the rotation from the body reference system to the inertial one as:\n\nR zyx (∃, #, %) = Rz (%) · Ry (#) · R x (∃) (2.5)\n\n|<br/>c(#)c(%)|s(∃)s(#)c(%)|→ c(∃)s(%)|\n|---|---|---|\n|c(∃)s(#)s(%) + s(∃)s(%)|s(#)|s(∃)c(#)|\n|c(∃)c(#)| | |\n\nwhere c(%) = cos(%), s(%) = sin(%), c(∃) = cos(∃), s(∃) = sin(∃), c(#) = cos(#), and s(#) = sin(#)."
+    },
+    {
+        "id_": "5ff25c2b-e996-4b1d-97fa-a23e3f9c069e",
+        "text": "# Figure 2.3: Illustration of Euler Angles.\n\nNext, we analyse the rotation of the quadrotor in the body frame which is given."
+    },
+    {
+        "id_": "31e2e172-5223-47c2-ab40-1e8cd5318c59",
+        "text": "by its orientation vector ∀ = [#, ∃, %]. The change in position over time, i.e. angular velocity in the body frame, can be expressed as the time-derivative of the orientation\n\nd∀               = (b .\n\ndt\n\nHere (b = [˙, ∃, ˙] represents angular velocities in the body frame. In order to re-#˙% relate these velocities to those in the inertial frame, we must apply the following angular transformation\n\n|T =|T =|T =|T =|\n|---|\n|1|0|sin(∃) tan(#)|cos(∃) tan(#)|\n|cos(∃)|sin(∃)|→|sin(∃)cos(∃)|\n|0|cos(#)| |cos(#)|\n\nTherefore, from 3D body dynamics, it follows that the two reference frames (inertial and body) are linked by the following relations:\n\n∋ = R · ∋ b ,                                             (2.7)\n\n( = T · ( b ,\n\nwhere ∋ and ∋b are linear velocities in the inertial and body frames, respectively, and ( and (b are angular velocities in the inertial and body frames, respectively.\n\nThis shows that thrust and orientations in the body frame, which are controlled through angular velocities, directly influence the quadrotor’s position and orientation in the inertial frame."
+    },
+    {
+        "id_": "e125587a-4b72-47d9-a367-c35ee8312652",
+        "text": "# 2.1.4 Differential Flatness\n\nAlthough the previous section shows that the quadrotor’s orientation and position change with respect to its thrust and angular velocities, it does not prove that any trajectory in the space of flat outputs will be dynamically feasible for the quadrotor. Specifically, it does not show that controlling thrust and angular velocities guarantees that it can take any desired trajectory in 3D space. To prove that, we must show that the quadrotor system is differentially flat; that is, the states and inputs can be written as algebraic functions of the flat outputs and their time-derivatives. This proof is way beyond the scope of our work but can be read in [13].\n\n18"
+    },
+    {
+        "id_": "d130d892-1501-44fc-9f02-9f305937af6a",
+        "text": "# The proof shows that the extended dynamical model of a quadrotor subject to rotor drag with four controlled inputs is differentially flat.\n\nIn fact, the quadrotor states *[!, ∋b , ∀, (] and inputs [F z , ( w ] can be written as algebraic functions of four selected flat outputs and a finite number of their derivatives. They chose the flat outputs to be the quadrotor’s position ! and its heading %*, and proved that the commanded orientations and collective thrust are functions of the flat outputs.\n\nThis concludes on the fact that commanded orientations and collective thrust are not only directly influencing the quadrotor’s position and orientation with respect to the inertial frame, but can also represent any realistic trajectory in 3D space."
+    },
+    {
+        "id_": "5c594e00-6151-44f5-a4e1-c3fbf59761e9",
+        "text": "# 2.2 Quadrotor Attacks and Countermeasures\n\nIn this section, we define cyber-attacking in the context of quadrotor tracking disruption and, more specifically, introduce false data injection as a man-in-the-middle approach. Additionally, we describe countermeasures as a way to mitigate malicious attacks and preserve the quadrotor’s tracking performance.\n\nIn the context of quadrotor tracking and control, we refer to cyber-attacking as a malicious attempt to compromise the availability and integrity of transmitted information. Nonetheless, it is essential to mention that system faults and attacks differ fundamentally. That is, while faults manifest from a system’s unintended error, attacks are concealed and designed elaborately *[14–16]*. Such disruptions can be particularly concerning for quadrotors as they mainly rely on real-time data for stable flight and navigation.\n\nOne specific form of cyber-attack is the false data injection, where incorrect or misleading data are inserted into the quadrotor’s data streams. In our study, the method used to execute false data injections is the man-in-the-middle approach, where an attacker intercepts and alters the communications between the quadrotor and its control system. This involves altering actuator signals and sending disrupted control commands to the flight control system. Such attacks may result in minor disruptions or even complete loss of control when no countermeasure is executed, posing significant risks to safety and task integrity.\n\nTwo types of strategies are typically employed to effectively address and counter"
+    },
+    {
+        "id_": "0c1542eb-2c0d-4e4b-aa68-9b7e1216d0d7",
+        "text": "# 2.3 Reinforcement Learning\n\nThis section introduces reinforcement learning as a mathematical solution to autonomous quadrotor control, optimal false data injections and countermeasure design. Moreover, it explains how deep reinforcement learning can handle the high-dimensional state spaces and complex environments required to deal with three-dimensional quadrotor controls. Finally, it goes in-depth with the Proximal Policy Optimization algorithm implemented to train our three controllers.\n\nReinforcement learning is a subset of Machine Learning where an intelligent system, referred to as an agent, learns through trial and error by interacting in an unknown environment and receiving feedback on its actions [17]. The mechanism is the following: In any given state of an environment, an agent uses its policy to choose which action to take based on the observed state, and receives a reward from the environment for doing so. The reward tells the agent “how good” his action was. This process continues with the agent repeatedly taking actions and receiving rewards until the environment terminates or the agent reaches a final state. Reinforcement learning uses the rewards obtained through training episodes to update the agent’s policy and progress toward the optimal policy in an environment. Essentially, reinforcement learning allows an agent with no prior information about the environment to learn a strategy about how to interact with the environment and maximize accumulated rewards. An illustration of the interaction between an agent and its environment is displayed in 2.4.\n\nThere exist two main challenges with reinforcement learning. These are (1) to write a qualitative reward function to receive accurate feedback from the agent’s actions, and (2) to design an environment that accurately describes the environment in which the agent will act when deployed. Indeed, this latter point is at the heart of the Simulation-to-Real-World transfer challenge."
+    },
+    {
+        "id_": "5a9254d3-ecce-43b6-b00c-d5386756fbc2",
+        "text": "# 2.3.1 Markov Decision Processes\n\nFormally, reinforcement learning can be described as Markov decision processes (MDP). We represent these with the tuple (S, A, P, R), where S is the state space, A is the action space, P is the transition probability matrix from a state-action pair at time t onto a distribution of possible states at time t + 1, R(s, a, st+1) is the immediate reward function, and γ ∈ [0, 1) is the discount factor for future rewards, where lower values place more emphasis on immediate rewards."
+    },
+    {
+        "id_": "7e3b8dd7-c57c-4bdc-a452-f93a64efbeb1",
+        "text": "# Policies\n\nIn general, the policy π* is a mapping from states to a probability distribution over actions: π*: S → p(A = a|S). In our case, the Markov decision processes are episodic, meaning that the state is reset after each episode of length T. Therefore, the sequence of states, actions and rewards in an episode constitutes a policy rollout. Every rollout of a policy accumulates rewards from the environment, resulting in the return:\n\nR = r0 + γr1 + γ2r2 + ... + γT-1rT.\n\nThe goal of reinforcement learning is to find an optimal policy π* which maximizes the expected return from all states:\n\nπ* = argmax E[R|π].\n\nTherefore, the agent must deal with long-range time dependencies, as the consequences of an action often only materialize after many transitions in the environment. This is known as the temporal credit assignment problem [18]."
+    },
+    {
+        "id_": "285760e1-feb3-431c-8872-f7e02196c859",
+        "text": "# 2.3.2 Traditional Reinforcement Learning\n\nWith Markov decision processes as the key formalism of reinforcement learning, there exist two main approaches to solving reinforcement problems: methods based on value functions and methods based on policy search.\n\nValue function methods are based on estimating the value (expected outcome) of being in a given state. The state-value function *V*(s) is the expected outcome of being in state s and following ** henceforth:\n\nV* (s) = E[R|s, *]. (2.9)\n\nThe optimal policy **↔ has a corresponding state-value function V↔*(s), and vice-versa, the optimal state-value function can be defined as\n\nV↔ (s) = max V* (s) * ↗ s ↑ S. (2.10)\n\nIf we could obtain *V↔(s), the optimal policy could be retrieved by choosing among all actions available from st and picking the action a that maximises the expected future reward from state st according to transition probabilities P, as E st+1 ↘ P(st+1 |s,a) [V↔(st+1*)].\n\nHowever, this assumes that transition dynamics *P are available, which is not the case in the context of reinforcement learning. Therefore, we construct another function, the state-action-value function *Q**(s, a), which is similar to V* except that the initial action a is provided, and ** is only followed from the succeeding state onwards:\n\nQ* (s, a) = E[R|s, a, *]. (2.11)\n\nThe best policy can be found given *Q*(s, a) by choosing action a greedily at every state, following arg maxa Q*(s, a). Under this policy, we can also define V*(s) by maximising Q*(s, a) as V*(s) = maxa Q**(s, a)."
+    },
+    {
+        "id_": "447f1a3b-0644-48cd-915f-b9123fc44678",
+        "text": "# Dynamic Programming\n\nTo actually learn Q*, we exploit the Markov property and define the function as a Bellman equation [19], which has the following recursive form:\n\nQ* (s, at) = Est+1 [rt+1 + )Q* (st+1, *(st+1))]. (2.12)"
+    },
+    {
+        "id_": "9489508b-9e20-452e-bef9-acda60785216",
+        "text": "# 2.3.3 Deep Reinforcement Learning\n\nDeep reinforcement learning combines reinforcement learning and deep neural networks by using deep neural networks as function approximators to help agents learn how to achieve their goals. Where tabular learning previously struggled to represent such problems, this approach supports high-dimensional and continuous state spaces, as well as complex environments. Figure 2.5 shows how deep learning and reinforcement learning can be used together.\n\n|Reward|Agent|DNN|policy|\n|---|---|---|---|\n|State|Take action|Observe state| |\n\nFigure 2.5: Simplified illustration of an end-to-end deep reinforcement learning framework. Neural network architectures may vary according to the specific task.\n\nIn recent works, deep neural networks have been used to approximate policy functions, resulting in superhuman performances at tasks such as board games [21], computer vision [22] and robotics [23]. For instance, Figure 2.6 showcases Dactyl, OpenAI’s robotic hand capable of dexterous manipulations.\n\nThe learning process for deep learning algorithms is the following: During training, the agent iteratively observes a state and selects an action based on the neural network’s predictions. The neural network aims at approximating the policy and predicting the future outcomes of a given action. According to the chosen algorithm, the action may"
+    },
+    {
+        "id_": "27f86682-bfc8-4397-870b-392a753109d8",
+        "text": "# 2.3.4 Proximal Policy Optimization Algorithm (PPO)\n\nAlthough numerous reinforcement learning algorithms exist (Figure 2.7), the selection of a method depends entirely on the specific working task. In this section, we describe the Proximal Policy Optimization algorithm (PPO) [26] as a deep learning algorithm widely used in quadrotor control [27, 28] due to its fast and easy implementation and improved training stability."
+    },
+    {
+        "id_": "c987b2a2-4ce7-4e12-b54d-65286a0a2cbf",
+        "text": "# RL Algorithms\n\n|Model-Free RL|Model-Based RL|\n|---|---|\n|Policy Optimization|Learn the Model|\n|Policy Gradient|Given the Model|\n|Q-Learning|World Models|\n|DDPG|AlphaZero|\n|AZC, A3C|CSI|\n|TD3| |\n|PPO|QR-DQN|\n|SAC|MBMF|\n|TRPO|HER|\n| |MBVE|\n\nFigure 2.6: Dactyl 2019: OpenAI’s robotic hand solving a Rubik’s Cube.\n\nAs a model-free method, PPO can efficiently deal with quadrotors’ high complexity and nonlinear dynamics by learning a control policy directly from interactions with the"
+    },
+    {
+        "id_": "629a691f-23b0-4b95-b552-2260e1151836",
+        "text": "# 2.14 PPO Algorithm\n\nAdditionally, it can operate in continuous high-dimensional state and action spaces without an exponential increase in complexity. For instance, PPO has become OpenAI’s default reinforcement learning algorithm due to its ease of use and good performance.\n\nPPO is composed of an actor π(·|s) which outputs a probability distribution for the next action given the state at timestamp t, and a critic V(s) which estimates the expected cumulative reward from that state. Since both the actor and critic take the states as input, we can save computation by sharing the neural network architecture between the policy and the value functions. Therefore, [26] proves that we must use a loss function that combines the policy surrogate and a value function error term. Furthermore, as suggested in [29], this objective can be further augmented by adding an entropy bonus to ensure sufficient exploration. Combining these terms, we obtain the following objective maximized at each iteration:\n\nLt CLIP+VF+S(π) = Et[Lt CLIP(π) + c1 LVF(π) + c2 S[πold(s)]]\n\nwhere c1 and c2 are coefficients which balance the importance of the accuracy of the critic against the exploration capabilities of the policy, S denotes an entropy bonus, and LVF is a squared-error loss:\n\nLVF(s) = (Vπ(s) - Vtarg)2\n\nAs suggested by Stable Baselines' implementation, we will use c1 = 0.5 and c2 = 0.05."
+    },
+    {
+        "id_": "a276522c-fda1-4939-8a9a-f35614548d79",
+        "text": "# Clip term\n\nThe clip term Lt CLIP(π) maximizes the probability of actions, given by the actor π(·|st), that resulted in an advantage. Additionally, it tries to improve the policy’s training stability by avoiding large policy updates between training epochs. The motivation behind the latter is based on empirical analysis which proved that smaller policy updates during training were more likely to converge to an optimal solution [30]. The clip term is defined as:\n\nLCLIP(π) = Et[min(r(π) At, clip(r(π), 1 - ε, 1 + ε) At)]\n\n1 https://github.com/DLR-RM/stable-baselines3/blob/master/stable_baselines3\n\n25"
+    },
+    {
+        "id_": "166b6409-c9e7-4304-a06d-72f1470f4153",
+        "text": "# Proximal Policy Optimization"
+    },
+    {
+        "id_": "475b9c5d-e7c2-42db-8c70-cad58b3d6f3c",
+        "text": "# Current Policy and Ratio Function\n\nwith r(#) = ∗ #old (a, s), ∗# (a, s)t t t (2.16)\n\nAˆt = →V (s) + rt + )rt+1 + · · · + )T →t+1 r T →1 + ) T →t V (s T ),t\n\nwhere the ratio function r(#) tells how likely we are to take action at in the current policy as opposed to the previous policy. In order to stabilise the training, we do not allow for drastic changes in policy and, therefore, take the minimum of the new policy and its clipped version between [1 → ,, 1 + ,]. In their paper, [26] recommend using , = 0.2 so that the ratio can only vary from 0.8 to 1.2.\n\nThe advantage ˆt measures how wrong the critic was for the given state s. It does this by running the policy for T timesteps and measuring the difference between the value at the initial state V (s) and the true cumulative reward obtained from following policy ∗# over the next T steps."
+    },
+    {
+        "id_": "c1466f8b-d6b0-4495-8dbf-6822e117233f",
+        "text": "# Value-function Term\n\nTo have a good estimate of the advantage, we need a critic which can accurately predict the value of a given state. The value-function term accounts for learning such a function with a simple mean square error loss between its predicted expected reward and the observed cumulative reward (V# (s) →V t targ) 2 computed as\n\nLt V F = MSE (rt + )rt+1 + . . . + ) T →t+1 r T →1 +V (s T ),V (s)) = ⇒ At ⇒2. t ˆ 2 (2.17)"
+    },
+    {
+        "id_": "cb95fced-222b-4d32-981c-07c7a8ba7246",
+        "text": "# Entropy Term\n\nFinally, PPO encourages exploration with a small bonus on the entropy of the output distribution of the policy. For the entropy term, we consider the standard entropy\n\n∫ S[∗# ](s) = →t ∗ # (at |s) log(∗ # (at |s))da. t t t (2.18)"
+    },
+    {
+        "id_": "ba2eb222-3ee0-4c77-8cd9-2a0f41283e53",
+        "text": "# Algorithm\n\nAn implementation of the proximal policy optimization algorithm that uses fixed-length trajectory segments is given in Algorithm 1. In every iteration, each of N parallel actors collects T timesteps of data. Then, we construct the surrogate loss on these NT timesteps of data and optimize it with Adam [31] gradient descent for K epochs."
+    },
+    {
+        "id_": "e4a06040-a275-48f5-adb7-e59da78ee87b",
+        "text": "# Algorithm 1 Proximal Policy Optimization Algorithm\n\n1. for iteration = 1, 2, . . . do\n2. for actor = 1, 2, . . . , N do\n3. Run policy ∗old in environment for T timesteps\n4. Compute advantage estimates ˆ 1 , . . . , AA ˆ T\n5. end for\n6. Optimize surrogate L wrt #, with K epochs and minibatch size M ⇑ NT\n7. #old ≃ #\n8. end for"
+    },
+    {
+        "id_": "ce620963-3f45-44f5-af87-73f30f2a4d37",
+        "text": "# 2.4 Related Works\n\nAutonomous quadrotor control systems have been investigated considerably over the past few years. Initiating from mathematical models such as PD [32] or MPC [33], recent studies have tried to train learning-based controllers using reinforcement learning [8, 24, 25]. As a result, although mathematical models provide the safest and most predictable behaviour for autonomous flying, learning-based controllers have demonstrated strong abilities to solve non-linear control problems that control theory could not solve.\n\nOn that account, although learning-based controllers may have limited flying abilities, combining them with mathematical models could indeed solve significant complex problems that occur during quadrotor flying operations. That is notably the case with malicious attacks, which typically can be categorised into four distinct types: the denial of service (DoS) attack, the false data injection attack, the replay attack, and the zero-dynamics attack. For the reader’s convenience, all are described in [34]. Although securing robotic systems in the presence of malicious attacks is a new challenge, a few results have already been reported. For example, [35] showed how to capture and control a UAV by spoofing GPS data. Regarding stealthy attacks on ground vehicle sensors, [14] proposed a robust control system that can estimate system states while under attack by utilising redundant sensor measurements.\n\nFollowing is a description of the state of research in this area. In [36], Guo, P. et al. designed an attack detection scheme based on the non-linear dynamics of a mobile robot to warn the system in case of actuator attacks. In their work, the proposed scheme was successfully verified on two types of robots with various attack scenarios. Furthermore, [37] proposed a defence scheme that switches distributed control."
+    },
+    {
+        "id_": "eb4600a0-fc83-4a4a-8238-7c28cbbba8ab",
+        "text": "# Current Research on Cyber-Physical Systems Security\n\nBetween multiple robots to avoid actuator DoS attacks and falsified data injections. However, these two solutions do not directly preserve tracking performance but instead suggest ways to detect or improve the robustness of robotic systems. Over the past two decades, alternative secure algorithms have emerged from schemes previously developed for cyber-physical systems, based on control-theoretical approaches. Some examples include a switching observer-based estimate scheme [38], a linear quadratic secure controller [39], and a learning-based secure tracking control algorithm [40].\n\nIn addition, false data injection attacks have been widely investigated due to their stealthy characteristic. As a result, many systems have been proposed, including attack detection schemes [41], secure state estimate algorithms [42, 43], and resilient controllers [44]. Unfortunately, these programs either cannot be applied to quadrotor systems or do not commit to preserving a confident level of stability in agile settings. From an attacker’s perspective, researchers have investigated how to construct effective attack sequences to deteriorate system performance, such as DoS attack scheduling [45] and false data injection attack scheduling [46], based on which can be designed more effective countermeasures.\n\nIn general, although progress has been made in securing cyber-physical systems, the results mentioned above rely on exact system knowledge, which may not be obtained easily. Using reinforcement learning may allow us to design systems policies without using such knowledge. In fact, a few reinforcement learning algorithms have been proposed [30, 47, 48] to this end, based on which learning-based autonomous control with stability guaranteed [8] have been developed. More recently, considering the complexity and scale of cyber-physical systems, some attempts have been made at utilising deep reinforcement learning to solve security problems. Although not directly designed for unmanned aerial vehicles, encouraging results have been demonstrated on problems such as anomaly detection, secure control, attack detection schemes and other security-related applications [49].\n\nSimilarly, adversaries may also use deep reinforcement learning approaches to construct attack schemes [50]. However, how to design an optimal attack scheme and optimal countermeasure for quadrotors under false data injection attacks is still a hot challenge awaiting some solutions. This study provides a solution employing deep reinforcement learning and opens the way for some future research.\n\n28"
+    },
+    {
+        "id_": "be28419b-5268-4ab9-985b-02154892ac13",
+        "text": "# Chapter 3"
+    },
+    {
+        "id_": "6f208c11-2cc7-41d9-b19b-f685b15a3c38",
+        "text": "# Experimental Setup"
+    },
+    {
+        "id_": "b36168d5-b84c-4cf3-a7f4-beecb35435df",
+        "text": "# 3.1 Quadrotor Hardware Assembling\n\nThis section introduces the physical quadrotors used in our experiments and the reasons behind our choices. Furthermore, it reports previous results obtained on these models in the context of tracking performance and reinforcement-learning-based control."
+    },
+    {
+        "id_": "44087e31-861d-4503-ba08-9e96410bf936",
+        "text": "# 3.1.1 Agilicious\n\nAgilicious is a co-designed hardware and software framework tailored to autonomous and agile quadrotor flight. It was deployed by the University of Zurich in 2023 as an open-source and open-hardware quadrotor supporting both model-based and neural-network–based controllers. It provides high thrust-to-weight and torque-to-inertia ratios for improved agility, and GPU-accelerated compute hardware for efficient neural network inference. Our customised Agilicious framework is described in Figure 3.1."
+    },
+    {
+        "id_": "828753e4-2d1a-406f-b0e1-0400e5302e70",
+        "text": "# Motivation\n\nIn order to build an agile quadrotor and experiment with autonomous tracking tasks, the quadrotor should meet the following pair of design requirements. It must (1) carry the computing hardware needed for autonomous operation and (2) be capable of agile flight. To meet the first requirement on computing resources needed for true autonomy, a quadrotor should carry sufficient computing capacity to run estimation, planning, and control algorithms concurrently; hence requiring heavy hardware. However, the physical model must deliver adequate thrust-to-weight and torque-to-inertia ratios to permit agile flight. The thrust-to-weight ratio can often be enhanced using more powerful"
+    },
+    {
+        "id_": "4686a432-8ed2-4460-ac45-edfeba8c895f",
+        "text": "# Pipeline\n\n|Estimator|stane|setooint|Controller|commano|Bridge|\n|---|---|---|---|---|---|\n|Sampler|Simuation|Real World|3D-printed Jetson Mount A203 Carrier Board|Xavier NX|Nut|\n|Propeller|Low Level|Low Level|Controller|Brushless Motor|Quadrotor|\n|Carbon Fiber Frame|Model| | | | |\n|Speed Bee FZ V3FC|SpeedyBcc BL32 ESC| | | | |\n|state|Rigid Body|printed Battery Mount|Damper| | |\n|state| |4S LiPo Battery| | | |\n\nFigure 3.1: Customised framework of Agilicious used in our work. We provide two pipelines: one with a sampler and an MPC-based controller, and one without a sampler which utilises a neural network as its controller. Our hardware is designed for positional sensing rather than visual sensing as originally suggested in [51]. Finally, our simulation is based on PyFlyt with the PyBullet engine and is described in section 3.2.\n\nmotors, which in turn require larger propellers and, thus, a larger platform size. On the other hand, the torque-to-inertia ratio decreases with higher weight and size. That is due to the moment of inertia increasing quadratically with the size and linearly with the weight of the platform. As a result, it is desirable to achieve the best trade-off between agility (i.e., maximising both thrust-to-weight and torque-to-inertia ratios) and available compute resources onboard. In their work, Agilicious proved to be the most appropriate quadrotor solution for autonomous and agile flights. For convenience, we display the results of their experiments in Figure 3.2.\n\nIn addition to its hardware capabilities, Agilicious proposes a software stack to quickly transfer algorithms from simulation to real-world deployment. This modularity allows us to test and experiment with our research code without the need to develop an entire flight stack, facilitating development and reproducibility. Moreover, it supports the popular Robot Operating System (ROS) used throughout our development.\n\nUltimately, Agilicious remains quite unexplored due to its recency. In fact, our team is the first in the United Kingdom to build upon this quadrotor and implement reinforcement learning on its platform. Consequently, we aim to support the community by providing detailed insights into its capabilities for reinforcement learning while promoting reproducibility and minimal engineering overhead.\n\n30"
+    },
+    {
+        "id_": "80848b24-6f39-4c3c-9a07-50f8931f71a2",
+        "text": "# Research Platform"
+    },
+    {
+        "id_": "db5f8101-edcb-4403-ad60-c2b256ad79c3",
+        "text": "# Open"
+    },
+    {
+        "id_": "99bccb1e-890b-482c-ae9a-889ca1479c2f",
+        "text": "# Proprietary Platform"
+    },
+    {
+        "id_": "263a99d1-0809-429c-aaa1-351331977027",
+        "text": "# Closed"
+    },
+    {
+        "id_": "772c13d9-985c-498f-9fb7-d0e1009476b1",
+        "text": "# Future Research"
+    },
+    {
+        "id_": "fafd2f48-5dfc-4b92-b85b-63850b4516ae",
+        "text": "# Agilicious"
+    },
+    {
+        "id_": "55f728cf-83f1-482e-bb05-09d269b33898",
+        "text": "# Skydio"
+    },
+    {
+        "id_": "3073e980-532b-4d73-bad8-e4d968af7102",
+        "text": "# GRASP"
+    },
+    {
+        "id_": "0be939d9-5667-4925-9aee-f5d7d835a30e",
+        "text": "# MRS"
+    },
+    {
+        "id_": "37fb2123-7cc2-4978-a286-bd8f2336fec7",
+        "text": "# Crazyflie"
+    },
+    {
+        "id_": "ba1f5ba5-89ed-4312-a03f-46c867152655",
+        "text": "# Parrot"
+    },
+    {
+        "id_": "a02329f1-24ca-499a-b61e-3bc686e13912",
+        "text": "# ASL"
+    },
+    {
+        "id_": "ae1a49ce-b512-4989-86dc-3f9687b5889d",
+        "text": "# Onboard Compute Capability\n\n|Framework|Open-source|Onboard Computer|CPU (higher better)|mark|GPU|Maximum speed|Thrust to weight|\n|---|---|---|---|---|---|---|---|\n|PX4 [52]|↭|✁|-|✁|-|-|-|\n|Paparazzi [53]|↭|✁|-|✁|-|-|-|\n|DJI [54]|✁|✁|-|✁|140km/h|4.43| |\n|Skydio [55]|✁|✁|-|✁|58km/h|-| |\n|Parrot [56]|✁|✁|-|✁|55km/h|-| |\n|Crazyflie [57]|↭|✁|-|✁|-|2.26| |\n|FLA-Quad [58]|↭|↭|3.383|✁|-|2.38| |\n|GRASP-Quad [59]|✁|↭|625|✁|-|1.80| |\n|MIT-Quad [60]|✁|↭|1.343|↭|-|2.33| |\n|ASL-Flight [61]|↭|↭|3.383|✁|-|2.32| |\n|RPG-Quad [62]|↭|↭|633|✁|-|4.00| |\n|MRS UAV [63]|↭|↭|8.8846|✁|-|2.50| |\n|Agilicious [51]|↭|↭|1.343|↭|131km/h|5.00| |\n\nFigure 3.2: A comparison from Agilicious work on different available consumer and research platforms with respect to available onboard compute capability and agility. The sequence of experience to obtain the above results is described in [51]. The PX4 [52] and the Paparazzi [53] are rather low-level autopilot frameworks without high-level computation capability. The open-source frameworks FLA [58], ASL [61], and MRS [63] have relatively large weight and low agility. The DJI [54], Skydio [55], and Parrot [56] are closed-source commercial products that are not intended for research purposes. The Crazyflie [57] does not allow for sufficient onboard compute or sensing, while the MIT [60] and GRASP [59] platforms are also not open-source. Instead, the Agilicious [51] framework provides agile flight performance, onboard GPU-accelerated compute capability, as well as open-source and open-hardware availability."
+    },
+    {
+        "id_": "e94495a9-c234-439e-93fc-abf81e883450",
+        "text": "# Components\n\nThe hardware system of the quadrotor aims to carefully manage the trade-off between onboard computing capability and platform agility. We describe below the components used to build the flight and compute hardware, as well as why we decided to use them. A detailed description of the hardware system and inter-components communications is displayed in Figure 3.3."
+    },
+    {
+        "id_": "b3d4fcf5-6225-441e-bbd5-2a4290afc798",
+        "text": "# High-level Controller\n\nThe high-level controller is responsible for providing the necessary computing power to run the full flight stack, including estimation, planning, optimization-based control and neural network inference. Therefore, it must provide strong computing power while preserving limited weight onboard. It combines two components:\n\n1. A Carrier Board which serves as an interface between the computing unit and the various peripherals and connectors (such as USB, Ethernet, sensors...) through serial ports;\n2. A Compute Unit which provides the necessary computing power onboard and is directly embedded onto the Carrier Board. For the latter, although we recommend using the Nvidia Jetson TX2 as it possesses the best performance-to-size ratio, it is hardly available to order. Therefore, we decided to use the Nvidia Xavier NX as it performs almost as good as the former and supports accelerated inference from the Nvidia CUDA general-purpose GPU architecture. As for the carrier board, we used the A203 Carrier Board, which is compatible with the Nvidia Xavier NX and offers the minimal configuration required to communicate with the low-level controller, i.e., two UART ports."
+    },
+    {
+        "id_": "24157db1-cf68-40fa-9064-a615143654b3",
+        "text": "# Low-level Controller\n\nThe low-level controller provides real-time low-latency interfacing and control. It is made up of two components:\n\n1. The first is a Flight Controller (FC), which is a microcontroller equipped with various sensors (gyroscope, accelerometer and magnetometer) responsible for processing inputs from the high-level controller and sending control commands to the ESC, as well as getting feedback from the ESC and sharing them with the high-level controller over the digital bi-directional DShot protocol.\n2. The second is the Electronic Speed Controller (ESC). It is the interface between the Flight Controller and the quadrotor’s motors. Each motor on the quadrotor is connected to the ESC, which controls the speed and direction of the motor based on commands received from the Flight Controller by adjusting the power supplied to the motors. The ESC sends feedback to the Flight Controller, such as rotor speed, IMU, battery voltage and flight mode information over a 1 MBaud serial bus at"
+    },
+    {
+        "id_": "4ca2ceaa-e726-48d7-b718-8e0f88e492db",
+        "text": "# 500 Hz\n\nFor our Flight Controller and ESC, we used the SpeedyBee F7 V3 FC with BetaFlight Firmware and the SpeedyBee BL32 50A 4-in-1 ESC, respectively."
+    },
+    {
+        "id_": "b23fe494-607a-413c-b9d9-ff684b58e34a",
+        "text": "# A203 Carrier Board"
+    },
+    {
+        "id_": "e0a2b977-be30-4e51-82dd-a9c516695da1",
+        "text": "# Flight Controller\n\nMotor\n\nLiPO Battery\n\nXavier NX\n\nESC\n\nWIFIKey\n\nFigure 3.3: Top view of the hardware system describing the communications between components.\n\n(a) The Nvidia Xavier NX (Compute Unit) is embedded at the back of the A203 Carrier Board and connected through a 260-pin Connector. The Compute Unit runs all calculations on board from the A203 Carrier Board, supplied by a LiPO battery. To access a router or network, the A203 Carrier Board is also equipped with a Wifi Key on its USB1 port.\n\n(b) The Carrier Board is connected to the Flight Controller to communicate by sending control commands through its USB0-RX (transmitting) port and receiving feedback on its UART1-RXD (receiving) port. In order to use USB0 as a transmitting port, we utilise a USB-to-TTL cable (note that the USB-to-TTL cable inverts RX and TX; therefore, we use RX instead of TX on USB0 for transmission).\n\n(c) The Flight Controller is connected to the Carrier Board to communicate by sending feedback on its T3 (transmitting) port and receiving control commands on its R2 (receiving) port. It is also connected to the ESC through an 8-pin connector (on Bi-directional protocol) to send the processed Control Commands to the ESC and receive the root feedback from the latter.\n\n(d) The ESC receives processed control commands and varies the speed and direction of the motor based on these commands. ESC’s power is also provided on board by the LiPO battery.\n\n33"
+    },
+    {
+        "id_": "ceb520a0-b9e0-4006-81d1-b81def0effe4",
+        "text": "# Flight Hardware\n\nTo maximize the agility of the quadrotor, it must be designed as lightweight and small as possible [64] while still being able to accommodate the Xavier NX compute unit. Therefore, we selected the following off-the-shelf drone components, summarised in Table 3.1. The Armattan Chameleon 6-inch frame is used as a base plate since it is one of the smallest frames with enough space for computing hardware. Its carbon fibre makes it durable and lightweight (86g).\n\nFor propulsion, four 5.1-inch three-bladed propellers are used with fast-spinning DC motors rated at a high maximum power of 750W. The chosen motor-propeller combination achieves a continuous static thrust of 4 ⇓ 9.5N on the quadrotor and consumes about 400W of power per motor. To match the high power demand of the motors, a lithium-polymer battery with 2000 mAh and a rating of 120C is used. Therefore, the total peak current of 110A is well within the limit of the battery.\n\n|Component|Product|Specification|\n|---|---|---|\n|Carrier Board|A203 Carrier Board|87mm x 52mm x 26mm, 100 g|\n|Compute Unit|Nvidia Jetson Xavier NX|70mm x 45mm, 80 g|\n|Flight Controller (FC)|SpeedyBee F7 V3 FC|41 x 38 x 8.1mm, 9 g, BetaFlight firmware|\n|Motor Controller (ESC)|SpeedyBee BL32 50A 4-in-1|45.6 x 40 x 8.8mm, 12 g, 4x 50A|\n|Frame|Armattan Chameleon 6 inch|4 mm carbon fiber, 86 g|\n|Motor|TMotor F40 Pro V|23x6 mm stator, 2150 kV, 750 W, 4x 34 g|\n|Propeller|T5147 POPO Racing Tri-blade|5.1 inch length and 4.8 inch pitch, 4x 4.4 g|\n|Battery|Tattoo R-Line v3.0 2000|4! 3.7 V, 2000 mAh, 217 g|\n\nTable 3.1: Overview of the components of the flight hardware design."
+    },
+    {
+        "id_": "26845ab3-a8a4-408a-88de-a82deb12e5c3",
+        "text": "# Sensors\n\nTo arbitrarily navigate into an environment, quadrotors need some way to measure their absolute or relative locations and orientations. For that, many odometry solutions exist to estimate state changes over time. The most famous positional sensing techniques are GPS for outdoor localisation and Motion Capture systems for indoor and controlled environments. Alternatives exist with visual sensing methods, such as camera-based visual-inertial odometry, but we decided not to use that one in order to match our current research flow. In our work, we utilise Motion Capture with eight."
+    },
+    {
+        "id_": "6090a9cd-7235-407d-b045-4f70e2ecaa14",
+        "text": "# 3.4 Odometry Estimation Using Motion Capture\n\nCameras as a means to obtain odometry estimates of the quadrotor’s position (in m) and linear velocity (in m/s) expressed in the inertial frame, as well as orientation (in °) and body rates (in °/s) in the body frame. First, we placed some reflective markers on the quadrotor’s body. An example of a suitable configuration is displayed in Figure 3.4. It is essential to follow the requirements below to obtain optimal results:\n\n- Visibility: Markers should be distributed such that most of them are visible by the motion capture cameras no matter what the quadrotor’s orientation is.\n- Avoid Occlusion: Markers should be placed such that they are less likely to be occluded by the drone’s body or arms during flight. Solutions imply placing some markers on stalks or elevated positions.\n- Orientation Tracking: To track orientation, markers should not be placed in a uniform pattern. We must use an asymmetrical arrangement to help the motion capture system distinguish the drone’s orientation efficiently.\n\nFigure 3.4: Example of a suitable reflective markers configuration on a Crazyflie quadrotor. The four reflective markers are circled in red.\n\nFurthermore, the motion capture system must be calibrated so that each camera understands the geometry, position and orientation it captures in space and infers a reference state with respect to the world. After calibration, the motion capture system can accurately estimate the odometry of a quadrotor in the inertial frame.\n\nFinally, the motion capture system sends these estimates to a Base Computer. In turn, the Base Computer publishes them in real-time on a ROS topic accessible by the onboard Compute Unit, which will utilise them to calculate control commands. Figure 3.5 provides an illustration depicting the entire system in action."
+    },
+    {
+        "id_": "75557f3b-e941-4dd7-a5d8-98a958f894ce",
+        "text": "# Odometry Estimates"
+    },
+    {
+        "id_": "267805c0-2dee-4bd8-b850-a35b7a004dbf",
+        "text": "# Roulcr nosung"
+    },
+    {
+        "id_": "562aa19e-2c86-46a4-9b04-6c074d3efed6",
+        "text": "# ROS topics"
+    },
+    {
+        "id_": "570526b2-bb30-4c56-ae5d-bd97bed66d00",
+        "text": "# Odometry Estimates (Write)"
+    },
+    {
+        "id_": "60e28c0d-243f-4935-9e9e-add381563ded",
+        "text": "# Tracking Data"
+    },
+    {
+        "id_": "276f54b2-52d4-48fd-823c-fb7fdbd7586f",
+        "text": "# Quadrotor"
+    },
+    {
+        "id_": "5d9d0afc-146e-4d88-9be1-dbf83e232c0c",
+        "text": "# Cumit["
+    },
+    {
+        "id_": "cab723d4-c838-4b50-b8bd-a6943c4524e3",
+        "text": "# Base Computer\n\nFigure 3.5: Entire motion capture system illustrating how the Onboard Compute Unit can obtain the quadrotor’s state estimates, shared by the Base Computer and derived through motion capture. The motion capture cameras send individual tracking data to the Base Computer. The latter calculates and publishes odometry estimates to the appropriate ROS topic hosted on the router. The quadrotor’s Onboard Computer Unit subscribes to the ROS topic on the router’s IP to read odometry estimates in real time and produce control commands."
+    },
+    {
+        "id_": "9ce01ad4-0b38-43a4-9b99-786f72a13137",
+        "text": "# Pilot\n\nAgilicious uses modular software components unified in a pipeline and orchestrated by a control logic: the pilot. The modules consist of an estimator, a sampler, a controller, and a bridge. All are working together to complete a given task. These modules are executed sequentially (illustrated in Figure 3.1) within a forward pass of the pipeline, corresponding to one control cycle. The pilot contains the main logic needed for flight operation and handling of the individual modules. At its core, it loads and configures the software modules and runs the control loop."
+    },
+    {
+        "id_": "113a0a1f-a9c7-4dea-aee6-1210f33dc1bc",
+        "text": "# Pipeline\n\nA pipeline is a distinct configuration of a defined module sequence, for example, an estimator followed by a controller and a bridge. These pipeline configurations can be switched at any time. In our work, we experiment on two different pipelines: (1) The first uses an intermediate sampler, which, given estimator states,"
+    },
+    {
+        "id_": "d735d890-1bc4-4e91-aa50-f1c88a5ae6e3",
+        "text": "# Control System Overview"
+    },
+    {
+        "id_": "7d5c9000-c483-4df7-8f3e-83064fa81ba1",
+        "text": "# 1. Introduction\n\ngenerates a subset of points along the desired trajectory to pass to a state-of-the-art MPC controller. The second pipeline directly exploits our trained neural network as the controller without the need for a sampler."
+    },
+    {
+        "id_": "610c6f4c-1d99-4e9a-b60a-3a836187d09b",
+        "text": "# 2. Estimator\n\nThe first module in the pipeline is an estimator, which provides a time-stamped state estimate for the subsequent software modules in the control cycle. A state estimate is a set x = [p, q, ∋, (, a, −, j, s, b ( , ba , f d , f ] with quadrotor’s position p, orientation unit quaternion q, velocity ∋, body rate (, linear a and angular − accelerations, jerk j, snap s, gyroscope and accelerometer bias b ( and b a, and desired and actual single rotor thrusts f d and f. We use an Extended Kalman Filter (EKF) as our feed-through estimator, which fuses the data from the Inertial Measurement Unit (IMU) with the state estimates recovered from the motion capture system to provide a more accurate and reliable estimate of the quadrotor’s state. In parallel, because sensors operate at different frequencies, the estimator synchronizes these signals to provide a consistent final state estimate."
+    },
+    {
+        "id_": "83c72904-e496-476a-a63b-652aa9cf1e6e",
+        "text": "# 3. Sampler (Optional)\n\nWhen utilising a mathematical control system such as a PD or MPC, the controller module needs to be provided with a subset of trajectory points that encode the desired progress along it. The sampler is responsible for providing that sequence. In our experiment on an MPC-based controller, we use a position-based sampling scheme that selects trajectory progress based on the current position of the quadrotor and its target location. Note that such a sampler is unnecessary when using our neural-network-based controller since it takes raw state estimates as inputs to directly predict control commands as expected body rates and collective thrusts."
+    },
+    {
+        "id_": "17e2cc53-c751-4c65-aa7b-cb56754f7cf2",
+        "text": "# 4. Controller\n\nThe next module in the chain is the controller. It outputs control commands given state estimates (or given a set of trajectory points if a sampler is used). In our experiment, as an initial approach, we utilise a state-of-the-art MPC that uses the full non-linear model of the platform to generate body rate controls. In the context of reinforcement learning, we use our neural network as a controller, which, given state estimates, outputs desired body rates and collective thrusts [∃˙, #, %, F]. Therefore, this latter approach does not need a sampler to generate intermediate trajectory points.\n\n37"
+    },
+    {
+        "id_": "24cd879f-fc21-450e-b55c-c599c21a9202",
+        "text": "# Bridge\n\nThe final module of our pipeline is a bridge. It serves as an interface between the hardware and software layers to send the control commands to the low-level controller. We decided to use a bridge provided by Agilicious, which communicates via an SBUS protocol. As a standard in the quadrotor community, this protocol further promotes reproducibility. Additionally, it allows for interfacing with BetaFlight’s flight controllers, as required for our system."
+    },
+    {
+        "id_": "a5fe5d9e-f8c1-44fe-b1e0-6d86e6c5d557",
+        "text": "# 3.1.2 Crazyflie\n\nBeing eight times smaller and twenty times lighter than Agilicious, Crazyflies are a series of small quadrotors developed by Bitcraze AB, promoting lightweight design and versatility. Additionally, thanks to their compact and accurate architecture, Crazyflies represent good baselines for quick real-world deployment post-training. However, their design comes to the cost of lower onboard computing capacity and poor agility."
+    },
+    {
+        "id_": "cc525256-50ae-48ef-b37d-1d9f19c73d72",
+        "text": "# Motivation\n\nIn some of our experiments, we chose Crazyflie as an alternative to Agilicious. This is done to deploy our trained controllers to real-world scenarios without the security and safety concerns that Agilicious raises."
+    },
+    {
+        "id_": "171ecccc-7518-4ea2-9fa3-d69503f2818e",
+        "text": "# Components\n\nAs indicated above, the hardware of a Crazyflie is much lighter than that of Agilicious. For convenience, an illustration of its hardware is depicted in Figure 3.6. Crazyflie has two microprocessors: (a) the STM32F4 handles the firmware stack, including low-level and high-level controllers; and (b) the NRF51822, which handles all the radio communications. Due to limited computation capacities onboard, calculations are done off-board from the base computer, with control commands transmitted through radio signals to the Crazyflie. Finally, the system is alimented by a LiPO battery directly connected to the body’s bolt. Reflective markers are also attached to the quadrotor’s body to obtain state estimates in the same way as with Agilicious (Figure 3.5)."
+    },
+    {
+        "id_": "b3828333-3e57-495f-99b2-551c23084f48",
+        "text": "# Pilot\n\nRegarding the pilot, Crazyflie uses the same pipeline as Agilicious, except for a few details omitted here for simplicity, as they have no impact on the understanding or reproducibility of our work."
+    },
+    {
+        "id_": "f39b973e-87cf-483b-9a95-37c33c862d3a",
+        "text": "# 3.2 Simulation and Environment\n\nIn this section, we introduce the methodology used to set up our environment and describe its potential to support future reinforcement learning research on Agilicious quadrotors.\n\nThroughout our investigations, we developed a custom environment based on the open-source PyFlyt simulator [65]. Although most related works were conducted on the famous pybullet-drone [66] environment, our strategy involved modifying PyFlyt to accommodate the specific physical properties of the Agilicious quadrotor. The main reason why PyFlyt was chosen over alternatives such as pybullet-drone, MuJoCo [67], AirSim [68] and Flightmare [69] is that it offers greater adaptability and customisation options. This allows us to modify the environment in aspects such as state and action.\n\nFigure 3.6: Illustration of the hardware system of a Crazyflie quadrotor and its communication with the base computer."
+    },
+    {
+        "id_": "98a88037-1359-4297-a3e3-ab80c331208f",
+        "text": "# Hardware Components\n\n- STM32F4\n- NRFS1822\n- Crazyflie body\n- Base computer\n- LiPo battery\n\nThe reinforcement learning controllers used to fly the Crazyflie quadrotor have been trained using the same parameters as those used for Agilicious. The only changes made to the environment are linked to the physical properties of the quadrotors, such as weight, size, rotor power, etc. To this end, all physical properties have been directly taken from the constructor’s documentation. Note that, as opposed to Crazyflie, the physical properties of Agilicious quadrotors differ from one assembly to another and must be measured by ourselves. This may often result in light measurement errors and, thus, reduced performance."
+    },
+    {
+        "id_": "f53c8726-6434-456d-87ef-de571414e56e",
+        "text": "# Current Research on Reinforcement Learning Environments\n\nspaces, physical properties, kinematics, and reward functions. Additionally, the environment proposed by Agilicious, named Argviz, does not support reinforcement learning integration. Therefore, this study is the first to propose an open-source environment that builds upon PyFlyt for future reinforcement learning research on Agilicious models. To that end, we have pre-designed various tasks, including hovering, obstacle avoidance and trajectory tracking, to allow future deployments without extensive engineering overhead."
+    },
+    {
+        "id_": "86f1a281-6abf-48ab-ad88-806c2df97590",
+        "text": "# PyBullet\n\nAs its physics engine, PyFlyt utilises PyBullet, a free open-source simulator used in numerous reinforcement learning research over the past decade [70–72]. It provides a fast real-time simulation built in C++ and thus supports realistic collisions and aerodynamics at a level other physics simulators may lack. The relative performance of PyBullet compared to other popular simulators has been demonstrated in prior works from Korber et al. [73]."
+    },
+    {
+        "id_": "dcc2ccb5-2301-4998-aa8d-1a4b3d761486",
+        "text": "# OpenAI Gym\n\nIn addition to its adaptability, PyFlyt incorporates the OpenAI Gym interface, providing a user-friendly and training-efficient experience by allowing CUDA-based GPU usage. Moreover, this allows simultaneous and parallel execution of environments, resulting in fast and parallelised training. As a result, this is estimated to save us about half the training time and 20% of the estimated energy consumption.\n\n40"
+    },
+    {
+        "id_": "fa78653b-7db5-4dd6-8cc5-787f1df6219b",
+        "text": "# Chapter 4"
+    },
+    {
+        "id_": "26608ab6-374d-42a5-8d8a-6009dd4e46f6",
+        "text": "# Design"
+    },
+    {
+        "id_": "6a73c9a6-7c3c-4520-9dff-ccaf0a3f88cd",
+        "text": "# 4.1 Preliminaries and Problem Formulation\n\nOur study mainly focuses on designing a secure learning framework for a quadrotor under malicious false-data injection attacks. The blueprint of our framework is described in Figure 4.1, where we introduce the three layers developed in this paper. The first is a nominal controller responsible for controlling the quadrotor in total autonomy. The second is an attacker, which monitors the sensor data transmitted on the communication network and learns optimal injection attacks to insert into the control signals of the nominal controller. The third is a learning-based secure control algorithm designed to mitigate attacks by adjusting control signals within the secure control layer.\n\n|Actuator|Robot|Sensor|\n|---|---|---|\n|Nominal control layer|Nominal control layer|Nominal control layer|\n|Learning-based attack layer|Learning-based attack layer|Learning-based attack layer|\n|Learning-based secure control layer|Learning-based secure control layer|Learning-based secure control layer|\n\nFigure 4.1: Our proposed secure framework which includes (a) a nominal controller layer, (b) an optimal attack layer, and (c) a learning-based secure control layer. All three layers are designed using deep reinforcement learning.\n\n41"
+    },
+    {
+        "id_": "5557dc9b-b2ba-4253-9c0d-e32d6e8fb1cd",
+        "text": "We use an X-shaped quadrotor (displayed in Figure 4.2) to describe our design process and the effectiveness of the proposed secure framework. Details on our quadrotor, including hardware, software stack and communication layers, are discussed in 3.1. Specifically, we design a nominal controller trained using reinforcement learning to move the quadrotor towards a given location and hover. Furthermore, to address the secure control problem, we design both a malicious attacker and a mitigating defender using equivalent reinforcement learning approaches.\n\nFigure 4.2: Agilicious: the main quadrotor used in this work."
+    },
+    {
+        "id_": "63d85318-d2ab-4592-bfad-a3a4d8332b80",
+        "text": "# 4.1.1 Kinematic Model of our Quadrotor\n\nThe motion of our quadrotor is defined as [x, y, z, ∃, #, %], where (x, y, z) represents the position of the quadrotor in the inertial frame, and (∃, #, %) its orientation in the body frame. Its kinematic model is described in subsection 2.1.3 as\n\n[ ˙, ˙, ˙, ∃x y z ˙, #, %],˙ ˙ (4.1)\n\nwhich implies the collective thrust of the quadrotor v and its body rates [∃˙, #, %].˙ ˙ We assume that the velocity v satisfies vmax < v < vmin with vmax and vmin the maximal and minimal velocities, respectively. For simplicity, as we do not aim to do acrobatic flying, the orientations of the quadrotor in its body frame are constrained to ∃ ↑]→ 3 ∗, 3 ∗[, # ↑] → 3 ∗, 3 ∗[, and % ↑] → 3 ∗, 3 ∗[.\n\nFor later calculations, we describe the virtual quadrotor generating the desired trajectories with\n\nx˙r , ˙r , ˙ r ,˙r , #y z ∃ ˙ r , %r ,˙ (4.2)\n\nand which follows the kinematic model described in 2.1."
+    },
+    {
+        "id_": "832e9c56-e9e8-4b87-bcb2-1cb4571534a1",
+        "text": "# 4.1.2 Attack Model\n\nAs illustrated in Figure 4.3, a malicious adversary interrupts control commands sent from the nominal controller to the quadrotor’s actuators via the communication network and injects false data to disrupt the quadrotor’s trajectory. Under such attacks, the control commands are described as follows:\n\n|v(k)|=|va (k)|+|vb (k)|\n|---|---|---|---|---|\n|∃˙(k)|=|∃a (k)|+|∃˙b (k)|\n|˙(k)|=|#a (k)|+|#˙b (k)|\n|%˙(k)|=|%a (k)|+|%˙b (k)|\n\nwhere va (k), ˙a (k), ˙a (k) and ˙a (k) are the false data attacks designed in section 4.3; and vb (k), ˙b (k), ˙b (k) and ˙b (k) are control signals sent by the nominal controller designed in 4.2. We assume that the following knowledge is known to our adversary:\n\n- Adversaries inject malicious attacks without violating the physical constraints of the quadrotor, by which adversaries can both save attack energy and guarantee the effectiveness of attacks to some degree.\n- Adversaries can access the communication network through the man-in-the-middle cyber-attack, for which a blueprint is given in Figure 4.3. That is, the adversaries can intercept the communication network between the actuators and the controller and secretly inject false data.\n\nFigure 4.3: Illustration of a man-in-the-middle attack. An adversary acts secretly as a middleman. It intercepts the signals sent from the controller to the quadrotor’s actuators, modifies the commands, and sends them back to the actuators."
+    },
+    {
+        "id_": "08babf2b-88ef-4ed7-b9d6-380e2ae23c93",
+        "text": "# 4.1.3 Motivation Example\n\nThis subsection provides numerical examples to show the necessity of protecting the quadrotor’s control from deterioration. The experimental results are given in section 5.2. We use the nominal controller from section 4.2 to demonstrate the tracking performance of our quadrotor with and without attacks.\n\nThe initial state of the quadrotor is set as (x = 0, y = 0, z = 0.5, ∃ = 0 ⇔ , # = 0 ⇔ , % = 0⇔ ) and the hovering point at (xr = 0.85, yr = 0.90, zr = 1.70) with no constraint on the orientation.\n\nThe tracking trajectory of our quadrotor without any attack is displayed in Figure 4.4a. As a comparison, Figure 4.4b shows the tracking trajectory of the quadrotor under random false data injections. From these simulation results, we can conclude that a quadrotor is vulnerable to malicious adversary attacks. Therefore, providing solutions to prevent quadrotors’ performance from deteriorating is crucial.\n\nFigure 4.4: Tracking performance of the quadrotor under (a) no malicious attack, (b) random injection attack, and (c) optimal false data injection attack designed in Algorithm 3. The quadrotor is controlled by a nominal controller designed in Algorithm 2.\n\nFurthermore, as demonstrated in Figure 4.4c, the attack’s performance depends on how adversaries utilise the available information. Comparing 4.4b and 4.4c shows that learning-based optimal attacks can achieve the best deterioration performance. Consequently, this motivates us to investigate the optimal false data injection attack and defence countermeasure design."
+    },
+    {
+        "id_": "14354c87-de64-4be8-967e-66955a91fff8",
+        "text": "# 4.1.4 Problem Formulation\n\nAs shown in the above examples and described in the literature review of section 2.2, quadrotors’ performance can be compromised or even destroyed by cyber threats. Our work focuses on solving the following three problems:\n\n- How to create a reinforcement-learning-based control system capable of flying a quadrotor in complete autonomy;\n- How to learn optimal false data injection attacks to deteriorate a quadrotor’s performance and disturb its trajectory;\n- How to design a secure control algorithm for quadrotor systems to mitigate false data injection attacks and recover flying abilities.\n\nThe three problems are defined mathematically below."
+    },
+    {
+        "id_": "c820725a-12ba-45f6-8b8b-b80f3479f7d4",
+        "text": "# Problem 1.\n\nA nominal controller aims at generating control commands for the quadrotor to reach a desired location and hover at arrival. The control problem can be defined as follows:\n\nub(k) = arg max[ limu(k) N↓Tb Nk=&1{k → XT(k)QbX(k) → (T(k)Lb((k) + k}],\n\nsignifying that the nominal controller must (a) minimize the difference to the reference XT(k)QbX(k) and (b) reach a stable hovering state (bT(k)Lb(b(k) as quick as possible. Additionally, a constant k = 1.5 is added to encourage survival of the quadrotor, i.e., rewarding the quadrotor for not failing over time. This is subject to:\n\nx(k + 1) = x(k) + ˙(k).t,\ny(k + 1) = y(k) + ˙(k).t,\nz(k + 1) = z(k) + ˙(k).t,\n\n∃(k + 1) = ∃(k) + ∃˙(k).t,"
+    },
+    {
+        "id_": "b5385011-5047-4143-9569-83ca403fc782",
+        "text": "#(k + 1) = #(k) + #˙(k).t,\n%(k + 1) = %(k) + ˙(k).t,\n\nwhere x(k), y(k), z(k), ∃(k), #(k) and %(k) are the states of the quadrotor under nominal controls, and ˙(k), ˙(k), ˙(k), ˙(k), ˙(k) and ˙(k) are its global1 states.\n\n1 Global states do not vary whether they are under nominal, attacker or defender controls. They represent overall states of the quadrotor, i.e. the sum of all controllers in action at a given time."
+    },
+    {
+        "id_": "7bcf9a7c-4a54-403c-889c-229feb8d5287",
+        "text": "# 4. Quadrotor Actions and Errors\n\nThe quadrotor actions and errors to reference are defined as\n\nub(k) = [vb(k), ∃˙b(k), #˙b(k), %˙b(k)] T,\nv(k) = vb(k), ∃˙(k) = ∃b(k), #˙(k) = #b(k), %˙(k) = %b(k),\n\nX(k) = [x(k) → xr(k), y(k) → y(k), z(k) → zr(k)],\nr(k) = [∃, #, %],\n\nand Qb ↖ 0 and Lb ↖ 0 are weighting matrices. This is subject to the initial constraints on ˙, ˙, ˙, and vmin ⇑ v(k) ⇑ vmax."
+    },
+    {
+        "id_": "560ed249-2a10-47a6-8a46-805a49462212",
+        "text": "# Problem 2\n\nAn attacker intends to deteriorate the tracking performance by injecting false data attacks with minimal energy cost. The optimal attack problem can be defined as follows:\n\nua(k) = arg max[ limT → ∞ {XT(k)QaX - NT(k)Raua(k)}],\n\nmeaning that the optimal attack must (a) maximize the error of the nominal model to the reference ¯T(k)Qa¯(k) while (b) minimizing the cost of the attack ua(k) XT(k)Raua(k) with Ra defining the cost of each action in ua(k). Here, T represents the length of a full episode. This is subject to\n\nx¯(k + 1) = ¯(k) + ˙(k)·t, x\n\ny¯(k + 1) = y(k) + ˙(k)·t, ¯y\n\nz¯(k + 1) = ¯(k) + ˙(k)·t, z\n\n∃¯(k + 1) = ∃(k) + ˙(k)·t, ¯˙"
+    },
+    {
+        "id_": "de66286b-523f-4fad-ae38-4ebc28cfb3f3",
+        "text": "#¯(k + 1) = #(k) + ˙(k)·t, ¯˙\n\n%¯(k + 1) = %(k) + ˙(k)·t, ¯˙\n\nwhere ¯(k), ¯(k), ¯(k), ¯(k), ¯(k) and ¯(k) are the states of the quadrotor under attack. The quadrotor actions and errors to reference are\n\nua(k) = [va(k), ∃˙a(k), #˙a(k), %˙a(k)] T,\n\nv(k) = va(k) + vb(k),\n\n∃˙(k) = ∃a(k) + ∃˙b(k),\n\n˙(k) = #a(k) + #˙b(k),\n\n%˙(k) = %a(k) + %˙b(k),\n\nX¯(k) = [¯(k) → xr(k), ¯(k) → y(k), ¯(k) → zr(k)],\n\nand Qa ↖ 0 and Ra > 0 are weighting matrices. This must also fulfil the initial constraints on ˙, ˙, ˙, and vmin ⇑ v(k) ⇑ vmax."
+    },
+    {
+        "id_": "bdff1f9e-6706-4def-8873-e09923d03e82",
+        "text": "# Problem 3\n\nUnder attacks, the defender’s objective is to find an optimal counter-measure to mitigate the attacks with minimal control cost. The optimal secure control framework is defined as follows:\n\nud (k) = arg min[ limud (k)N↓T\nNk=&1{→ XT (k)Qd X¯ ¯(k) → u d T(k)Rd ud (k)}],\n(4.9)\n\nsignifying that the optimal countermeasure must minimize (a) the error of the nominal model to the reference ¯T (k)Q d ¯(k) and (b) the cost of the attack ud X X T(k)R d u d (k) with Rd defining the cost of each action in ud (k). This is subject to\n\nx˜(k + 1) = ˜(k) + ˙(k).t,\n\nx y˜(k + 1) = y(k) + ˙(k).t,\n\nz˜(k + 1) = ˜(k) + ˙(k).t,\n\n∃˜(k + 1) = ∃(k) + ∃(k).t,"
+    },
+    {
+        "id_": "f6d08756-8764-4378-8342-5ab709ff1849",
+        "text": "#˜(k + 1) = #(k) + #(k).t,\n\n%˜(k + 1) = %(k) + %(k).t,\n\nvmin ⇑ v ⇑ vmax ,\n\n(4.10)\n\nwhere ˜(k), ˜(k), ˜(k), ˜(k), ˜(k) and ˜(k) are the states of the quadrotor under attack. The quadrotor actions and errors to reference are\n\nu d (k) = [vd (k), ∃˙ d (k), #˙ d (k), %˙ d (k)] T ,\n\nv(k) = va (k) + vb (k) + vd (k),\n\n∃˙(k) = ∃ a (k) + ∃˙ b (k) + ∃˙d (k),"
+    },
+    {
+        "id_": "2b6c54cd-bdee-47cc-8f51-5809e5cec70f",
+        "text": "#˙(k) = #a (k) + #˙ b (k) + #˙ d (k),\n\n%˙(k) = %a (k) + %˙ b (k) + %˙d (k),\n\nX˜(k) = [ ˜(k) → xr (k), ˜(k) → y(k), ˜(k) → z r (k)],\n\n(4.11)\n\nand Q d ↖ 0 and R d > 0 are weighting matrices. This is once again subject to the initial constraints on ˙, ˙, ˙, and vmin ⇑ v(k) ⇑ v max .∃ # %"
+    },
+    {
+        "id_": "58403184-6b2c-464d-9179-e6d298c9affe",
+        "text": "# 4.2 Control System for an Autonomous Quadrotor\n\nIn this section, we learn an optimal control system to fly our quadrotor in total autonomy. While one can design such a controller following the control theory, e.g. utilising a PD or MPC controller, we decide to take a reinforcement learning approach to solve Problem 1. By taking this approach, we aim to contribute to current research on learning-based controllers and provide comparative resources against mathematical systems."
+    },
+    {
+        "id_": "75fa0938-f382-47d0-ac41-f40522c9547a",
+        "text": "# 4.2.1 Environment for a Quadrotor under Nominal Control\n\nAs defined in subsection 2.3.1, a reinforcement learning setup includes an agent and an environment, which interact to improve the agent’s capabilities. The environment here is defined by a Markov decision process as a tuple (S, A, P, R, ) where S is the state space, A is the action space, P is the transition probability matrix from a state-action pair at time t onto a distribution of possible states at time t + 1, R is the immediate reward function, and ) ↑ [0, 1) is the discount factor. Given that the quadrotor is controlled by the nominal controller, we describe the MDP as:\n\ns(k + 1) ↘ P (s(k + 1)|s(k), ub (k)), (4.12)\n\nmeaning the transition probability from s(k) to s(k + 1) under the nominal controller ub(k), where s = [x(k), y(k), z(k), ∃(k), #(k), %(k)] with s ↑ S, and ub(k) ↑ A.\n\nMore details on the environment. We describe below the MDP defining our nominal environment in more details, including vectorial and constraint definitions.\n\n- The action space A = [vb, ˙b, # ∃ ˙b, ˙b] with v ↑ [0, 3.5] and ˙, #% ∃ ˙, ˙ ↑ [→ 3 % ∗, 3 ∗];\n- The state space S = [∃˙, #, %, ∃, #, %, ˙, ˙, ˙, x, y, z, ∃prev, ˙prev, %˙x, %˙y, %˙z] where ∃˙prev, ˙prev, %prev are previous actions, and xh, yh, zh are hover point coordinates;\n- The reward function R is defined as R(k) = k → XT(k)QbX(k) → (T(k)Lb((k) according to Problem 1, where Qb ↖ 0 and Lb ↖ 0 are weighting matrices."
+    },
+    {
+        "id_": "c42213b9-71d9-47f0-8e44-d5dc0bd1b574",
+        "text": "# 4.2.2 Objectives in the Learning of a Nominal Controller\n\nThrough reinforcement learning, we want to minimize the action-value function Qb(s(k), ub(k)), where ∗b denotes the nominal policy to learn which finds an optimal function that maps a state and an action to the expected future reward of taking that action. If we can obtain such a function which ensures that the expected future reward is accurate to the true outcome, we can greedily select an action at time t according to ∗b and guarantee the best outcome in the future. The expression of Qb(s(k), ub(k)) is computed as:\n\nQb(s(k), ub(k)) = )Es(k+1)[Vb(s(k + 1))] + R(k), (4.13)\n\nwhere )Es(k+1)[Vb(s(k + 1))] is the expected cumulative reward from state s(k + 1), given that action ub(k) was taken on state s(k) according to the probability distribution."
+    },
+    {
+        "id_": "623edd9d-c1e1-4604-9b7a-d8f0efe5e27b",
+        "text": "# 4.2.3 Autonomous Control Algorithm\n\nPk+1|k = P(s(k + 1)|s(k), ub(k)) of possible resulting states s(k + 1). R(k) is the immediate reward for state s(k).\n∗b(ub(k)|s(k)) gives the probability of choosing the command ub(k) at state s(k) according to the nominal policy ∗b.\nMoreover,\n\nV∗b(s(k)) = &ub(k k &)[∗b(ub(k)|s(k)) s(k+&1)Pk+1|k ⇓ (R(k) + )V∗b(s(k + 1))] (4.14)\n\n= &ub(k k &)[∗b(ub(k)|s(k))E(k+1|k)↘ P[R(k) + )V∗b(s(k + 1))]\n\nis the state estimation function, which represents the probability of taking each action at from state st using policy ∗b, multiplied by the expected cumulative reward of taking that action E(k+1|k)↘ P[R(k) + )V∗b(s(k + 1))] (probability of each possible state s(k + 1) from transition probabilities P multiplied by its expected cumulative reward); summed over all time step k of the episode of length T.\n\nTherefore, by finding a solution to the following optimal problem (4.15), Problem 1 can be solved:\n\n∗b ↔= arg max Q∗b(s(k), ub(k)), ∗b (4.15)\n\nwhere ∗b ↔ is the optimal control policy, and ub(k) samples from that nominal policy.\n\nRemark 1. One might wonder how the controller knows the position of the hover point it should reach. This is done by artificially including the desired hover point’s coordinates, denoted by the subset [xh, yh, zh], into its observation states at each timestep.\n\nNext, the proximal policy optimization algorithm is introduced to learn the optimal attack policy ∗b ↔ and value-function V∗b ↔. We use a shared neural network architecture for both the policy and value-function to learn. According to subsection 2.3.4, this reinforcement learning algorithm minimizes the loss\n\nLt CLIP+VF+S(#) = Et[Lt CLIP(#) → c1 LVF(#) + c2 S[∗ #old(s)]], ˆ (4.16)\n\nexplained in 2.3.4. In the proximal policy optimization algorithm, the evaluation and improvement steps are executed every T timesteps to learn the optimal control policy ∗b ↔. Note that S guarantees that the entropy of action is maximized, i.e., pushes"
+    },
+    {
+        "id_": "3e975755-a456-45aa-9c0b-56d3f76ad757",
+        "text": "# Algorithm 2 Learning-based autonomous control algorithm\n\n1. for iteration = 1,2,... do\n2. Initialize replay memory buffer Mb\n3. for actor = 1,2,...,N do\n4. for each data collection step of T total timesteps do\n5. Sample ub (k) from the nominal controller\n6. u(k) ≃ u b (k)\n7. Update the memory Mb ≃ Mb ↙ &lt; s, u b (k), r,V∗ bold (s), ∗b old (at |s) &gt;t t t t\n8. Take the generated action u(k) in the environment\n9. if episode terminated then\n10. Change hovering point coordinates [xh , yh , zh ] and quadrotor’s initial position to prevent overfitting\n11. end if\n12. end for\n13. Compute advantage estimates ˆ1 , . . . , AA ˆ T\n14. end for\n15. Optimize surrogate L CLIP+VF+S wrt ∗ b , with K epochs and minibatch size M ⇑ NT from Mb\n16. ∗bold ≃ ∗b\n17. end for"
+    },
+    {
+        "id_": "04b69c4e-300f-4da8-bfcf-8c6c6821f8bd",
+        "text": "# Remark 2\n\nThe hover position varies with each training episode to prevent the nominal controller from becoming overly specialized in navigating to a unique hover position in space, i.e. overfitting to its reward. This strategy ensures that the controller actually learns how to “fly” towards a given point instead of learning to converge to a static point through the experimentation of arbitrary sequences of actions during training. Furthermore, its spawn (or initial) position is altered at each training episode to guarantee the controller’s ability to fly arbitrarily in three-dimensional space."
+    },
+    {
+        "id_": "814a6b78-9c9b-46be-a944-389b0aaccf98",
+        "text": "# 4.3 Optimal False Data Injection Scheduling\n\nIn this section, we focus on solving Problem 2 by proposing a learning framework to design the optimal false data injection attacks and deteriorate the performance of a quadrotor under nominal controls. Many reinforcement learning algorithms have already been used to similar ends, such as the trust region policy optimization [48] and soft actor-critic [75] algorithms. However, we decided to use the proximal policy optimization algorithm (PPO) described in section 2.3.4 to solve the optimal attack problem. This choice is motivated by the advantages of PPO over alternative algorithms, as described by OpenAI in a report stating that “PPO has become the default reinforcement learning algorithm at OpenAI because of its ease of use and good performance.”"
+    },
+    {
+        "id_": "ead29c6c-4656-41ed-84b0-7955e57fe3df",
+        "text": "# 4.3.1 Markov Decision Process of a Quadrotor under Attack\n\nSimilarly to the description in Subsection 4.2.1, the Markov decision process of a quadrotor under optimal false data injections consists of five elements, that is, the state space ¯, the action space AS ¯, the transition probability matrix P, the immediate reward function ¯, and the discount factor ¯ ↑ [0, 1). However, note that the action space is modified to ¯ = [va, ∃A ˙ a, ˙ a, % # ˙a] with v(k) ↑ [0, 3.5] and ˙, #∃ ˙, % ↑ [→ 3 ˙ ∗, 3 ∗]. The involution of such a process is as follows:\n\ns¯(k + 1) ↘ P¯ ( ¯(k + 1)| ¯(k), ua (k)), s\n\nwhere ¯ = [ ¯(k), ¯(k), ¯(k), ∃s x y z ¯(k), #(k), ¯(k)] with ¯ ↑ S, and u a (k) ↑ A¯ % s ¯ ¯."
+    },
+    {
+        "id_": "0692d2d0-6d98-45e8-8470-a1196f1e2d9a",
+        "text": "# 4.3.2 Learning-based Objectives for an Optimal Attacker\n\nThis subsection defines the attack cost and action-value function, following which the attack policy to learn is derived. The attacker aims to inject false data into the nominal control commands to optimally deteriorate the quadrotor’s tracking performance and trajectory with minimal control cost. Therefore, the reward function ¯ (k) is defined according to Problem 2 as:\n\nR¯ (k) = X T (k)Q a X¯ ¯ (k) → ua T(k)R a u a (k),\n\nwhere Qa ↖ 0 and R a > 0 are weighting matrices."
+    },
+    {
+        "id_": "e827b873-f56b-459e-a81c-217893152424",
+        "text": "Based on the definition of ¯ (k), the attacker’s objective is to maximize the action-R value function Q ∗a ( ¯(k), u a (k)), where ∗ a denotes the attack policy to be learned. The definitions of Q ∗ a ( ¯(k), u a (k)) and V∗ a ( ¯(k)) are given below, but explanations are omitted due to similarity with the previous definitions 4.13 and 4.14.\n\nQ ∗a ( ¯(k), u a (k)) = )E ¯(k+1) [V∗ a ( ¯(k + 1))] + Rs\n\nV∗a ( ¯(k)) =&ua (ks &)[∗a (u a (k)| ¯(k)) s&1)Ps ¯k+1|k ⇓ ( R¯ (k) + )V∗a ( ¯(k + 1)))]s\n\nIf we can find a solution to the following optimization problem (4.20), Problem 2 can be solved:\n\n∗a ↔= arg maxQ∗ a ( ¯(k), ua (k)), ∗ a (4.20)\n\nwhere ∗a ↔is the optimal attack policy, and u a (k) samples from this optimal policy."
+    },
+    {
+        "id_": "2e7aac62-5af1-4aa3-93bb-eb892e6b949d",
+        "text": "# 4.3.3 Learning-based False Data Injection Algorithm\n\nWe employ reinforcement learning following the proximal policy optimization algorithm to learn the optimal attack policy ∗a↔ and value-function V∗a ↔. We maintain a shared neural network architecture for both the policy and value-function to learn, and train it by minimizing the same loss as the nominal controller:\n\nL t CLIP+VF+S(#) = Et[L t CLIP(#) → c1 LVF(#) + c2 S[∗# old (s)]], ˆ (4.21)\n\nexplained in subsection 2.3.4. Note that S still guarantees sufficient exploration. The parameters of our policy network are trained using Algorithm 3, proposed below. Once the network has been successfully trained, false data injection attacks sampled from policy ∗a can be applied to deteriorate the quadrotor’s tracking performances.\n\nRemark 3. Similarly to Remark 2, variations are introduced in the desired hover point [xh , yh , zh ] ↑ S¯ and initial quadrotor’s position. However here, this is made to learn optimal false data injections over many different trajectories.\n\n52"
+    },
+    {
+        "id_": "9e3c148f-60ff-4263-9129-6fda659d0189",
+        "text": "# Algorithm 3 Learning-based false data injection attack algorithm\n\n1. for iteration = 1,2,... do\n2. Initialize replay memory buffer Ma\n3. for actor = 1,2,...,N do\n4. for each data collection step of T total timesteps do\n5. Sample ub (k) and u a (k) from the nominal controller’s policy ∗b and attack policy ∗ aold (·| ¯) respectively\n6. u(k) ≃ u b (k) + u a (k)\n7. Update the memory Ma ≃ Ma ↙ < ¯, u a (k), r,V∗ aold ( ¯), ∗a old (at | ¯) >st\n8. Take combined action u(k)\n9. if episode terminated then\n10. Change hovering point coordinates [xh , yh , zh ] and quadrotor’s initial position to prevent overfitting\n11. end if\n12. end for\n13. Compute advantage estimates ˆ1 , . . . , AA ˆ T\n14. end for\n15. Optimize surrogate L CLIP+VF+S wrt ∗ a , with K epochs and minibatch size M ⇑ NT from Ma\n16. ∗aold ≃ ∗a\n17. end for"
+    },
+    {
+        "id_": "30c14960-c44c-4a86-948f-58125acd70ea",
+        "text": "# 4.4 Learning-based Countermeasure\n\nFrom an adversary’s perspective, a quadrotor’s tracking performance can be deteriorated by injecting falsified commands generated using Algorithm 3. In this section, we provide a solution to Problem 3, i.e., a learning-based secure control algorithm to stabilize the quadrotor and mitigate the malicious attacks. Moreover, the proximal policy optimization algorithm is modified to account for the attacker’s injections on top of the nominal control commands."
+    },
+    {
+        "id_": "203930bb-7183-4ce2-a0e2-7c900bf23fd1",
+        "text": "# 4.4.1 Markov Decision Process of a Secured Quadrotor\n\nSimilarly to the attacker’s environment described in Section 4.3.1, the Markov decision process of a quadrotor with a secure controller is a tuple where ˜ is the state space, AS is the action space, P˜ is the transition probability matrix, ˜ R function, and ˜ ↑ [0, 1) is the discount factor. Carefully note the tilde instead of the bar over these elements. This time, the action space is modified to ˜ = [vd , ˙d , ˙d , ˙d ] with #%"
+    },
+    {
+        "id_": "bdc95fe0-157b-4e0f-b35d-1908de2d9ad5",
+        "text": "# 4.4.2 Learning-based Objectives for an Optimal Countermeasure\n\nThis subsection describes the objectives in designing a secure control algorithm to mitigate false data injection attacks learned using Algorithm 3. The defender’s objective is to use minimal control cost to recover the tracking performance disturbed by the attacker. Therefore, we define the reward ˜(k) as\n\nR˜(k) = → X T (k)Q d X˜(k) → u d T(k)R d u d (k), (4.23)\n\nwhere Q d ↖ 0 and R d > 0 are weighting matrices. Based on the definition of ˜(k), the defender’s objective is to minimize the action-value function Q∗ d ( ˜(k), u d (k)), with definitions of Q∗ d ( ˜(k), u d (k)) and V∗ d ( ˜(k)) from previous definitions in 4.19. Therefore, by finding a solution to the following optimal problem (4.24), Problem 3 can be solved:\n\n∗d ↔= arg min Q ∗d ( ˜(k), u d (k)), ∗d (4.24)\n\nwhere ∗d↔ is the optimal secure policy and u d (k) samples from this optimal policy."
+    },
+    {
+        "id_": "76a2e6c8-f6b3-45c9-8fb2-84fde5794258",
+        "text": "# 4.4.3 Learning-based Secure Control Algorithm\n\nThe proximal policy optimization algorithm is again employed to learn the optimal countermeasure as a policy ∗d↔ and value-function V∗d ↔. We maintain a shared neural network architecture for both the policy and value-function to learn, and train it by minimizing the loss in Eq. 4.21. According to the objectives defined above, Algorithm 4 is derived to learn the optimal secure control policy ∗d↔ from which secure control commands can be sampled to recover the quadrotor’s tracking performance."
+    },
+    {
+        "id_": "5854b30a-b481-46df-8015-68c304cef831",
+        "text": "# Algorithm 4 Learning-based secure control algorithm\n\n1. for iteration = 1,2,... do\n2. Initialize replay memory buffer Md\n3. for actor = 1,2,...,N do\n4. for each data collection step of T total timesteps do\n1. Sample ub(k), ua(k) and ud(k) from the nominal controller’s policy ∗b, attacker’s policy ∗a and current policy ∗dold(·| ˜) respectively\n2. u(k) ≃ ub(k) + ua(k) + ud(k)\n3. Update the memory Md ≃ Md ↙ &lt; s, ud(k), r, V∗dold( ˜), ∗dold(a| ˜) &gt;˜t  t  st  t  st\n4. Take combined action u(k)\n5. if episode terminated then\n6. Change hovering point coordinates [xh, yh, zh] and quadrotor’s initial position to prevent overfitting\n7. end if\n5. end for\n6. Compute advantage estimates ˆ1, ..., ˆAT\n7. end for\n8. Optimize surrogate LCLIP+VF+S wrt ∗d, with K epochs and minibatch size M ⇑ NT from Md\n9. ∗dold ≃ ∗d\n10. end for"
+    },
+    {
+        "id_": "e0ffe806-4863-4f68-bc9a-54db731a8119",
+        "text": "# Chapter 5"
+    },
+    {
+        "id_": "9ce6b698-a959-4e92-8f34-84a5befe1e5f",
+        "text": "# Experiments"
+    },
+    {
+        "id_": "c86022cd-1d61-47cb-b15a-48ca93bfd6dc",
+        "text": "# 5.1 Training and Hyperparameter Tuning\n\nThis section describes the training setup used throughout our experiments, introduces the hyperparameter tuning process, and discusses the training results for all three of our controllers."
+    },
+    {
+        "id_": "9220a086-642b-4be1-81ab-5552cd1108f0",
+        "text": "# 5.1.1 Training Setup\n\nThe training of our three agents, i.e. the nominal, attacker and secure controllers, was made in their distinct environments described in 4.2.1, 4.3.1 and 4.4.1, respectively. The training process is performed in accelerated environments capped to the GPU’s capacity and is integrated into a Linux Centos virtual machine1. The machine provides a dedication of 64GB RAM, two 2.60GHz 12-core processors (Intel Xeon E5-2690 v3) and a Tesla V100 GPU.\n\nOur overall training framework involves five parallel environments, each assigned to an actor, for a total of N = 5 parallel actors. In each episode, a hovering point is generated within the range xh ↑ [→1, 1], yh ↑ [→1, 1], zh ↑ [0, 2] with a uniform probability distribution, where one unit of distance in the environment is proportional to one meter in the real world. That allows the agents to learn by exploring a vast three-dimensional space and to not overfit to a single trajectory or hovering point, as described in Remark 2. Furthermore, at each episode, the quadrotor is spawned at a random position taken from the same ranges as above so that its optimal path relative to the hovering.\n\n1 Machine provided by the Computational Shared Facility (https://ri.itservices.manchester.ac.uk/csf3/) of the University of Manchester."
+    },
+    {
+        "id_": "ea97c539-4a86-4c05-8a25-5a0e0db0d0fd",
+        "text": "# 5.1.2 Hyperparameter Tuning\n\nTo optimize the training and performance of our agents, the following hyperparameters are tuned: The policy architecture F∗, learning rate +, batch size M ⇑ NT, number of epochs K, discount factor ), and number of timesteps per iteration T. A grid of parameter values was created from background experience and inspiration from the successful literature [76, 77]. The values considered for the nominal controller are the following:\n\n- T ↑ {5120, 10240}\n- F∗ ↑ {(64, 64), (128, 64), (128, 128)}\n- + ↑ {1 ⇓ 10→4, 3 ⇓ 10→4}\n- M ↑ {128, 256}\n- K = 10\n- ) ↑ {0.85, 0.99}\n\nThe policy architecture of the attacker and secure controllers are reduced to F∗ ↑ {(64, 64), (128, 64)} based on the assumption that their task has improved linearity over autonomous control. As a result, we obtain 48 and 32 hyperparameter combinations, respectively. The number of iterations was decided through Early Stopping based on the average reward obtained by evaluating the policy over twenty episodes every 45 iterations. This means that training was terminated when the agent would not improve anymore or when convergence to a local maximum occurred (e.g., if the quadrotor is unable to stabilize when dealing with the nominal controller or unable to recover when dealing with the defender)."
+    },
+    {
+        "id_": "57b1f6ad-86f2-4205-9fab-ab70b42e2018",
+        "text": "# On weighting matrices.\n\nThe weighting matrices Q and R in the agents’ reward functions are defined as follows. Error to reference weights Qb, Qa, Qd = [1, 1, 1], meaning that error to reference in all three axes are equivalently important. Cost weights in Rb, Ra, Rd are defined according to the quadrotor’s energy scheme. Stability weights are Lb = [1, 1, 0], meaning that pitch and roll angles are equivalently important for stability while the yaw angle does not matter."
+    },
+    {
+        "id_": "02991565-4c86-4b84-964d-9f2fc9a3e41a",
+        "text": "# Training of the nominal controller\n\nAs we can observe from Figure 5.1, models with ) = 0.99 are, on average, much more performant than those with ) = 0.85. In fact, while the latter group receives constant"
+    },
+    {
+        "id_": "a1b5c751-1f1f-4bbb-b9d5-fb2414721203",
+        "text": "# Performance comparison between models with K-0.85 and K-0.99 based on average reward per episode\n\nRewards between -200 and -400 throughout the training, the former showcases sharp increases from -200 to over 1200 rewards on average at termination. These results underscore the importance of the discount factor (γ) in the training of our controller and suggest that actions taken by the nominal controller throughout an episode have a long-term effect on its performance. A higher γ value, close to 1, accounts that future rewards substantially impact the agent’s current decisions, promoting a more farsighted approach to maximizing rewards. Therefore, choosing γ = 0.99 gives the controller an enhanced ability to integrate the long-term consequences of its actions into its decision-making process. Such capability is of even greater importance in our environment as it is considerably sensitive and issues non-linear dynamics.\n\n| |AR of models with K-0.85|RSD of models with K-0.85|AR of models with K-0.99|RSD of models with K-0.99|\n|---|---|---|---|---|\n|1500| | | | |\n|1000| | | | |\n|500| | | | |\n|-500| | | | |\n\nFrom the results cited above, we decided to discard the hyperparameter γ = 0.85 and select γ = 0.99 henceforth. Then, Figure 5.2 compares the effect of the other hyperparameters T, F*, + and M. From Subfigure 5.2a, we observe that, although the influence of T is lighter than the one of γ in the training of our model, T = 5120 still outperforms T = 10240 by converging about 20% faster and being constantly above in terms of average reward.\n\nAR means 'Average Reward'.\n\nRSD means 'Reward's Standard Deviation'."
+    },
+    {
+        "id_": "f9e55baa-ba2f-4df4-beb1-2d3bcd8aa921",
+        "text": "# 5.2 Learning Rate and Model Architectures\n\nThe same holds for the learning rate *α in Subfigure 5.2c, where α = 3 ⇓ 10→4 converges much faster than α = 1 ⇓ 10→4. By increasing the learning rate, we define the step size, i.e. how much we update our model based on its loss at each iteration. The risk with a high learning rate is the exploding gradient effect [78], where the learning rate is too large, causing the parameters to overshoot the minimum of the loss function and potentially diverge to infinity. However, α = 3 ⇓ 10→4 seems to preserve a proper balance between fast convergence and stability in learning. It should also be noted that, as described in section 2.3.4, the proximal policy optimization algorithm enhances stability in the learning by constraining the policy updates. Nonetheless, by choosing α = 3 ⇓ 10 →4, we can reduce our training time and energy to about 9 ⇓ 105 training steps, compared to 16 ⇓ 105 with α = 3 ⇓ 10→4*.\n\nRegarding model architectures, Subfigure 5.2b shows that the proposed three architectures yield similar results, with their convergence speed ordered with respect to their size. However, bigger models are more expensive to train as they require updating more weights at each iteration. Therefore, although we prioritize model performance, in case two models yield very close or equal results, we prioritize the one with lower training time and energy requirement.\n\n|Policy architecture (F*)|[64, 64]|[128, 64]|[128, 128]|\n|---|---|---|---|\n|Convergence speed to training cost ratio|3.3:1.00 (3.3)|4.6:1.07 (4.3)|5.5:1.12 (4.9)|\n\nTable 5.1: Convergence speed to training cost ratio of different policy architectures (F*). Convergence speed is decided based on the total number of timesteps executed and training cost based on the total GPU usage for training.\n\nGiven the convergence speed to training cost ratios calculated in Table 5.1, we can discard the architecture *F* = [64, 64]*. Although that one requires less computation, its ratio to convergence speed is under-performing compared to alternatives. On the other hand, the other two architectures can be further considered as they possess significantly greater ratios.\n\nFinally, we decided not to make any direct conclusion on the effect of the batch sizes (M) as their results are instead very close and such a parameter does not seriously affect the total GPU usage.\n\n59"
+    },
+    {
+        "id_": "7c7238c4-08a2-43e8-9d51-2fb8b0c6ae13",
+        "text": "# Performance Comparison Between Models with T=5120 and T=10240"
+    },
+    {
+        "id_": "ad425029-fc11-488f-9cf8-e1da2f93e861",
+        "text": "# Average Training Steps\n\n|RSD|Model|Number of Training Steps|\n|---|---|---|\n|0-0.0001|T=5120|6-10|\n|0-10|9*103|12*1010|\n|15*1010|18-10| |"
+    },
+    {
+        "id_": "870e0deb-21d7-4f9b-a07f-2ffa11a73287",
+        "text": "# Performance Comparison Between Models with T=0.0001 and T=0.003\n\n|RSD|Model|Number of Training Steps|\n|---|---|---|\n|0-0.0001|T=0.0001|6-10|\n|0-10|4*103|15*1010|\n|18-10| | |"
+    },
+    {
+        "id_": "5f990fd7-ba4f-4fae-8262-054f34f79958",
+        "text": "# Figure 5.2:\n\nFollowing the same process as in Figure 5.1, we display the performance comparison between groups of nominal models with T = 5120 and T = 10240, model architectures F* = [64, 64], F* = [128, 64] and F* = [128, 128], learning rates + = 1 ⇓ 10-4 and + = 3 ⇓ 10-4, and batch sizes M = 128 and M = 256.\n\nThe training performance of the remaining four sets of hyperparameters are displayed in Figure 5.3. We can observe that all of them yield very similar results. Therefore, given the discussion above and results from Figures 5.1, 5.2 and 5.3, the final hyperparameters chosen for our nominal controller are T = 5120, F* = [128, 64], + = 0.0003, M = 256 and ) = 0.99. The reason why we decided this set over the remaining four is because, as stated previously, we prioritized the ones with cheaper training, i.e. smaller F*. Additionally, M = 256 had the highest reward pick and, thus, was chosen as part of our final hyperparameter set."
+    },
+    {
+        "id_": "5dc92731-6e28-48c5-aa49-337c93db6a2f",
+        "text": "# Performance of multiple hyperparameter sets on model training based on average reward per episode\n\n| |1500|\n|---|---|\n| |1250|\n|1100|2750|\n| |500|\n| |250|\n\nFn=[128 , 128], 0-0.0003, M-256, K-0.99, T-5120\n\nFo=[128, 128], 0-0.0003, M-128, V-0.99, T-5120\n\nFr=[128, 64], a=0.0003, M-256, V-0.99, T-5120\n\nFu=[128 , 64], 0-0.0003, M-128, V-0.99, T-5120"
+    },
+    {
+        "id_": "f283fea2-7ec1-4c4b-9739-9462ec52cb5d",
+        "text": "# Figure 5.3:\n\nTraining performance of the remaining four hyperparameter sets based on average reward per episode, for the nominal controller."
+    },
+    {
+        "id_": "17de0cc7-59a8-4625-9340-936b8b8231b4",
+        "text": "# Training of the attack controller\n\nTo select the hyperparameters of our attack controller, we further constrain the space of parameters we search through based on the assumption that optimal false data injection attacks have greater linearity than autonomous control. Therefore, because a bigger policy network only benefits from the greater non-linearity it can provide, F∗ = [128, 128] may not be an appropriate option to consider. Furthermore, as the results of the nominal controller suggest, ) = 0.85 does not fit our environment due to its sensitivity and complex nature. As a result, the following parameter spaces are adjusted: F∗ = {(64, 64), (128, 64)} and ) = 0.99."
+    },
+    {
+        "id_": "626a8912-5bfd-4fe9-a76e-56d0e16aacea",
+        "text": "# Figure 5.4:\n\ncompares the effect of different hyperparameters on the training of the attack controller, in a similar fashion to what has been done previously on the nominal. However, the result differs significantly from what we obtained previously. First, we observe much lower standard deviations between models of the same groups. That is mainly because the attacker controller is less sensitive to the choice of hyperparameters. In addition, as suggested above, the linearity of this task has increased compared to the control of autonomous quadrotors. This observation is logical, considering that controlling a quadrotor in three-dimensional space demands significantly higher precision and offers smaller margins for error compared to one designed to crash the quadrotor.\n\n61"
+    },
+    {
+        "id_": "228b1e57-10e6-4772-b7df-352f3b731f7d",
+        "text": "# Figure 5.4:\n\nFollowing the same process as in Figure 5.1, we display the performance comparison between groups of attacker models with (a) steps per iterations T = 5120 and T = 10240, (b) model architectures F∗ = [64, 64] and F∗ = [128, 64], (c) learning rates + = 1 ⇓ 10→4 and + = 3 ⇓ 10 →4, and (d) batch sizes M = 128 and M = 256."
+    },
+    {
+        "id_": "9dd5c8fc-0d8b-442e-be61-7b8541130706",
+        "text": "# Remark 5.\n\nThe reader may ask why rewards are capped to low positive values. That is due to the change in the reward function used to train the malicious attacker.\n\nHowever, it is still possible to make conclusions on the results obtained in Figure 5.4. Subfigure 5.4a clearly demonstrates better performance when the number of timesteps per iteration T = 5120 instead of T = 10240. A smaller T encourages the model to generalize better across a more diverse set of experiences with still the same number of total timesteps. That is because the agent is exposed to a wider variety of states and outcomes in the same training period. Therefore, as the attacker must learn a vast space of trajectories taken by the nominal controller, fewer timesteps per iteration may be better adapted to an increased exploration.\n\nMoreover, Subfigure 5.4b verifies our previous assumptions on this task’s complexity. We can observe that the two architectures yield equivalent performance. Although\n\n62"
+    },
+    {
+        "id_": "84a39c5d-db55-4532-8bb7-fe0ee425de3a",
+        "text": "We might notice slightly faster convergence for the bigger architecture, this does not affect the final model as they converge to the same average reward with very little overhead. Consequently, the smaller architecture F∗ = [64, 64] may provide equal performance with better training costs.\n\nFinally, although the learning rate + = 3⇓10→4 in Subfigure 5.4c performed slightly better than + = 1 ⇓ 10→4, we may find it interesting to look at the result of the remaining four hyperparameter sets, which include variations in M ↑ {128, 256} and + ↑ {+ = 1 ⇓ 10→4, + = 3 ⇓ 10→4}."
+    },
+    {
+        "id_": "ee61e1b8-2b38-43f5-aa69-4b773f21aec6",
+        "text": "# 5.5 Performance of multiple hyperparameter sets on model training based on average reward per episode\n\n| | |1|2|1|1|\n|---|---|---|---|---|---|\n|500|1000|1500|2000| | |\n|Fn-[64, 64], 0-0.0003, M-256, V-0.99, T-5120|Fn=[64, 64], a=0.0003, M-128, V-0.99, T=5120|Fn-[64, 64], 4=0.0001, M-256, K-0.99, T-5120|Fn=[64, 64], a=0.0001, M-128, V-0.99, T-5120| | |\n\nFigure 5.5: Training performance of the remaining four hyperparameter sets based on average reward per episode, for the attack controller.\n\nFigure 5.5 displays the results of the remaining four hyperparameter sets. These are once again very close to each other. However, they denote an interesting dilemma. The model trained on + = 3 ⇓ 10→4 and M = 256 yields better results than the other three models by a slight but notable margin. However, this model is quite unstable and fluctuating compared to the one trained on + = 1 ⇓ 10→4 and M = 128, which instead showcased lower performance. Although the choice here will not drastically affect our results, this phenomenon is quite common in reinforcement learning and often leads to a difficult dilemma. In our study, we decided to go with the stable behaviour, but its alternative could have very well been chosen instead.\n\nAs a result, the final hyperparameters selected for our attack controller are the following: T = 5120, F∗ = [64, 64], + = 0.0001, M = 128 and ) = 0.99.\n\n63"
+    },
+    {
+        "id_": "25895bb1-cadf-4a1b-a76d-b0945d6ab0a1",
+        "text": "# Training of the secure controller\n\nFor our secure controller, we search through the same hyperparameter space as the one used by the attack controller. Figure 5.6 compares the effect between these parameters based on the same model groups."
+    },
+    {
+        "id_": "df2888cc-3ad7-48cb-af4b-9f38e26e5d83",
+        "text": "# Performance comparison between models with T-5120 and T-10240\n\n| |Number of training steps| | | |\n|---|---|---|---|---|\n|RSD of models with T=5120|J-10-|6-10-|12-10-|15*10-|\n|RSD of models with T=10240|J-10-|6-10-|12-10-| |"
+    },
+    {
+        "id_": "29f8ac44-d612-4356-84d9-630f169f6823",
+        "text": "# Performance comparison between models with F∗=[128, 64] and F∗=[64, 64]\n\n| |Number of training steps| | | |\n|---|---|---|---|---|\n|RSD of models with M=128|J-10-|6-10-|12-10-| |\n|RSD of models with M=256|J-10-|6-10-|12-10-|15.108|"
+    },
+    {
+        "id_": "ca751a5b-fd55-46c2-9672-191e9eab5e98",
+        "text": "# Figure 5.6\n\nFollowing the same process as in Figure 5.1, we display the performance comparison between groups of defender models with (a) steps per iterations T = 5120 and T = 10240, (b) model architectures F∗ = [64, 64] and F∗ = [128, 64], (c) learning rates + = 1 ⇓ 10→4 and + = 3 ⇓ 10 →4, and (d) batch sizes M = 128 and M = 256.\n\nAs we can observe in Subfigures 5.6a and 5.6c, both the number of timesteps per iteration (T) and the learning rate (+) exhibited a strong influence on model performance. In fact, these discrepancies follow the ones obtained on the attack controller but with amplified effects on the average reward.\n\nMoreover, Subfigures 5.6d and 5.6b show that the batch size (M) and model architectures (F∗) further impact training performance. However, given the results from the four hyperparameter sets on M and F∗ displayed in Figure 5.7, M = 128 may indeed be better than M = 256. Surprisingly, however, F∗ = [64, 64] reveals better individual performance compared to the overall analysis from 5.6b.\n\n64"
+    },
+    {
+        "id_": "a5391c2b-4a0f-4f71-b482-7fdcc156f771",
+        "text": "# Performance of multiple hyperparameter sets on model training based on average reward per episode\n\n|Hyperparameter Set|F*|a|M|K|T|\n|---|---|---|---|---|---|\n|Fo|[64, 64]|0.0001|256|0.99|5120|\n|Fu|[64, 64]|0.0001|128|0.99|5120|\n|Fr|[128, 64]|0.0001|256|0.99|5120|\n|Fo|[128, 64]|0.0001|128|0.99|5120|\n\nNumber of training steps: 1250, 1000, 750, 500, 250, ~250\n\n3.105, 6.105, 9.105, 12.105, 15.105, 18.105\n\nFigure 5.7: Training performance of the remaining four hyperparameter sets based on average reward per episode, for the secure controller."
+    },
+    {
+        "id_": "01af2108-8704-463b-88c8-97daf0721b49",
+        "text": "# Conclusion on hyperparameter selection\n\nThe final hyperparameters chosen for our three agents are summarized in Table 5.2.\n\nWe notice that the exact same hyperparameters came up on top for the attack and secure controllers. Furthermore, we note that the common choices between the nominal and the other controllers generally refer to hyperparameters that are affected by the environment, i.e. timesteps per iterations T, batch size M and discount factor ). On the other hand, the ones varying are solely based on the task and its reward, i.e. the policy architecture F* and learning rate a.\n\nThe entire training process took about 28 hours on the hardware configuration provided above. As an indication, this represents an average of 15 minutes per model."
+    },
+    {
+        "id_": "969cca08-bfd1-47a8-b010-9e61763d229b",
+        "text": "|Controller|Timesteps per iteration (T)|Architecture of policy (F∗)|Learning rate (+)|Batch size (M)|Discount factor (γ)|\n|---|---|---|---|---|---|\n|Nominal|5120|[128, 64]|3 ⇓ 10→4 →4|256|0.99|\n|Attack|5120|[64, 64]|1 ⇓ 10→4|128|0.99|\n|Defence|5120|[64, 64]|1 ⇓ 10|128|0.99|\n\nTable 5.2: Final hyperparameters selected for each of the three controllers."
+    },
+    {
+        "id_": "ca55b5e3-309c-4dad-9b44-aaaad2b40e89",
+        "text": "# 5.2 Evaluation in Simulation\n\nIn this section, we provide the simulation results on the autonomous control system (i.e. the nominal controller) and validate the proposed optimal false data injection attack scheme and secure countermeasure. In our experiment, the quadrotor is initialised at coordinates (0.0, 0.0, 0.5) and tasked with reaching six different hover points. The six hover points are set up such that the experiment covers a wide trajectory space. Throughout this section, we define hover point coordinates as Pr = (x, y, zr)."
+    },
+    {
+        "id_": "561a0675-bdfa-4924-b8cc-b84e1e95dd1e",
+        "text": "# 5.2.1 Tracking Control of a Quadrotor using the Nominal Controller designed in Algorithm 2\n\nFigure 5.8 shows the tracking performance of the nominal controller designed in Algorithm 2. As we can observe from these simulations, the learning-based controller can successfully command the quadrotor to reach all six hover points by employing close-to-optimal trajectories. Additionally, the controller could stabilise the quadrotor upon arrival at the hovering location. Although some small fluctuations occur during stabilisation, this is an expected behaviour when using reinforcement-learning-based controllers. In fact, these results are aligned with the state-of-the-art in [76].\n\nSubfigures 5.8a and 5.8e show the ability of the nominal controller to fly the quadrotor over wide-amplitude areas and reach high-altitude locations through short optimal paths. Moreover, the trajectories suggest that the controller makes good use of dynamics. In fact, such trajectories resemble some that would be taken by professional drone pilots. Finally, because of the broad trajectories, we could expect difficulties when stabilising upon reaching the target position. However, the controller was able to stabilise the quadrotor without the need for any adaptation time.\n\nSubfigures 5.8d and 5.8f exhibit the quadrotor’s ability to reach low-altitude locations through wide-amplitude trajectories. As with the above examples, the quadrotor could take short optimal paths towards its target location and stabilise upon arrival."
+    },
+    {
+        "id_": "19472876-0ffb-4be4-99dc-d409ca0f369c",
+        "text": "# Figure 5.8: Trajectories of the quadrotor under the nominal controller, towards each of the six hovering points. Each experiment has a maximum duration of ten seconds, i.e. the expected duration if the quadrotor does not crash.\n\nis worth noticing that the nominal controller is doing a great job maintaining a stable altitude throughout its flights.\n\nFinally, Subfigures 5.8b and 5.8c aim to further illustrate the quadrotor’s capability to lift and hover. Please note that figure 5.8b is zoomed in for the reader’s convenience. Subfigure 5.8b tasks the quadrotor with instantly hovering upon the episode’s start. This represents a challenging task as the quadrotor needs to instantly catch the dynamics and adapt its thrust to its initial altitude without much time for observation. However, we can observe that it could answer this challenge by immediately stabilising and hovering. Furthermore, Subfigure 5.8c displays the quadrotor trajectory when tasked to lift and hover. While some non-optimal controllers may take an arbitrary path towards this location, our controller was able to lift reasonably straight to quickly reach the hover point and stabilise.\n\n67"
+    },
+    {
+        "id_": "69a80a35-16b8-4b86-9617-ea33f8dd5bf5",
+        "text": "# Figure 5.9:\n\nEuclidean distance of the quadrotor to each of the hovering points over time, starting from its initial position. Each experiment is run twenty times and Euclidean distances are averaged to provide unbiased results. The maximum duration of an experiment is ten seconds, i.e. the expected duration if the quadrotor does not crash.\n\nOn the other hand, simulation results in Figure 5.9 provide a metric-based analysis for each of the six experiments, illustrating how the quadrotor evolves towards its target position. This is done by plotting the average distance of the quadrotor to the hover point over time, averaging over twenty episodes to guarantee unbiased results. Subfigures 5.9a, 5.9c, 5.9d and 5.9f confirm that the quadrotor undertakes smooth and monotonic paths. Specifically, 5.9c shows a straight-up lifting towards the hovering point, and 5.9b demonstrates the stability of the quadrotor when hovering, with oscillations of only ±0.015 units. In addition, the latter proves how short the adaptation time is between the episode’s start and the quadrotor’s successful stabilisation (less than 0.15s). Finally, the little bumps in 5.9e and 5.9f can be explained as the quadrotor counters the dragging force resulting from its high thrust to stabilise upon reaching the target position.\n\nTo conclude on the nominal controller’s evaluation, the above experiments showed that the learning-based controller designed in Algorithm 2 could successfully control the drone in complete autonomy, within simulation, and under ideal conditions, i.e. without false data injection attacks."
+    },
+    {
+        "id_": "1b027259-5b2b-4e5d-bc2f-42c2e2f32606",
+        "text": "# 5.2.2 Tracking Control of a Quadrotor under False Data Injection Attacks designed by Algorithm 3\n\nIn this subsection, we ran the same experiments as above, but with the quadrotor under false data injection attacks generated by the attack controller designed in Algorithm 3. Additionally, we compared the performance of optimal false data injection attacks and those of random data injections.\n\nNote that the aim is to simulate a false data injection attack in the middle of a quadrotor flight. Therefore, since malicious adversaries often execute attacks when the quadrotor already flies, attacks are launched at t = 2s of each episode. The simulation results providing tracking performance of the quadrotor under the learned false data injection attacks are displayed in Figure 5.10. Subfigures 5.10b and 5.10c are zoomed in for convenience.\n\n|(a) Pr = (0.85, 0.90, 1.7)|(b) Pr = (0.0, 0.0, 0.5)|(c) Pr = (0.0, 0.0, 1.2)|\n|---|---|---|\n|(d) Pr = (0.7, 0.85, 0.7)|(e) Pr = (0.0, →1.0, 1.5)|(f) Pr = (→1.0, →1.0, 0.5)|\n\nFigure 5.10: Trajectories of the quadrotor under optimal false data injections, towards each of the six hovering points. Each experiment has a maximum duration of ten seconds, i.e. the expected duration if the quadrotor does not crash.\n\n69"
+    },
+    {
+        "id_": "aebf9c55-ae1f-4949-9398-afc512064cc1",
+        "text": "As these figures show, although the quadrotor can sometimes reach the hover point when this is done in under two seconds, i.e. the time before the attack starts, it will always end up crashing. Specifically, we can denote two types of failures that the attack controller generated. The first is motor failure. The process is relatively simple: the attacker cuts off the power sent to the individual motors, resulting in an instant crash. The second is maximal boosting, i.e. when all four motors have their power increased to maximal power. Note that while both lead to instant failures, the first one is preferred as it also fulfils the condition of minimal energy usage, as specified in the reward function.\n\nFor better visualisation of the quadrotor’s position over time relative to the hover point, we plot metric-based analysis for each of the six experiments in Figure 5.11.\n\nFigure 5.11: Euclidean distance of the quadrotor to each of the hovering points over time, starting from its initial position. Each experiment is run twenty times and Euclidean distances are averaged to provide unbiased results. The maximum duration of an experiment is ten seconds, i.e. the expected duration if the quadrotor does not crash.\n\n|(a) Pr = (0.85, 0.90, 1.7)|(b) Pr = (0.0, 0.0, 0.5)|(c) Pr = (0.0, 0.0, 1.2)|\n|---|---|---|\n|(d) Pr = (0.7, 0.85, 0.7)|(e) Pr = (0.0, →1.0, 1.5)|(f) Pr = (→1.0, →1.0, 0.5)|"
+    },
+    {
+        "id_": "3b046123-59a2-4903-a9ff-a68415a61063",
+        "text": "# Figure 5.12: Trajectories of the quadrotor under random injection attacks, towards the hovering points (a), (b) and (c).\n\nAs a comparison, Figure 5.12 displayed the trajectories of the quadrotor under random false data injections, without any countermeasure applied.\n\n- (a) Pr = (0.85, 0.90, 1.7)\n- (b) Pr = (0.0, 0.0, 0.5)\n- (c) Pr = (→1.0, →1.0, 0.5)\n\nAlthough random attacks are often considered in the literature as able to deteriorate tracking performance, the optimal attacks designed in this study outperformed the former by a significant margin. This further indicates that the attacker’s performance depends on both the amount of information available and how it is used.\n\nThe given results clearly show that the desired trajectories cannot be followed anymore under optimal attacks, with all six experiments resulting in a quick failure of the quadrotor. Although a robust nominal controller is used, the quadrotor’s tracking performance deteriorates as soon as optimal false data injections occur. When such disruption occurs, the quadrotor may crash into obstacles or other robots, causing expensive damage. Indeed, if robots in an industrial production line are attacked, defective products may be produced. More drastically, the quadrotor could even crash into humans and cause severe injuries.\n\nOur simulation results proved the effectiveness of the proposed optimal attack scheme and highlighted the necessity and significance of securing quadrotors."
+    },
+    {
+        "id_": "356f8593-5b9d-45f6-9b12-b615d5b2f854",
+        "text": "# 5.2.3 Tracking Control of a Quadrotor under the Secure Controller learned using Algorithm 4\n\nIn this subsection, we ran the same experiments as above. However, we added the secure controller to show that the tracking performance of an attacked quadrotor could be recovered by using the countermeasure designed in Algorithm 4.\n\nThe simulation results providing tracking performance of the quadrotor under secure countermeasures are displayed in Figure 5.13. Subfigures 5.13b and 5.13c are zoomed in for convenience.\n\n|(a) Pr = (0.85, 0.90, 1.7)|(b) Pr = (0.0, 0.0, 0.5)|(c) Pr = (0.0, 0.0, 1.2)|\n|---|---|---|\n|(d) Pr = (0.7, 0.85, 0.7)|(e) Pr = (0.0, →1.0, 1.5)|(f) Pr = (→1.0, →1.0, 0.5)|\n\nFigure 5.13: Trajectories of the quadrotor under optimal attacks and secure countermeasures, towards each of the six hovering points. Each experiment has a maximum duration of ten seconds, i.e. the expected duration if the quadrotor does not crash.\n\nThese results demonstrate that the quadrotor’s tracking performance under the secure controller is recovered in all six experiments. Specifically, the controller is able to provide countermeasures for the two types of attack proposed by the malicious attacker, i.e., motor failure and maximal boosting.\n\n72"
+    },
+    {
+        "id_": "30622dfd-45c2-4b06-87f0-75879dd29c96",
+        "text": "# 5.13\n\nSubfigures 5.13a and 5.13e illustrate the capabilities of the defender to recover the trajectory and stabilise even in wide-amplitude and high-altitude settings. In addition, Subfigures 5.13d and 5.13f exhibit the ability of the quadrotor to preserve tracking performance in low-altitude cases. Finally, subfigures 5.13b and 5.13c showcase the secure controller in lifting and hovering settings. We can observe that the secure controller can indeed hover with minimal displacement caused by the false data injections.\n\nThese results demonstrate that the proposed secure control algorithm could mitigate optimal attacks and recover tracking performance disrupted by optimal false data injections.\n\n|(a) Pr = (0.85, 0.90, 1.7)|(b) Pr = (0.0, 0.0, 0.5)|(c) Pr = (→1.0, →1.0, 0.5)|\n|---|---|---|\n|(d) Pr = (0.85, 0.90, 1.7)|(e) Pr = (0.0, 0.0, 0.5)|(f) Pr = (→1.0, →1.0, 0.5)|"
+    },
+    {
+        "id_": "215c8089-ccb9-486a-a645-4d8963ff7ff8",
+        "text": "# Figure 5.14\n\nTrajectories of the quadrotor under random attacks without (a,b,c) and with (d,e,f) countermeasures.\n\nAlthough, as exemplified in Figure 5.12, optimal data injection attacks outperform random attacks, we evaluated our secure controller in mitigating random attacks to further show the effectiveness of the proposed secure control algorithm. Figure 5.14 verifies the tracking performance under random attacks with (5.14d, 5.14e 5.14f) and\n\n73"
+    },
+    {
+        "id_": "58b79f6d-360c-4943-963b-5db0c7045595",
+        "text": "# 5.3 Deployment in Real World\n\nIn this section, we deployed our three learning-based controllers on physical quadrotors, i.e., on real hardware. The aim is to provide real-life settings and observe the performance of our controllers under non-ideal conditions."
+    },
+    {
+        "id_": "308810ad-5dec-4c5f-886f-f3ccb4a96606",
+        "text": "# 5.3.1 Agilicious Agent\n\nAs demonstrated in [79], learning-based controllers are less predictable than mathematical models. In addition, as described in section 3.1.1, Agilicious is an extremely agile and powerful quadrotor with a top speed of 131km/h. Consequently, deploying learning-based controllers on such a quadrotor in real-life conditions requires adequate settings to avoid damaging equipment and harming surrounding people. Therefore, we decided to minimise the potential risks by taking the following approach.\n\nWe deployed our learning-based controllers within the planning trajectory module and used a mathematical model (MPC) for control. As suggested in [79], using the learning-based controller within planning provides a good indication of model performance while limiting deployment risks. By doing so, we can preview the quadrotor’s trajectory before launching and, thus, fly Agilicious in our laboratory with enhanced predictability and guaranteed safety. The results of this experiment are displayed in Figure 5.15.\n\nAs we can observe from Figures 5.15a and 5.16a, the quadrotor under nominal planning control and no attack can successfully fly in real-world settings. On the other hand, Figures 5.15b and 5.16b demonstrate the behaviour of the same quadrotor but under optimal false data injection and secure countermeasure. These results show the"
+    },
+    {
+        "id_": "a2932a45-64eb-4be6-8a0e-325739135c75",
+        "text": "# Expected trajectory"
+    },
+    {
+        "id_": "c5547152-3c37-441e-9620-6ea9f85f7a58",
+        "text": "# Drone trajectory\n\n|Start Point|End Point|\n|---|---|\n|1.5|1.4|\n|1.3|1.2|\n|1.1|1.0|\n|0.75|0.5|\n|0.25|0.0|\n|0.25|0.5|\n\n(a) Without attack\n\n(b) With optimal attack and countermeasure\n\nFigure 5.15: Trajectories of the Agilicious quadrotor with learning-based controllers for planning and MPC for control, without (a) and with (b) optimal attack and secure countermeasure."
+    },
+    {
+        "id_": "7f8282ed-a72e-4cee-927a-91206ee3814e",
+        "text": "# Expected trajectory"
+    },
+    {
+        "id_": "a3571a51-6350-4a69-a2b5-61f26336c1e0",
+        "text": "# Drone trajectory\n\n|0.25|Expected trajectory|\n|---|---|\n|0.15|0.10|\n|0.05|0.05|\n|EO-I0|COI0|\n\n(a) Without attack\n\n(b) With optimal attack and countermeasure\n\nFigure 5.16: Tracking error of the Agilicious quadrotor with learning-based controllers for planning and MPC for control, without (a) and with (b) optimal attack and secure countermeasure. Each experiment is run twenty times and tracking errors are averaged to provide unbiased results. The maximum duration of an experiment is fourteen seconds, i.e. the expected duration if the quadrotor does not crash.\n\nability of our secure countermeasure to counter the optimal attack and recover tracking performance under the same settings. More specifically, the first three seconds are relatively accurate to the expected trajectory. That is because the attack is only launched after three seconds of flying. Subsequently, the drone starts to deviate from the expected trajectory due to the perturbation introduced by the falsified data. Finally,"
+    },
+    {
+        "id_": "bcf77f13-d37a-4f81-b5bd-b3c1daa6e5b3",
+        "text": "we can see that the quadrotor recovers gradually over time to reach the target location with satisfactory tracking performance, similar to those in simulation (Section 5.2.3).\n\nIt is important to note that, although this experiment tries to further approximate the conditions of flying Agilicious in the real world under learning-based autonomy, we cannot guarantee that such results are entirely accurate to real-world outcomes. In fact, this problem is part of a hot challenge called Simulation-to-Real-World transfer, where researchers explain that simulation conditions can only approximate those from the real world with small but unavoidable error margins."
+    },
+    {
+        "id_": "53e34ed1-ca2a-4bc7-835f-0fa820ba523f",
+        "text": "# 5.3.2 Crazyflie Agent\n\nMoreover, as described in section 3.1.2, Cazyflies are less hazardous for deployment in non-adapted environments. Therefore, we deployed our learning-based controllers on a Crazyflie quadrotor in real life to compare with previous planning-limited controls.\n\nTo this end, our learning-based controller is directly integrated within the control module of the quadrotor. That is, no mathematical model is used anymore, and the learning-based controller is no longer limited to planning. This allows to accurately reproduce real-life settings and accounts for non-ideal conditions such as sensor measurement incertitude, motion capture margins, hardware measurement errors, etc.\n\n|Expected trajectory|Expected trajectory|\n|---|---|\n|Drone trajectory|Drone trajectory|\n|Start Point|Start Point|\n|End Point|End Point|\n|1.4|1.4|\n|1.3|1.3|\n|1.2|1.2|\n|1.1|11|\n|1.0|1.0|\n|0.75|0.75|\n|500|500|\n|250|250|\n|0.00|0.00|\n|250|250|\n|500|500|\n|0.75|0.75|\n|~0.'888838870|~0,9888,88835|\n\nFigure 5.17: Trajectories of the Crazyflie quadrotor with learning-based controls, without (a) and with (b) optimal attack and secure countermeasure.\n\n76"
+    },
+    {
+        "id_": "05f7e161-4274-426d-a3aa-756436cc87f9",
+        "text": "# Expected trajectory\n\n|0.25|Expected Uajectory|\n|---|---|\n|Drone tralecton;|Dtone taleccom|\n|0.20| |\n|0.15|0.15|\n|0.10| |\n|0.05|0.05|\n|EO-I0| |\n\nTime"
+    },
+    {
+        "id_": "6861d4bc-b10c-4d87-9b29-d6139bf49119",
+        "text": "# (a) Without attack"
+    },
+    {
+        "id_": "76c178b7-b569-421e-be45-a488975499e4",
+        "text": "# (b) With optimal attack and countermeasure\n\nFigure 5.18: Tracking error of the Crazyflie quadrotor with learning-based controls, without (a) and with (b) optimal attack and secure countermeasure. Each experiment is run twenty times and tracking errors are averaged to provide unbiased results. The maximum duration of an experiment is fourteen seconds, i.e. the expected duration if the quadrotor does not crash.\n\nThe experimental setup is given in Figure 3.5 and studies the same scenario as in the Agilicious deployment described above. Furthermore, the experiments were conducted in a closed environment to reduce gusting and light reflection for the motion capture system.\n\nThe results of Crazyflie’s deployment are displayed in Figures 5.17 and 5.18 as snapshots of the quadrotor’s trajectory in real life and tracking error wrt time. As we can observe, the results are similar to what was obtained on Agilicious in section 5.3.1. Indeed, although this experiment evaluates the trained controller in autonomous and real-world settings, the results obtained confirm the capabilities of our controllers to transfer into real-world conditions without limitations on the control module.\n\n77"
+    },
+    {
+        "id_": "94f706da-559b-4890-9e99-b457c54290e3",
+        "text": "# 5.4 Results"
+    },
+    {
+        "id_": "fdab371f-dceb-451a-a35a-22802694926a",
+        "text": "# 5.4.1 Outcomes in Simulation\n\nThe experimental results obtained in subsection 5.2.1 demonstrated the ability of the nominal controller designed in Algorithm 2 to optimally fly a quadrotor towards a desired location and hover with minimal fluctuations upon arrival. More specifically, we proved the nominal controller to be efficient in flying over wide amplitudes, high altitudes (a,e) and low altitudes (d,f), as well as lifting (c) and hovering (b). In addition, the learning-based controller could make good use of its dynamics, with trajectories resembling some that professional drone pilots would take.\n\nFurthermore, subsection 5.2.2 revealed the effect of injecting false data into the quadrotor’s actuators. Specifically, Figure 5.12 showed that the optimal false data injections designed in Algorithm 3 outperform random attacks at tracking performance deterioration. Figure 5.10 proved the effectiveness of our malicious attack algorithm to disrupt the quadrotor’s trajectories and crash the system in all provided experiments, with two major types of attacks: motor failure and maximal boosting.\n\nFinally, subsection 5.2.3 demonstrated the secure countermeasure’s effectiveness in recovering the quadrotor’s tracking performance to complete its trajectory. All provided experiments, which previously failed under attacks, were then able to complete successfully thanks to the secure countermeasure designed in Algorithm 4. Furthermore, our secure controller also proved to be efficient under random attacks in all experiments."
+    },
+    {
+        "id_": "8a550c67-89d0-4cb0-a1a5-50694dcf7e47",
+        "text": "# 5.4.2 Outcomes in Real World\n\nExperimental results from subsection 5.3 illustrated all three controllers in action within the planning module of the Agilicious quadrotor. Although we were unable to use them within the control module for safety reasons, pairing them with an MPC suggested that all three controllers were indeed effective in close-to-real-world conditions (Figures 5.15 and 5.16), with results aligned with the simulation outcomes.\n\nMoreover, we successfully deployed our three controllers in real-world settings on the Crazyflie quadrotor, providing a safer approach to real-world deployment. The results obtained were once again aligned with our simulation outcomes and confirmed the capabilities of our controllers to transfer into real-world conditions without limitations on the control module (Figures 5.17 and 5.18)."
+    },
+    {
+        "id_": "111b6eb8-de6c-4cef-8330-d6e0827a666c",
+        "text": "# Chapter 6"
+    },
+    {
+        "id_": "f0b35bad-5f9a-4ba9-8f67-b67bdf93e929",
+        "text": "# Conclusion\n\nThis paper offered a thorough investigation into the control systems of autonomous quadrotors, with a particular focus on enhancing robustness against cyber-physical attacks, specifically false data injections. After providing evidence of the necessity of designing secure control schemes for autonomous quadrotor systems, we applied deep reinforcement learning techniques to enhance the security of such systems against cyber threats. This paper has two critical improvements.\n\nThe first is a proposed nominal controller capable of reaching a target location through optimal trajectories and stabilising the quadrotor with minimal fluctuations upon arrival. Our experimental analysis proved the effectiveness of our nominal controller in doing so with great use of its dynamics over diverse types of trajectories, both in simulation and real-world scenarios.\n\nThe second lies in the design of an attack and a secure controller. Although some secure algorithms have been proposed in the literature, most cannot be applied to underactuated nonlinear complex systems, i.e., quadrotors, or do not commit to preserving a confident level of stability in agile settings. Consequently, the effectiveness of existing results does not apply to quadrotors in the way this paper suggests. By taking a deep reinforcement learning approach, an optimal false data injection attack was established to outperform random data injection methods and deteriorate the tracking performance of a quadrotor under nominal controls. Furthermore, it proposed a secure countermeasure framework following the same approach, under which the performance of an attacked quadrotor can be recovered immediately."
+    },
+    {
+        "id_": "808e4912-9026-4939-af85-b31b72510b83",
+        "text": "# The effectiveness of our proposed solutions\n\nThe effectiveness of our proposed solutions were evaluated in simulation and real-world scenarios over a wide range of experiments. These revealed a significant enhancement in the quadrotor’s robustness to cyber-attacks. By integrating the learning-based secure controller, we ensured the continuous stability and safety of the quadrotor, even when subjected to malicious cyber-attacks. The results highlighted the quadrotor’s capability to adapt to different attack scenarios, thus validating our methodology’s effectiveness in real-time threat mitigation.\n\nFurthermore, our work leveraged the capabilities of the Agilicious quadrotor, a state-of-the-art platform which provides the best size-to-computing-power ratio for agile and autonomous flights. As the first team in the United Kingdom to deploy this quadrotor and implement reinforcement learning on its platform, our work introduced a comprehensive breakdown of this quadrotor, including software designs and hardware alternatives. Additionally, this paper provided a detailed reinforcement-learning framework to train autonomous controllers on Agilicious-based agents to support future research on this quadrotor. Finally, we introduced a new open-source environment that builds upon PyFlyt for future research on Agilicious platforms. These contributions promote easy reproducibility with minimal engineering overhead for future works."
+    },
+    {
+        "id_": "e049aab8-e598-49ff-b7a0-0e1ae785a09a",
+        "text": "# 6.1 Limitations\n\nDespite providing significant implications, our investigations encountered several development and deployment limitations.\n\nOne significant limitation encountered was the inability to deploy the Agilicious quadrotor with controllers integrated outside its planning module. This state-of-the-art quadrotor for autonomous systems required specific deployment conditions that were not available in our laboratory settings. Facilities equipped with more advanced systems, such as bird nets and other specialised infrastructures, might offer the necessary environment for safe deployment. As a result, we were restricted in our ability to fully explore and validate the practical aspects of our proposed solutions under more realistic conditions.\n\nAnother critical limitation was the exploration of hyperparameters within our controllers. As we observed during our tuning process, hyperparameters indeed played a"
+    },
+    {
+        "id_": "37bfb5ad-a07a-41b7-83be-cd717d8dee8f",
+        "text": "# 6.2 Future Works\n\nBuilding on the outcomes and insights gained from this study, we proposed several promising directions for future research that could significantly enhance the cyber-security of autonomous quadrotor systems.\n\nFirst, the defender proposed in this paper must be activated upon detecting an attack. Thus, its effectiveness is contingent on the preliminary identification of an attack through a third-party framework. This detection could be achieved using anomaly detection methods or more straightforward mathematical strategies, as indicated in [41]. Nevertheless, implementing a continuously active defence system could eliminate the need for such initial detection, offering a more robust solution against cyber threats. This approach would, however, necessitate that the secure controller learns to refrain from modifying initial control commands when the quadrotor is not under attack.\n\nFurthermore, the stability analysis conducted in our experiments is entirely empirical, lacking a mathematical demonstration of the system’s stability. Although most current deep reinforcement learning approaches operate on empirical bases, introducing a mathematical proof could affirm stability from a theoretical standpoint. This would confirm that deep reinforcement learning methods are both practically and theoretically sound solutions for addressing cyber threats in quadrotor systems. For reference, [10] provided such an analysis on a two-dimensional system.\n\nLooking forward, this research lays a solid foundation for further exploration into the security of autonomous systems. The optimal false data injection algorithm developed in this study provides a baseline for future research on exposing significant vulnerabilities in quadrotor systems and developing alternative secure controllers. Moreover, future studies could expand upon this work by exploring additional types of cyber-attacks, integrating multi-agent systems, or applying the methodologies developed to different classes of autonomous vehicles."
+    },
+    {
+        "id_": "1e1317bb-322c-4c36-82b4-0d9f58909b94",
+        "text": "# Conclusion\n\nIn conclusion, this study not only achieved its stated objectives but also significantly advanced the field of autonomous system security through the innovative application of deep reinforcement learning to the secure problem of underactuated nonlinear complex systems. The implications of this project extend beyond academic inquiry, offering practical solutions to some of the most pressing challenges in robotic security.\n\n82"
+    }
+]

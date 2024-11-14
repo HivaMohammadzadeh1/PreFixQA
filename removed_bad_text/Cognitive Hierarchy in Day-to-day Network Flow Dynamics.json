@@ -1,0 +1,418 @@
+[
+  {
+    "id_": "f8509115-d6f5-4aae-9464-7c245e99b342",
+    "text": "# Cognitive Hierarchy in Day-to-day Network Flow Dynamics"
+  },
+  {
+    "id_": "7e3e8635-304f-44d5-a692-465590fa8c89",
+    "text": "# 1 Introduction\n\nWardrop’s first principle characterizes a steady-state User Equilibrium (UE) wherein no driver can reduce their travel time by unilaterally changing the route. However, due to the ever-changing nature of a transportation network (e.g., induced by traffic incidents, capacity modifications, and network structure changes), traffic states may always be in a disequilibrium state (Kumar and Peeta, 2015). To explain how travelers adjust their route-choice behaviors and predict those out-of-equilibrium states, various day-to-day traffic-network flow models have been proposed in the literature over the years.\n\nMost day-to-day models, either continuous or discrete, focus on modeling the impact of past flow evolution on travelers’ route choice behavior of today. The differences among the experienced travel times are the internal driving force that induces the flow change. For example, a rational behavior adjustment process (RBAP) proposed in Yang and Zhang (2009) generalizes a kind of flow evolution process along which the total travel cost of today will decrease based on the experienced cost of yesterday. A bunch of day-to-day models, including the proportional-switch adjustment (Smith, 1984), the projected dynamical system (Nagurney and Zhang, 1997), the network tatonnement process (Friesz et al., 1994), the evolutionary traffic dynamic (Sandholm, 2010) and the simplex gravity flow dynamic (Smith, 1983), can be categorized into this framework. Some studies also use the learning behavior (specifically an exponential smoothing filter) to model the impact of the whole historical cost trajectory on today’s route choice (Horowitz, 1984; Bie and Lo, 2010; Xiao et al., 2016, 2019).\n\nLargely ignored in the existing modeling efforts is the fact that travelers may predict what other travelers will do in the future (upcoming day). Substantial evidence in psychological studies demonstrates that when making decisions, people engage in a certain degree of reasoning about what others will do, i.e., a theory of mind, the ability to understand another person’s mental state (Lo, 2017). In a route-choice context, suppose now a transportation network is in a disequilibrium state, and travelers in the costlier route have the incentive to switch to the shortest route with the minimum travel time. A traveler may reason like: “if many travelers choose the shortest route, then I will try to avoid being on that route”. This phenomenon was somehow manifested in a recent day-to-day virtual experiment (Ye et al., 2018), but the models calibrated in that study did not take it into account. Without modeling such a logic, the prevailing day-to-day models are more like a way of calculating the final equilibrium (e.g., Hazelton"
+  },
+  {
+    "id_": "2a184ade-e247-4150-aec9-14bf21373911",
+    "text": "# Dynamic Routing Behaviors and Cognitive Hierarchy Theory\n\nand Watling, 2004) rather than explaining the inherent reasons for traffic flow evolution. Intuitively, if all the selfish travelers have yesterday’s complete information and do not consider what the others will do, the shortest one will be the only choice. Under this circumstance, the flow evolution trajectory may oscillate permanently among different routes.\n\nTo model the travelers’ prediction behaviors, this paper employs the idea of Cognitive Hierarchy (CH) theory from Camerer et al. (2004), in which travelers form their beliefs of their opponents using an iterated reasoning process. In the CH theory, the heterogeneous players differ in their strategic-reasoning levels (i.e., cognitive capacities): while lower-step players do not carefully think through the whole game, the higher-step players would try to reap benefits by predicting how these lower-level “careless” players respond to the current situation. The CH model provided superior explanations in many game-theoretic settings, including guessing games (Costa-Gomes and Crawford, 2006) and extensive-form games (Ho and Su, 2013). It can also explain many phenomena in economics, marketing, and operation management, including market entry competition (Goldfarb and Xiao, 2011) and capacity allocation games (Cui and Zhang, 2017). It is worth mentioning that although the idea stemmed from Camerer et al. (2004), our proposed model’s novelty lies in its dynamic nature. In contrast, most applications of the CH model in the literature are static one-shot games such as the p-beauty game.\n\nIn the literature, two pieces of work have recognized and modeled such prediction behavior; see He and Liu (2012) and He and Peeta (2016). However, they still have their limitations. The former work predicted the potential future congestion only once, and the prediction memory gradually vanished as time wore on. The latter work focused on the case where all the travelers are homogenous 1-step travelers; i.e., they all believe that the other travelers except herself are 0-step ones who myopically switch to shorter routes based on previous experience. Moreover, the model was developed using ordinary differential equations. Despite their tractability for mathematical analysis, the continuous models bring challenges in calibration with real data because the real-world system of repeated daily trips is discrete. Some properties (e.g., stability) in continuous time can only be considered a weaker result compared to the discrete-time counterpart (Li et al., 2018). Under some scenarios, conclusions drawn from continuous- and discrete-time systems may even contradict each other (Ye et al., 2021).\n\nIn this paper, we establish a general framework of day-to-day network flow dynamics based on the CH theory to analyze travelers’ dynamic routing behaviors. In this framework, we allow the travelers to be heterogeneous in their strategic-reasoning capabilities and to form their"
+  },
+  {
+    "id_": "42fea9f8-59ac-4423-a96b-f2b58c45890a",
+    "text": "# Current Research on Strategic-Reasoning Capabilities\n\nWe extend two widely-studied dynamics in the literature, the network tatonnement process (NTP) dynamic (for deterministic UE, DUE) and the Logit dynamic (for stochastic UE, SUE), into our CH framework and call them CH-NTP and CH-Logit dynamic, respectively. A previous online virtual experiment in Ye et al. (2018), which conventional day-to-day models could not fit, can now be calibrated by our proposed CH-NTP dynamic reasonably well. Moreover, the models predict that strategic-reasoning behaviors would lead the system to multiple equilibria, one of which being the classical user equilibrium. Jacobian matrices at the equilibrium points are derived and used to form analytical criteria on local stability around a user equilibrium. Theoretical results and numerical experiments unveiled several insights into how key parameters affect the local stability."
+  },
+  {
+    "id_": "d5bc6d7b-8944-4c78-8c8f-dfb38fbb3d3a",
+    "text": "# 2 Modeling Framework"
+  },
+  {
+    "id_": "f6cabbf2-4957-4388-b5df-caff4e153cad",
+    "text": "# 2.1 Setups\n\nWe consider a strongly-connected transportation network 𝐺(𝑁 , 𝐿, 𝑊) consisting of a set 𝑁 of nodes, a set 𝐿 of links, and a set 𝑊 of origin–destination (OD) pairs. Each OD pair, 𝑤 ∈ 𝑊, has a travel demand of 𝑑𝑤 and is connected by a set 𝑅𝑤 of routes. Travelers in the network are categorized into a set 𝐾 (with |𝐾| denoting the cardinality) of classes (steps) by their cognitive-capacity levels. (Throughout this paper, the terms “class” and “step” are used interchangeably.) We assume for simplicity that the proportion of 𝑘-step travelers, 𝑝𝑘 (𝑘 ∈ 𝐾 and Í|𝐾|−1𝑝𝑘 = 1), 𝑘=0 is the same across all the OD pairs. This assumption allows us to write the scaled feasible route flow set of 𝑘-step travelers as Ω𝑝𝑘 ≡ {𝒙𝑘 |Γ𝒙𝑘 = 𝑝𝑘 𝒅, 𝒙𝑘 ≥ 0}, where 𝒙𝑘 ≡ (𝑥𝑟𝑤 , 𝑟 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊)𝑇𝑘 is the route flow vector (pattern) of class 𝑘 ∈ 𝐾, 𝒅 ≡ (𝑑𝑤 , 𝑤 ∈ 𝑊)𝑇 is the OD demand vector and Γ is an OD-route incidence matrix indicating if a route belongs to an OD pair. The superscript “T” represents the transpose operation. With a little abuse of notation, we denote Ω𝜂 as the feasible"
+  },
+  {
+    "id_": "be281196-fbdd-4a54-9377-8b70a6b948d4",
+    "text": "# 2.2 Flow update rules\n\nOn day 𝑡, the route flow pattern of 𝑘-step is denoted as 𝒙𝑘,(𝑡), and the aggregate observed route flow pattern ˜𝒙(𝑡) = Í𝑘 𝒙𝑘,(𝑡). By observing ˜(𝑡) (or receiving it from the advanced traveler information system), a 𝑘-step traveler before trip will predict the route flow pattern on (𝑡 + 1)-th day as per her cognitive capacity level (see subsequent Section 2.3). The predicted route flow pattern and its corresponding travel cost pattern are denoted as 𝝅𝑘,(𝑡+1) and 𝒄𝝅𝑘,(𝑡+1).\n\nWith 𝒙𝑘,(𝑡) and 𝒄𝝅𝑘,(𝑡+1), the flow pattern of 𝑘-step travelers on the next day 𝑡 + 1 can be updated as:\n\n𝒙𝑘,(𝑡+1) = 𝐻Ω𝑝𝑘h𝒙𝑘,(𝑡), 𝒄𝝅𝑘,(𝑡+1); 𝛼, 𝜁i ≡ 𝛼𝒚h𝒙𝑘,(𝑡), 𝒄𝝅𝑘,(𝑡+1); 𝜁i + (1 − 𝛼)𝒙𝑘,(𝑡),\n\nwhere 𝒚 is the “target” flow pattern in Ω𝑝𝑘 determined by a specific day-to-day dynamical model parameterized by 𝜁; and the exponential-moving-average coefficient, 𝛼 ∈ (0, 1), reflecting travelers’ inertia or reluctance to change. (The larger the 𝛼, the smaller the inertia.) Note that the predicted flow pattern for any 𝑘, 𝝅𝑘,(𝑡+1), is always in Ω1.\n\nOur model does not incorporate memory and learning processes in travelers’ decision-making. If we were to include memory effects, travelers’ route choices might be influenced by a weighted average of past experiences rather than just the most recent one (Horowitz, 1984; Bie and Lo, 2010; Xiao et al., 2016; Ye et al., 2021). By abstracting away memory and learning, we can more clearly isolate and analyze the impacts of travelers’ strategic thinking behavior on network dynamics. This simplification allows for greater analytical tractability and easier interpretation of results.\n\nBy describing the dynamic in such a general way, most day-to-day models in the literature can be applied to the framework. For example, the day-to-day models satisfying the RBAP property (Yang and Zhang, 2009) can be applied, i.e., any 𝒚[·] satisfying:\n\nh𝒙𝑘,(𝑡), 𝒄𝝅𝑘,(𝑡+1); 𝜁i \n\n\n\n ∈ Ψ𝑘,(𝑡), Ψ𝑘,(𝑡) ≠\n\n\n\n𝒚 = 𝒙𝑘,(𝑡), Ψ𝑘,(𝑡) = ,\n\n\n\n\n\n\n\n5"
+  },
+  {
+    "id_": "035e3d57-182f-4a44-af94-7ba55baf99a8",
+    "text": "# 2.3 Cognitive hierarchy levels\n\nWe now use the CH theory to model how travelers with different cognitive capacities form their beliefs on the next day’s flow pattern. To start, 0-step travelers do not think strategically at all. They deem that the flow pattern of day 𝑡 will remain unchanged on day 𝑡 + 1:\n\n𝝅0,(𝑡+1) = ˜𝒙(𝑡). (3)\n\nIt is clear that if the network only contains the 0-step travelers, it degenerates into a conventional day-to-day model. (In a CH model for the one-shot games, 0-step players were assumed to either randomize equally across all strategies or choose a salient strategy using ex-ante information (Camerer et al., 2004). Here we adopt the latter idea.)\n\nAs per the CH theory (Camerer et al., 2004), the 𝑘(𝑘 ≥ 1)-step travelers try to take advantage by predicting how lower-step players respond to the current flow pattern, but are overconfident and do not realize others are using exactly as many thinking steps as they are. Denote 𝑞𝑘ℎ = 𝑝−1𝑝𝑖 as 𝑘-step travelers’ belief about the normalized proportion of ℎ-step travelers and 𝑞𝑘 ℎ = 0 for ∀ℎ ≥ 𝑘. As consistent with the CH theory, such a setting means that travelers do not know the exact distribution of lower-step travelers — they only confidently assume the normalized distribution. (This setting was also adopted in other studies; see, e.g., Cui and Zhang (2017) that apply the CH theory to the capacity allocation games in the operation management field.)\n\nBased on the above idea, a 1-step traveler thinks that all the others are 0-step travelers, i.e., 𝑝0 = 1. Her predicted flow on day 𝑡 + 1 is thus formed by looking one step ahead:\n\n𝝅1,(𝑡+1) = 𝐻Ω01h𝑞1 𝒙(𝑡), 𝒄𝝅0,(𝑡+1); ˆ, 𝜁𝑞0˜ 𝛼 ˆi = 𝐻Ω1 h𝒙(𝑡), 𝒄𝒙(𝑡); ˆ, 𝜁˜˜ 𝛼 ˆi, (4)\n\nwhere ˆ ∈ (0, 1) and 𝜁𝛼 ˆ are the predicted coefficients in the travelers’ minds."
+  },
+  {
+    "id_": "fe704d6d-6bba-4369-9472-857631f1f47e",
+    "text": "# Predicted Flow Pattern\n\nWith this predicted flow pattern, the 1-step travelers will switch the route choice, and the resultant flow pattern becomes:\n\n𝒙1,(𝑡+1) = 𝐻Ω𝑝1h𝒙1,(𝑡), 𝒄𝝅1,(𝑡+1); 𝛼, 𝜁i = 𝐻Ω𝑝1h𝒙1,(𝑡), 𝒄𝐻Ω1h𝒙(𝑡), 𝒄𝒙(𝑡); ˆ, 𝜁˜ ˜ 𝛼 ˆi; 𝛼, 𝜁i. (5)"
+  },
+  {
+    "id_": "8c2ad4be-a1bb-4423-a5b1-2df0acf9e416",
+    "text": "# 2-Step Travelers\n\n2-step travelers will jointly predict both 0-step and 1-step travelers’ responses. The normalized proportion of these two types are 𝑞20 = 𝑝0𝑝0𝑝1 and 𝑞2+1 = 𝑝0𝑝1𝑝1, respectively. They anticipate that the flow pattern of the next day will be:\n\n𝝅2,(𝑡+1) = 𝐻Ω𝑞20h𝑞2𝒙(𝑡), 𝒄𝝅0,(𝑡+1); ˆ, 𝜁0˜ 𝛼 ˆi + 𝐻Ω𝑞21h𝑞2𝒙(𝑡), 𝒄𝝅1,(𝑡+1); ˆ, 𝜁1˜ 𝛼 ˆi. (6)\n\nHere we assume that the travelers of 𝑘-step (𝑘 ≥ 1) share the same predicted parameters, 𝛼ˆ, and 𝜁ˆ. This assumption allows us to qualitatively model whether the higher-step travelers over- or under-predict lower-step travelers’ behaviors. It also keeps our model parsimonious. Despite this simple treatment, as we will see in the subsequent Section 4, the model still captures the virtual-experiment data quite well, even when we further set 𝛼ˆ = 𝛼 and 𝜁ˆ = 𝜁!"
+  },
+  {
+    "id_": "50030aa3-11c2-4062-bfa1-26debe41e08e",
+    "text": "# Route Choices Update\n\nBased on the predicted flow pattern 𝝅2,(𝑡+1), the 2-step travelers update their route choices as follows:\n\n𝒙2,(𝑡+1) = 𝐻Ω𝑝2h𝒙2,(𝑡), 𝒄𝝅2,(𝑡+1); 𝛼, 𝜁i h𝒙2,(𝑡), 𝒄𝐻Ω𝑞20h𝑞2𝒙(𝑡), 𝒄𝝅0,(𝑡+1); ˆ, 𝜁0˜ ˆi h𝑞2𝒙(𝑡), 𝒄𝝅1,(𝑡+1); ˆ, 𝜁1˜ ˆi; 𝛼, 𝜁i. (7)"
+  },
+  {
+    "id_": "d3aea456-aab9-41b1-89dc-490091b2e49a",
+    "text": "# Recursive Method for Higher-Step Travelers\n\nThe rest types of travelers (𝑘 > 2) can be done in a recursive manner as follows:\n\n𝝅𝑘,(𝑡+1) = ∑0≤ℎ<𝑘h𝑞𝑘𝒙(𝑡), 𝒄𝝅h,(𝑡+1); ˆ, 𝜁h˜ 𝛼 ˆ];\n\n𝒙𝑘,(𝑡+1) = 𝐻Ω𝑝k𝒙k,(𝑡), 𝒄𝝅k,(𝑡+1); 𝛼, 𝜁i. (8)"
+  },
+  {
+    "id_": "fbf3060f-0dd2-4036-8504-48899a650cb8",
+    "text": "# Behavioral Game Theory Findings\n\nSubstantial experiments in the behavioral game theory found that the average thinking step across all the players lies between 1 and 2 (Camerer et al., 2004; Chong et al., 2016). Hence, the rest of this paper focuses on the case where |𝐾| ≤ 3. Note that those experiments were designed for one-shot games with a relatively small number of subjects, in contrast to the dynamic setting with many subjects in this paper. It is also worth mentioning that the methodology in this paper can also be applied to cases where |𝐾| > 3."
+  },
+  {
+    "id_": "f6a94907-07cc-46b8-915e-9ad1d371eaa9",
+    "text": "# 2.4 Model interpretation and practical relevance"
+  },
+  {
+    "id_": "a2a1a9de-92f6-445f-bb38-72f43da1f28d",
+    "text": "# 2.4.1 Interpretations on the strategic thinking\n\nStrategic thinking behavior is the core component of our proposed modeling framework. As stemmed from the CH theory (Camerer et al., 2004), our model assumes travelers know other travelers’ strategic levels (represented by 𝑞𝑘 ℎ). This assumption may seem unrealistic at first glance since individual travelers are unlikely to have explicit information about the distribution of strategic sophistication among other road users. However, it can be interpreted on several grounds:\n\n1. Assuming knowing lower-step travelers’ strategic levels serves as a simplified heuristic that represents the underlying cognitive processes travelers use to anticipate others’ behavior. While individual travelers may not explicitly possess this information, our model captures the essence of strategic thinking in aggregate. This approach is validated by the model’s improved fit to observed data (see Section 4), suggesting it effectively captures important aspects of real-world strategic behavior in transportation networks. Notably, even the 1-step model (|𝐾| = 2) provides considerable improvements while requiring only one additional parameter compared to traditional day-to-day models. The fact that a multi-class day-to-day model with additional parameters but without strategic prediction failed to reproduce the experimental data further supports that our model’s success stems from its ability to capture strategic thinking, not merely from increased parameter flexibility.\n2. The 𝑞𝑘 values might be interpreted as aggregate beliefs held by a class of travelers, rather than exact knowledge possessed by individuals. This aggregate approach allows us to model the overall effect of strategic thinking without making strong claims about individual cognition. The aggregate beliefs represented by 𝑞𝑘ℎ can be seen as emergent properties of the system, arising from the collective experience of travelers over time, rather than explicit individual knowledge.\n3. Our modeling framework aligns with the “theory of mind” concept from cognitive psychology - the ability to attribute mental states and intentions to others (Lo, 2017). In our transportation context, the strategic levels and associated beliefs represent simplified versions of travelers’ theory of mind about other road users.\n\n8"
+  },
+  {
+    "id_": "3dd97aa5-275f-4526-9b2e-7454af72d23c",
+    "text": "# 2.4.2 Practical relevance\n\nOur modeling framework may be used to characterize the strategic thinking behaviors of major decision-making entities that each control a significant portion of traffic flow. In this context, the flow distribution vector of one class can be viewed as a decision of one large entity. This approach is particularly relevant in modern urban environments where traffic patterns are increasingly influenced by sophisticated navigation systems and centralized management centers. These systems operate at different levels of sophistication in predicting and responding to traffic conditions. At the most basic level (𝑘 = 0), we have navigation systems or drivers simply reacting to current traffic conditions without strategic planning. The next level (𝑘 = 1) includes more advanced navigation platforms like Google Maps and Waze, which not only provide route recommendations based on current conditions but also engage in predictive behavior (Lau, 2020). By anticipating the actions of other road users and potential congestion points, they aim to recommend shorter routes for their users, effectively playing a strategic game against other decision-makers in the network. At higher level of sophistication (𝑘 = 2 or above) are advanced traffic management centers and mobility service providers. These entities attempt to optimize overall traffic flow by considering multiple levels of interaction between different road user groups. Their decisions may require anticipating the responses of various traveler segments and adjusting traffic control measures accordingly."
+  },
+  {
+    "id_": "fd62fc97-d81c-4ac3-95db-afff9deed8ac",
+    "text": "# 3 CH-NTP Dynamic\n\nThe previous section describes the idea using a general day-to-day operator 𝐻[·]. This section specifies 𝐻[·] as the particular NTP dynamic that admits DUE as a fixed point and analyzes its mathematical properties. The NTP dynamic’s behavioral explanation is identical to a link-based day-to-day model proposed in He et al. (2010): travelers seek to minimize their travel costs while exerting some efforts (or incurring costs) to deviate from incumbent routes. This explanation was also discovered by Tsakas and Voorneveld (2009) in the game theory literature in which the NTP dynamic was called the target projection dynamic. In addition, the NTP dynamic has a unified closed-form formula with the projected dynamical system when route flows only evolve in the interior of the feasible route flow set (Nagurney and Zhang, 1997; Guo et al., 2015; Xiao et al., 2016).\n\n9"
+  },
+  {
+    "id_": "e674b8cd-b207-4da9-adf8-4c7108896734",
+    "text": "In a discrete version, for every 𝑘-step traveler, the CH-NTP dynamic reads\n\n𝒙𝑘,(𝑡+1) − 𝒙𝑘,(𝑡) = 𝛼𝑃Ω𝑝𝑘h𝒙𝑘,(𝑡) − 𝛾𝒄𝝅𝑘,(𝑡+1)i − 𝒙𝑘,(𝑡), 𝑘 ∈ 𝐾, (9)\n\nwhere 𝑃Ω𝜂 [𝒛] is the projection operator that solves the optimization arg min𝒉∈Ω𝜂 ∥𝒉 − 𝒛∥2. The 𝜁 in (1) is now replaced by 𝛾(> 0), which captures the costs incurred by deviations from the incumbent routes. With a larger 𝛾, travelers have smaller inertia and are prone to switching.\n\nBased on the modeling framework in Section 2.3, the predicted flow pattern of each class 𝑘 ∈ {0, 1, 2} is given by:\n\n𝝅0,(𝑡+1) = ˜𝒙(𝑡), (10)\n\n𝝅1,(𝑡+1) = ˆ𝑃Ω1h𝒙(𝑡) − ˆ𝒄𝝅0,(𝑡+1)i𝛼 + (1 − ˆ) ˜𝛼 𝒙(𝑡), (11)\n\n𝝅2,(𝑡+1) = ˆ𝑃Ω𝑞20h𝑞2 𝒙(𝑡) − ˆ𝒄𝝅0,(𝑡+1)i + ˆ𝑃Ω𝑞21h𝑞2 𝒙(𝑡) − ˆ𝒄𝝅1,(𝑡+1)i + (1 − ˆ) ˜𝛼0˜𝛾𝛼1˜𝛾𝛼 𝒙(𝑡), (12)\n\nwhere the predicted parameter ˆ in (4) and (6) is replaced by ˆ 𝜁 𝛾 > 0. Eqs. (10)-(12) indicate that for each 𝑘, 𝝅𝑘,(𝑡+1) is a function of ˜𝒙(𝑡).\n\nThe following lemma introduces a fundamental property of the projection operator, which will be useful in the following analyses."
+  },
+  {
+    "id_": "70c62700-b180-4e3a-acbb-aa92c4e81ee0",
+    "text": "# Lemma 1. (Facchinei and Pang, 2007)\n\nLet 𝐶 be a nonempty and closed convex subset of ℛ𝑛. Then for any 𝒛 ∈ ℛ𝑛 and 𝒘 ∈ 𝐶,\n\n(𝑃𝐶 [𝒛] − 𝒛)T (𝒘 − 𝑃𝐶 [𝒛]) ≥ 0. (13)\n\nMoreover, 𝑃𝐶 [𝒛] is the only point in 𝐶 satisfying the above relation."
+  },
+  {
+    "id_": "c933bbd0-0c45-46a3-b078-a2fc0f4ae3ad",
+    "text": "# 3.1 Mixed prediction-based equilibria\n\nFixed points of the dynamical system (9)-(12) are termed as mixed prediction-based equilibria (MPE) and they are characterized in the following proposition."
+  },
+  {
+    "id_": "2b895e83-3356-4314-8bb4-4859692230ca",
+    "text": "# Proposition 1.\n\nWhen the route cost function 𝒄(𝒙) is continuous, the dynamical system (9)-(12) admits at least one MPE (i.e., one fixed point). Moreover, a vector 𝒙♢ ≡ (𝒙𝑘,♢, 𝒙𝑘,♢ ∈ Ω𝑝𝑘, 𝑘 = 0, 1, 2)T is an MPE if and only if the following variational inequality (VI) holds:\n\nÕ 𝝅𝑘,♢  ˜𝒙♢T 𝒙𝑘 − 𝒙𝑘,♢ ≥ 0, ∀𝒙 ≡ (𝒙0, 𝒙1, 𝒙2)T ∈ Ö 𝒄 Ω𝑝𝑘, (14)\n\n𝑘=0,1,2 𝑘=0,1,2"
+  },
+  {
+    "id_": "2aabd3bb-778f-4c36-9af1-c92ca7287c56",
+    "text": "where *𝝅k,♢ is a function of the aggregate flow pattern ˜𝒙♢ = ∑k 𝒙k,♢*, given by (10)-(12)."
+  },
+  {
+    "id_": "119706ae-f312-483a-92df-81ce7efb25b1",
+    "text": "# Proof.\n\nContinuity of the RHS of the dynamical system (9)-(12) is guaranteed by the continuities of the projection operator (Penot, 2005) and the route cost function. Hence, according to Brouwer’s Fixed Point Theorem, there exist at least one fixed point to the dynamical system.\n\nAccording to Lemma 1, any fixed point of dynamical system (9)-(12), denoted as *𝒙♢ ≡ (𝒙k,♢, 𝒙k,♢ ∈ Ωpk, 𝑘 = 0, 1, 2)*T, solves the following inequalities:\n\n*𝒙k,♢ = 𝑃Ωpkh𝒙k,♢ − 𝛾𝒄𝝅k,♢  ˜𝒙♢i &nbsp;&nbsp;&nbsp;&nbsp; ⇔ &nbsp;&nbsp;&nbsp;&nbsp; 𝛾𝒄𝝅k,♢  ˜𝒙♢T 𝒙k − 𝒙k,♢ ≥ 0, ∀𝒙k ∈ Ωpk, ∀𝑘*, (15)\n\nwhere *𝝅k,♢ is the predicted flow pattern under ˜𝒙♢ = ∑k 𝒙k,♢, given by (10)-(12). The right part of (15) is of a VI form and they can be combined since Ωpk (𝑘 ∈ 𝐾)* are disjoint from each other (Kinderlehrer and Stampacchia, 2000; Yang et al., 2007).\n\n□\n\nWe next define a |𝐾|-class DUE in Definition 1 (see also in Nagurney, 2000, and Zhou et al., 2020) and show that it is one of the MPE in Proposition 2."
+  },
+  {
+    "id_": "34de6724-f671-4b17-bd49-33e406cd4ca1",
+    "text": "# Definition 1.\n\n(Nagurney, 2000; Zhou et al., 2020) A route flow pattern *𝒙* ≡ (𝒙k,∗, 𝒙k,∗ ∈ Ωpk, 𝑘 ∈ 𝐾)*T is said to be a |𝐾|-class DUE if the following VI holds:\n\n*∑k ∈ 𝐾 𝒄k ( ˜𝒙*)T𝒙k − 𝒙k,∗ ≥ 0, ∀𝒙 ≡ (𝒙k, 𝑘 ∈ 𝐾)T ∈ ÖΩpk*, (16)\n\nwhere *˜𝒙* = ∑k 𝒙k,∗ and 𝒄k ( ˜𝒙*) is the experienced route cost vector of class 𝑘*.\n\nNote that the aggregate flow *˜𝒙* equals the classical DUE of a single class in the normal sense. The superscript 𝑘 can also be dropped from 𝒄k ( ˜𝒙*)* because all the travelers have the same experience on each route. In the remainder of the paper, the prefix “|𝐾|-class” will be omitted if the context allows."
+  },
+  {
+    "id_": "7308bf7e-297f-43e6-90b1-aea24034d254",
+    "text": "# Proposition 2.\n\nA |𝐾|(= 3)-class DUE in Definition 1 is an MPE of the dynamical system (9)-(12), but not vice versa.\n\nProof. We prove the sufficiency, and the necessity can be easily negated by a counter-example, as demonstrated in the numerical experiments (see Section 5.1)."
+  },
+  {
+    "id_": "a08931ea-fda6-442c-8291-4e5535050c82",
+    "text": "At the DUE, first note from (10) that 𝝅0,∗ equals the aggregate flow pattern, ˜𝒙∗. It is well-known that ˜𝒙∗ ∈ Ω1 of the classical single-class DUE satisfies the following VI:\n\n𝒄( ˜𝒙∗)T (𝒙 − ˜𝒙∗) ≥ 0, ∀𝒙 ∈ Ω1. (17)\n\nMultiplying (17) by − ˆ and adding ( ˜𝛾 𝒙∗)T (𝒙 − ˜𝒙∗) to both sides yields:\n\n( ˜𝒙∗ − ( ˜𝒙∗ − ˆ𝒄( ˜𝒙∗)))T (𝒙 − ˜𝒙∗) ≥ 0, ∀𝒙 ∈ Ω1. (18)\n\nwhich, by Lemma 1, implies that:\n\n𝒙∗ = 𝑃Ω1 [ ˜𝒙∗ − ˆ𝒄( ˜𝒙∗)]𝛾. (19)\n\nHence, according to (11), at the DUE, the predicted flow pattern of class-1 player, 𝝅1,∗ = ˜𝒙∗.\n\nIn fact, for any scaling factor 𝜂 > 0 and ˆ𝛾 > 0,\n\n𝑃Ω𝜂 [𝜂 ˜𝒙∗ − ˆ𝒄( ˜𝒙∗)] = arg min𝒚∈Ω𝜂 ∥𝒚 − 𝜂 ˜𝒙∗ + ˆ𝒄( ˜𝒙∗)∥2 = arg min𝒙 ∥𝒙 − 𝜂 ˜𝒙∗ + 𝜂 𝒙∗∥2. (20)\n\nApplying (20) to the definition of the 2-step travelers’ predicted cost in (12), we obtain that the predicted flow pattern of class-2 player, 𝝅2,∗ = ˜𝒙∗.\n\nSummarizing the above, the predicted flow patterns of all the three classes at DUE are exactly ˜𝒙∗, and thus (14) becomes (16). □"
+  },
+  {
+    "id_": "8d4ed3ec-b057-4dbe-98f9-41528663f758",
+    "text": "# 3.2 Local stability\n\nThe MPE’s non-uniqueness makes global stability analysis difficult, if not impossible, because we cannot construct a global convex Lyapunov function that decreases as time passes. We, therefore, turn to analyze its local stability. The definitions and theorems on local stability used in this paper are relegated to the Appendix A. In this subsection, we first give the Jacobian of the CH-NTP dynamic at the MPE and then analyze the stability near the DUE."
+  },
+  {
+    "id_": "2e42eb1c-4f58-42bf-a7ba-dbfd765017e4",
+    "text": "# 3.2.1 Jacobian matrix\n\nThe following lemma describes the property of the Jacobian matrix of a projection operator."
+  },
+  {
+    "id_": "714fe744-2942-4ce6-aa90-07f952b9b8a9",
+    "text": "# Lemma 2.\n\nFor a projection of a vector 𝒛 onto Ω𝜂 ≡ {𝒙|Γ𝒙 = 𝜂𝒅, 𝒙 ≥ 0}, its Jacobian is a diagonal block matrix:\n\n|𝑄[𝒛] =|<br/>𝑄𝑤=1[𝒛1]|0|\n|---|---|---|\n|.|.|\n|𝑄𝑤=|𝑊 |𝒛|𝑊 ||0|\n\nwith each block element 𝑄𝑤 [𝒛𝑤 ] being Diag(1𝑤 ) − |𝐸(𝒛𝑤 𝑤)|, where 1𝑤 is an indicator vector of size |𝑅𝑤 | whose 𝑟-th entry is 1 if 𝑟 ∈ 𝐸(𝒛𝑤 ) and 0 otherwise. 𝐸(𝒛𝑤 ) is the set of routes on 𝑤 that exhibit positive flow after applying the operator onto Ω𝜂𝑤 ≡ {𝒙|Γ𝑤 𝒙 = 𝜂𝑑𝑤 , 𝒙 ≥ 0}, where Γ𝑤 is the OD-incidence matrix of OD pair 𝑤. Each 𝑄𝑤 [𝒛𝑤 ] is positive semidefinite (PSD) whose eigenvalues are either 0 or 1. It is also idempotent; i.e., (𝑄𝑤 [𝒛𝑤 ])𝑛 = 𝑄𝑤 [𝒛𝑤 ], ∀𝑛 ∈ N = {1, 2, . . .}, ∀𝑤. Rank(𝑄𝑤 [𝒛𝑤 ]) = 𝑡𝑟(𝑄𝑤 [𝒛𝑤 ]) = |𝐸(𝒛𝑤 )| − 1. It has a repeated eigenvalue 1 with an algebraic and geometric multiplicity of both |𝐸(𝒛𝑤 )| − 1. Rank(𝑄𝑤 [𝒛𝑤 ] − 𝐼) = |𝑅𝑤 | − |𝐸(𝒛𝑤 )| + 1.\n\nIf the projected vector lies in the interior of Ω𝜂 𝑤, ∀𝑤 (i.e., all the route flows after projection are positive), 𝑄[𝒛] degrades to ¯ with each block of OD pair 𝑤 being ¯𝑤 = Diag(1𝑤 ) − |𝑅𝑤 𝑤| where 1𝑤 is an all-one vector of size |𝑅𝑤 |.\n\nProof. See Appendix B. □"
+  },
+  {
+    "id_": "9ee12f18-c571-4414-a463-e63536468235",
+    "text": "# Remark 1.\n\nThe algebraic and geometric multiplicities of 𝑄[𝒛] in Lemma 2 are used to identify the local stability (instead of local asymptotic stability) when the Jacobian matrix has eigenvalue(s) of 1; see the requirement of the Jordan block of order 1 in condition (ii) of Theorem A.1.\n\nWith Lemma 2, the Jacobian matrix for the CH-NTP dynamic can be derived as follows and used to examine the local stability at any MPE by checking its eigenvalues."
+  },
+  {
+    "id_": "62ac0443-62f5-4787-ae0f-cb94c64c3015",
+    "text": "# Fact 1.\n\nThe Jacobian matrix for the CH-NTP dynamic with |𝐾| = 3 is a 3-by-3 block matrix:\n\n|𝐽𝑃 =|<br/>𝐽𝑃0,0|𝐽𝑃0,1|𝐽𝑃0,2|\n|---|---|---|---|\n|𝐽𝑃1,0|𝐽𝑃1,1|𝐽𝑃1,2|\n|𝐽𝑃2,0|𝐽𝑃2,1|𝐽𝑃2,2|"
+  },
+  {
+    "id_": "7ef130eb-7fa4-4728-953b-9ff4310c70b5",
+    "text": "# where each block 𝐽𝑃𝑖,𝑗 is defined as follows.\n\n𝐽𝑃0,0 = 𝛼𝑄0 · (𝐼 − 𝛾𝐷0) + (1 − 𝛼)𝐼,\n\n𝐽𝑃0,𝑗≠0 = 𝛼𝑄0 · (−𝛾𝐷0),\n\n𝐽𝑃1,1 = 𝛼𝑄1 · (𝐼 − 𝛾𝐷1) + (1 − 𝛼)𝐼,\n\n𝐽𝑃1,𝑗≠1 = 𝛼𝑄1 · (−𝛾𝐷1),\n\n𝐽𝑃2,2 = 𝛼𝑄2 · (𝐼 − 𝛾𝐷2) + (1 − 𝛼)𝐼,\n\n𝐽𝑃2,𝑗≠2 = 𝛼𝑄2 · (−𝛾𝐷2),\n\nwhere 𝐷𝑘 ≡ 𝐷𝜋𝑘,(𝑡+1) representing the Jacobian of the route cost functions evaluated at 𝜋𝑘,(𝑡+1); 𝑄𝑘 ≡ h𝒙𝑘,(𝑡) − 𝛾𝒄𝝅𝑘,(𝑡+1)i; 𝐼 the identity matrix of size Íw |𝑅w; and 𝑄0 ≡ 𝑄h𝑞2 𝒙(𝑡) − ˆ𝒄𝝅0,(𝑡+1)i, 𝑄2\n\n𝑄1 ≡ 𝑄h𝑞2 𝒙(𝑡) − ˆ𝒄𝝅1,(𝑡+1)i, 𝑄2\n\nProof. The derivation is relegated to Appendix C.\n\nAs stated in Section 3.1, the strategic-reasoning behavior causes the original NTP dynamic to have multiple MPE, including those non-DUE ones. Local stability regarding all the MPE can be analyzed by the Jacobian in Fact 1."
+  },
+  {
+    "id_": "a0a064fc-2f8e-470f-a60b-ca75680071f6",
+    "text": "# 3.2.2 Stability around the DUE\n\nWe are particularly interested in how the travelers’ prediction behaviors would affect the stability near the DUE. Numerically, it is always tractable to calculate 𝐽𝑃’s eigenvalues at the DUE and check its local stability. However, general analytical insights on the parametric space may rely on certain assumptions. Recognizing this, we assume that as the day-to-day process evolves, the projection always yields a positive flow on each route. Under this assumption, the NTP dynamic reduces to a closed-form expression (Sandholm, 2010; Xiao et al., 2016). The 𝛼 and 𝛾 (and ˆ and ˆ) can be simply combined (specifically, multiplied) to represent the 𝛼 𝛾 sensitivity to the cost difference between two routes; see Appendix A in Xiao et al. (2016). We can therefore fix 𝛼 = ˆ = 1 and vary 𝛾 and ˆ while the behavioral explanation is not compromised.\n\nWe divide the discussion into two parts: (i) when higher-step travelers can exactly predict lower-step travelers’ switching tendency, i.e., ˆ = 𝛾; and (ii) when the prediction is inaccurate, i.e., ˆ ≠ 𝛾."
+  },
+  {
+    "id_": "b8c05e98-6a43-4ec1-a312-cc18c74073fa",
+    "text": "The following assumption is made on the route cost function when analyzing the stability around the DUE."
+  },
+  {
+    "id_": "ebedae5a-1a55-4d8b-968e-e54fcfecbcd2",
+    "text": "# Assumption 1.\n\nThe Jacobian of the route cost function 𝒄(𝒙) w.r.t. route flow pattern 𝒙 ∈ Ω1, denoted by 𝐷[𝒙], is symmetric and positive semidefinite.\n\nA widely-adopted case of Assumption 1 is when link travel time functions are separable, differentiable, increasing, and additive (i.e., the route travel time is equal to the sum of travel time on all links that constitute the route)."
+  },
+  {
+    "id_": "f3b5bfd7-a68c-41de-87e8-a6be3e47c0ee",
+    "text": "# 3.2.2.1 Perfect prediction 𝛾ˆ = 𝛾"
+  },
+  {
+    "id_": "75fc19de-4576-4869-8d34-205863b466c1",
+    "text": "# Proposition 3.\n\nFor a dynamical system (9)-(12) featuring any |𝐾| ∈ {1, 2, 3}, if the projection operator can always generate positive flow on each route (hence ˆ and 𝛼 can be set to 1) and ˆ = 𝛾, its DUE𝛼 under Assumption 1 is locally stable if all the moduli of the eigenvalues of matrix ¯(𝐼 − 𝛾𝐷∗) are less than 1, where 𝐷∗ is the Jacobian of the route cost function evaluated at the aggregate DUE, ˜𝒙∗, and 𝑄 is defined in Lemma 2."
+  },
+  {
+    "id_": "0a9d1231-c173-4387-909e-b91e62c0750c",
+    "text": "# Proof.\n\nSee Appendix D. □"
+  },
+  {
+    "id_": "48e0d1bb-0023-47ae-86d2-1ec2b05533ff",
+    "text": "# Remark 2.\n\nProposition 3 shows that conditions for ensuring local stability near the DUE are equivalent for any |𝐾| ∈ {1, 2, 3} when 𝛾ˆ = 𝛾. In other words, thinking multiple steps ahead does not affect the local stability at the DUE when higher-step travelers can exactly predict lower-step ones’ switching behavior. Moreover, the stability is independent of the distribution of heterogeneous travelers.\n\nThe difference between models with different |𝐾| is that (as we shall see in the numerical experiments) the instability condition of |𝐾| = 1 leads to a permanent oscillating pattern near the DUE (i.e., crossing the DUE infinitely many times) while for |𝐾| ≥ 2 it is more likely that the system will evolve to and stick at an MPE that is not DUE.\n\nThe following lemma describes the property of the stability criterion used in Proposition 3, 𝑄[𝒛](𝐼 − 𝛾𝐷[𝒙]), by relating it to the PSD matrix 𝑄[𝒛]𝐷[𝒙], where 𝑄[𝒛] and 𝐷[𝒙] are not necessarily equal to 𝑄¯ and 𝐷∗, respectively."
+  },
+  {
+    "id_": "0688fba1-82d2-4398-9d16-6a61df03d2ec",
+    "text": "# Lemma 3.\n\nUnder Assumption 1, for any given 𝒛 and 𝒙, denote 𝜇𝑖 as 𝑄[𝒛]𝐷[𝒙]’s 𝑖-th eigenvalue and 𝜇𝑖 ≥ 0, ∀𝑖. The corresponding eigenvalue of 𝑄[𝒛](𝐼 − 𝛾𝐷[𝒙]) is 1 − 𝛾𝜇𝑖 if 𝜇𝑖 ≠ 0. Therefore, as 𝛾 increases from 0 to ∞, the modulus of the 𝑖-th eigenvalue of 𝑄[𝒛](𝐼 − 𝛾𝐷[𝒙]), |1− 𝛾𝜇𝑖|, will first decrease"
+  },
+  {
+    "id_": "4748f273-d1cb-489e-9e2d-316e21f088f9",
+    "text": "# 3.2.2.2 Imperfect prediction when |𝐾| = 2\n\nThe consistency of stability conditions under different |𝐾| breaks down when 𝛾ˆ ≠ 𝛾. We first turn to analyze a simple toy network to get some intuitions. Consider an OD pair served by two routes with |𝐾| = 2. According to Proposition 2, at the DUE, 𝝅0,(𝑡+1) = 𝝅1,(𝑡+1) and thus the Jacobians of route cost function 𝐷1 = 𝐷0 = 𝐷∗. Without loss of generality, we assume 𝐷∗ = 𝑎 𝑏𝑏 𝑐 with 𝑎, 𝑏, 𝑐 > 0 and 𝑎𝑐 − 𝑏2 ≥ 0 (positive semidefiniteness in Assumption 1). Using the similar derivation in Proposition 3, we can obtain that 𝐽𝑃 with |𝐾| = 2 has four eigenvalues 0, 0, 1 and 1𝛾 ˆ(𝑎 − 2𝑏 + 𝑐)2 − 𝛾(𝑎 − 2𝑏 + 𝑐) + 1, with the last one being denoted as 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ). Note that the stability only depends on 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ) and that 𝑎 − 2𝑏 + 𝑐 ≥ 0 because 𝑎𝑐 − 𝑏2 ≥ 0.\n\nWe refer to stable/unstable region as region of 𝛾 and ˆ that makes the DUE stable/unstable (i.e., whether 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ) ∈ (−1, 1) holds or not).\n\nThe following observations can be made:\n\n- When 𝛾ˆ = 𝛾, −1 < 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, 𝛾) < 1 simplifies to 𝑎 − 2𝑏 + 𝑐 < 𝛾 ˆ 4.\n- When 𝛾 > 𝛾, the stable region is still 𝑎 − 2𝑏 + 𝑐 < ˆ 4. Compared to the case of 𝛾 = 𝛾, the size of the stable region is shrunk.\n- When 2 < ˆ𝛾 < 𝛾, the minimum point of 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ), 1 − ˆ 𝛾, is always > −1. Since the zero points of 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ) = 1 are 0 and ˆ 𝛾 4, respectively, the stable region becomes 𝑎 − 2𝑏 + 𝑐 < ˆ 4. Compared to the case of ˆ = 𝛾, the size of the stable region expands because ˆ𝛾 < 𝛾.\n- When ˆ𝛾 < 2, 𝛾 < 𝛾, 𝑓 (𝑎 − 2𝑏 + 𝑐; 𝛾, ˆ) = −1 will have two zero points. The stable region is separated. One region ranges from 0 to the first zero point, 2 ˆ − 2√𝛾(𝛾−2 ˆ), and the other ranges from the second zero point, 2 ˆ + 2𝛾 𝛾 ˆ𝛾 4. The combined size of these two regions is 𝛾4ˆ − 4√𝛾(𝛾−2 ˆ). By the inequality of arithmetic and geometric means and after algebraic simplification, we can see that 𝛾4ˆ − 4√𝛾(𝛾−2 ˆ) ≥ 𝛾 4. Hence, the total size of the two separated regions is increased.\n\nProof. See Appendix E.\n\n□"
+  },
+  {
+    "id_": "cbd0fae8-86b1-4962-9a3a-918558bba7d8",
+    "text": "# 4 Validation Using a Virtual Experiment\n\nYe et al. (2018) conducted an online route choice experiment to mimic travelers’ decision-making processes from day to day. The experiment collected 268 participants’ route choices on 26 rounds, where each round corresponded to a true calendar day. It was conducted on the well-known Braess paradox network (Figure 1) with one OD pair served by three routes: Route 1 as 1 → 3 → 5; Route 2 as 2 → 5 → 3; and Route 3 as 2 → 4. The travel time on each link1 + 0.15 𝑣𝑎4, with parameters 𝑎 ∈ 𝐿 was given by the well-known BPR function: 𝑡𝑎(𝑣𝑎) = 𝑡𝑎0 + 𝑎𝑣𝑎, marked in the figure in order as (𝑎, 𝑡𝑎0, 𝑉), where 𝑡𝑎 is the free-flow travel time and 𝑉𝑎 the capacity. The observed route flow (i.e., how many participants selected that route) on each day is visualized in Figure 2 with the days indexed from 0 to 25. Note the large oscillations in the trajectories in Figure 2. Readers can refer to Ye et al. (2018) for more details of the experiment."
+  },
+  {
+    "id_": "07476df7-aa0a-4180-9e47-a9819fe3b2e0",
+    "text": "# 4.1 Difficulty of prevailing models without prediction in reproducing the observed pattern\n\nA natural way of calibrating a day-to-day dynamical model is to find the optimal parameters that minimize the sum of squared error between simulated and observed flow evolution trajectories. In doing so, Ye et al. (2018) found that the prevailing day-to-day models could not produce fluctuated trajectories fitting the experimental data; see Figure 3 of that paper. (Due to the intractability of the above “simulation-based” method, they had to turn to a relaxed problem using regression analysis.) Below we give an explanation of the prevailing models’ difficulties.\n\nTo explain, we plot the net flow of three routes on each day 𝑡 in Figure 3. We use different colors and shapes to mark different routes ranked by the travel cost on the day 𝑡 − 1: green square points for the shortest route, yellow triangular points for the second-shortest route, and red circular points for the longest route.\n\nFirst note that for day 𝑡 ∈ [1, 16], the longest route on the day 𝑡 − 1 would by-and-large out-flow to the other two routes on the day 𝑡. This observation is in line with most day-to-day models’ assumption that travelers would select the routes with lower costs. However, there was no distinction between the shortest and the second-shortest routes. On quite a few days (i.e., 1, 3, 8, 9, 10, and 13), the previous day’s second-shortest route received more inflow than the shortest route. This indiscrimination between the shortest and the second-shortest routes contradicted the best-response-based day-to-day models’ underlying hypothesis that the shortest route would be the most popular (e.g., Friesz et al., 1994; He et al., 2010; Xiao et al., 2016). We argue that this indiscrimination was a consequence of strategic thinking."
+  },
+  {
+    "id_": "79a824f6-3c59-4a26-9fff-59307a2c9e95",
+    "text": "# Figure 3: Net flow on day 𝑡 for the three routes sorted by travel cost on day 𝑡 − 1 in the virtual experiment.\n\n| |inflow / outflow on day t|\n|---|---|\n| |40|\n| |20|\n| |0|\n| |−20|\n| |−40|"
+  },
+  {
+    "id_": "04c6600f-faad-4e38-919b-68ce7db0cb90",
+    "text": "# 4.2 Calibrations of the CH-NTP dynamic\n\nA 1-step traveler might think that other travelers would go for the shortest route of the day 𝑡 − 1 and thus avoided switching to that route on the day 𝑡. As a result, the second-best route becomes her preference.\n\nFor day 𝑡 ∈ [17, 25], a keen-eyed reader may find that travelers’ preferences seem to become independent of yesterday’s route flow pattern. For example, the net in- and out-flows of the three routes on day 18 are 0, regardless that the DUE had not been achieved. We conjecture that the participants learned after 18 days’ experience that the occurrence of the shortest route was highly non-predictable and hence used a uniformly-random mixed strategy to respond. (We learned this phenomenon from conversations with some participants in the final days.)\n\nCalibration results of our proposed hierarchical model confirm the above discussions, which are presented in the sub-sections to follow.\n\nTo minimize the number of parameters, we consider special cases with perfect prediction (i.e., 𝛾ˆ = 𝛾) and 𝛼 = 𝛼 = 1. By doing so, we intend to demonstrate our model’s general explanation capability rather than “overfit” data using more parameters. (Relaxing these constraints will further reduce the fitting errors.) The 0-step model is exactly the so-called XYY dynamics used."
+  },
+  {
+    "id_": "ae3e4af9-6d3c-4663-97a0-3a187ae8514c",
+    "text": "# 4.2.1 Preparations\n\nWe conducted calibration by minimizing the root mean square error (RMSE) between the predicted flows and the ground truth:\n\nRMSE =\n√(Σt=1M(𝑥(𝑡) − ¯𝑟(𝑡))2) / 3𝑀\n\nwhere 𝑀 is the number of days (i.e., days 1 to 𝑀) used for calibration, ˆ𝑟𝑥(𝑡) is the model-predicted aggregate flow on route 𝑟 of day 𝑡, and ¯𝑟𝑥(𝑡) is the observed flow. The RMSE function may be highly non-linear. To avoid being trapped in local optima, we performed a grid search over the parametric space with 𝛾 varying from 0.01 to 1.0 with step 0.002, 𝑝0 and 𝑝1 ranging from 0.01 to 1.0 with step 0.01. For models with |𝐾| ≥ 2, given all the parameters, the initial route flow pattern (on day 0) was chosen such that the predicted aggregate route flow pattern on day 1 was closest to the observed one in terms of RMSE.\n\nFor each CH-NTP dynamic with different |𝐾|, the optimal parameters that minimize the RMSE function (23) are used to calculate log-likelihoods and perform likelihood ratio tests. The log-likelihood function is derived as follows.\n\nDenote 𝑔𝑘𝑟𝑙𝑗,(𝑡) as the probability of a traveler 𝑙 from class 𝑘 choosing route 𝑗 on day 𝑡. Then the final total predicted probability, 𝐺(𝑡)(𝑟𝑙𝑗), is an aggregation of all thinking steps weighted by the proportions; i.e., 𝐺(𝑡)(𝑟𝑙𝑗) = Σ𝑘 𝑝𝑘 𝑔𝑘𝑟𝑙𝑗,(𝑡). Finally, we can form a log-likelihood function by combining all the travelers on all the routes and days:\n\nLL = Σt=1M Σl=1 Σj=1 𝑖𝑗,(𝑡)· ln𝐺(𝑡)(𝑟𝑖𝑗)"
+  },
+  {
+    "id_": "8f12feeb-1bbd-40a5-9929-11821082f9fa",
+    "text": "# Aggregate Route Flow"
+  },
+  {
+    "id_": "0b5c45db-4180-4f00-81de-d76c6a580faf",
+    "text": "# Flow Comparisons\n\n| |0|2|4|6|8|\n|---|---|---|---|---|---|\n|Day (a) the first 9 days|100|90|80|70|60|\n| |50|40|30|20|10|\n|Day (b) the first 16 days|100|90|80|70|60|\n| |50|40|30|20|10|\n|Day (c) all the 25 days|100|90|80|70|60|\n\nFigure 4: Comparisons between the calibrated and ground-truth flow evolutions of Route 1.\n\nwhere 𝐼𝑙𝑗,(𝑡) is the indicator function being 1 if traveler 𝑙 chooses route 𝑗 on day 𝑡 and 0 otherwise."
+  },
+  {
+    "id_": "74a53fdb-de73-470e-a84c-d90725eabb93",
+    "text": "# 4.2.2 Results\n\nThe simulated flow evolutions of Route 1 with the parameters that minimized the RMSE are presented in Figures 4a-c for 𝑀 = 9, 16, and 25, respectively. (The other two routes exhibit similar results and hence are omitted to conserve space.) The likelihood ratio test is reported in Table 1 with the optimal parameters.\n\nFirst note that in all the figures, the nonhierarchical model with |𝐾| = 1, i.e., the conventional NTP dynamic, fails to produce a significant fluctuation pattern fitting the ground-truth trajectory; see the dotted curves. This result is in agreement with Ye et al. (2018). The corresponding flow trajectories for 𝑀 = 9, 16, and 25 are identical and the optimal 𝛾 = 0.358.\n\nFurther note that we have previously implemented a multi-class day-to-day model where"
+  },
+  {
+    "id_": "2471dfc9-3e5c-45e1-8300-861ccd8da446",
+    "text": "# Table 1: Calibration results of the CH-NTP dynamic\n\n|Number of days|9|9|9|16|16|16|25|25|25| | | | | | | |\n|---|---|---|---|---|---|---|---|---|---|---|\n|CH-NTP dynamic with |𝐾| =|1|2|3|1|2|3|1|2|3| |\n|Maximum log-likelihood|-2646.2|-2631.3|-2618.8|-4706.1|-4693.8|-4680.2|-7356.0|-7344.3|-7334.4| |\n|Estimated log-likelihood♢★|-2604.0|-4652.6|-7297.7| | | | | | | |\n|Likelihood Ratio Test|-|29.8|52.8|-|24.5|51.7|-|23.3|43.0| |\n|𝑝-value|-|4.77-e8|1e-12|-|7.58-e7|6e-12|-|1.35e-6|4.62e-10| |\n|Parameters|𝑝1𝛾0|0.358-|0.7080.88|0.5220.37|0.358-|0.5700.94|0.5080.31|0.358-|0.5660.90|0.4920.31|\n| |𝑝|-|-|0.23|-|-|0.05|-|-|0.05|\n\n♢ Estimated log-likelihood using the optimal parameters that minimized RMSE function (23).\n\n★ The maximum that the Log-likelihood function can achieve, i.e., the entropy of the ground-truth route choice distribution.\n\nEach class is associated with a distinct sensitivity parameter (Zhou et al., 2020). Despite increasing the number of classes to three, this multi-class model still fails to reproduce the observed fluctuation pattern. In fact, the calibrated flow evolution from this model closely resembles the pattern seen in the |𝐾| = 1 case (illustrated by the red dotted curve in Figures 4a-c). This outcome strongly suggests that our improved fitting performance is not merely a result of additional parameters, but rather stems from the enhanced explanatory capability of our proposed model.\n\nHappily, significant fluctuation patterns emerge when some travelers think one step further, as revealed by the yellow dash-dotted curves. The fitting error decreases as a consequence. Note in Figures 4b and c how the predicted curves faithfully capture the ground-truth trend from day 5 to 16. This is also confirmed by observing that the hierarchical model of |𝐾| = 2 improves the log-likelihood by 24.5 and 23.3 for 𝑀 = 16 and 25, respectively. Moreover, the hierarchical model with |𝐾| = 3 almost doubles the log-likelihood improvement and exhibits better fitting performance from the very first day until day 16. All the improvements are statistically significant under the likelihood ratio test with the 𝑝-value less than 0.0002%.\n\nFitting performance is less satisfying for days 17-25, as shown by the trailing edges of the curves in Figure 4c. A possible reason is that as the experiment proceeded, the participants found themselves gaining little by predicting the population’s behaviors and thus exhibited somehow uniformly-random behaviors in the last eight days (see the explanations on this matter in Section 4.1). Our time-invariant parameters cannot capture such a pattern."
+  },
+  {
+    "id_": "e07288b4-8bca-49a4-8eb6-a36b791dec27",
+    "text": "# flow of route 25"
+  },
+  {
+    "id_": "fcb60325-9ed7-42f9-ac35-8e198182d5df",
+    "text": "# Numerical Experiments\n\nIn this section, we conduct numerical experiments to verify the previous sections’ theoretical results and highlight some features not captured by the theoretical analysis."
+  },
+  {
+    "id_": "2308a3c8-eb26-46f7-8dc5-416bc5e76cc2",
+    "text": "# 5.1 Evolutions towards multiple equilibria\n\nWe examine how the strategic-reasoning behavior leads the system to multiple equilibria. We use the Braess network in the virtual experiment as our first example. At the DUE, the aggregate route flow pattern is (89.33, 89.33, 89.33)T. We set p0 = p1 = 0.5 (|K| = 2), ˆ = α = 0.3, ˆ = γ.α. Figures 5a and b depict the evolution trajectories in terms of aggregate route flow on each route, starting from different initial points (distinguished by different colors) for γ = 1.4 and 0.2, respectively. (Plotting two routes is sufficient as the degree of freedom is only two due to the flow conservation constraint.) At the initial point, all the routes share the same p0 and p1.\n\n| |non-DUE MPE|DUE|\n|---|---|---|\n|initial point|250|250|\n| |200|200|\n| |150|150|\n| |100|100|\n| |50|50|\n| |0|0|\n|flow of route 1|0|0|\n| |50|50|\n| |100|100|\n| |150|150|\n| |200|200|\n| |250|250|\n\n(a) γ = 1.4\n\n(b) γ = 0.2\n\nFigure 5: Evolutions of route flows starting from different initial route flow patterns under different γ = ˆ for |K| = 2. p0 = p1 = 0.5, ˆ = α = 0.3.\n\nFirst note in Figure 5a how different initial points result in different evolution trajectories and steady states under a large γ. It is interesting to see that two initial points close to each other can evolve to totally different equilibrium points, as shown by the two trajectories starting in the middle. This kind of multiple-equilibria phenomenon is rooted in travelers’ strategic-thinking behaviors rather than the asymmetry of the travel cost functions previously studied in the literature (see, e.g., Watling, 1996; Bie and Lo, 2010; Han et al., 2017). We believe this system feature would enrich behavioral explanation capability.\n\nThings change a lot when γ is small. With a small γ, travelers are reluctant to switch to\n\n23"
+  },
+  {
+    "id_": "f24e5315-61f1-43d3-8bad-d0d9df6c60cb",
+    "text": "# 5.2 Local stability near the DUE\n\nWe next test stability conditions on a larger network used in Zhang et al. (2015); see Figure 6. It contains 8 routes that connect two OD-pairs with demand (90, 90)T: Route 1 as 1 → 9 → 14; Route 2 as 1 → 5 → 10; Route 3 as 2 → 6 → 10; Route 4 as 2 → 11 → 15; Route 5 as 3 → 11 → 16; Route 6 as 3 → 7 → 12; Route 7 as 4 → 8 → 12; and Route 8 as 4 → 13 → 17. Link travel times are again given by the well-known BPR function with link numbers, free-flow travel times, and capacities marked in the figure in order as (𝑎, 𝑡a 0, 𝑉a). The aggregate DUE is (20, 20, 25, 25, 25, 25, 20, 20)T."
+  },
+  {
+    "id_": "dacd9ab7-bc9b-47e3-bf4e-54a341ff3cbb",
+    "text": "# 5.2.1 In the interior of the feasible route flow set\n\nWe first assess Proposition 3 where predictions can be perfectly made, and the projection operators yield positive flows on all the routes. Since we focus on the local stability, the initial aggregate route flow pattern in the following experiments is slightly perturbed from the DUE. We set 𝑝0 = 0.4, 𝑝1 = 0.6 for all the routes at the initial point, ˆ = 𝛼 = 1.0 and ˆ = 𝛾. We calculate that ¯ ≈ 0.79 in Lemma 3. According to Proposition 3 and Lemma 3, the equilibrium is stable when 𝛾 < ¯ and unstable when 𝛾 > ¯. Figures 7a and b plot two selected routes’ flow trajectories for 𝛾 = 0.78 and 0.8, respectively. It is expected that for both |𝐾| = 1 and 2, a smaller 𝛾(= 0.78) eliminates the small initial perturbations while a larger 𝛾(= 0.8) renders the"
+  },
+  {
+    "id_": "ac571e2e-166e-4f5f-8f22-c35a3f1db741",
+    "text": "# Flow Evolutions of the CH-NTP Dynamic"
+  },
+  {
+    "id_": "5c3e8264-2707-483d-932c-feeadc20580c",
+    "text": "# Figure 7: Flow evolutions of the CH-NTP dynamic with |𝐾| ∈ {1, 2} under different 𝛾.\n\n| ||K| = 1, Route 1||K| = 1, Route 3||K| = 2, Route 1||K| = 2, Route 3|\n|---|---|---|---|---|\n|0| | | | |\n|20| | | | |\n|40| | | | |\n|60| | | | |\n|80| | | | |\n|100| | | | |"
+  },
+  {
+    "id_": "11b110b4-102e-4c14-be49-3307911b2594",
+    "text": "# (a) 𝛾 = 0.78"
+  },
+  {
+    "id_": "da01429f-b102-427e-a3d6-c5bd84b7bfa6",
+    "text": "# (b) 𝛾 = 0.8"
+  },
+  {
+    "id_": "40a32cc8-2cc7-407c-ab0c-44a8a1f3cde2",
+    "text": "# Verification of Proposition 4\n\nWe now verify Proposition 4 where predictions are inaccurate. All the parameters and initial flow patterns are the same as the above case except for the values of 𝛾 and ˆ. Figure 8𝛾 depicts whether or not the system deviates from the DUE after a small perturbation for various combinations of 𝛾 and ˆ in a resolution of 0.05, where solid circles and crosses denote stable and unstable systems, respectively. The points on the 45◦ solid curve represent the case of 𝛾ˆ = 𝛾 (perfect prediction), and the solid curve lying beneath represents the case of ˆ = 2 𝛾. The approximate ¯ = 0.79 by Lemma 3 is also marked.\n\nFirst note the green shaded area where a moderately small 𝛾ˆ, 2 < 𝛾 < 𝛾 < 𝛾, helps stabilize the dynamic even when 𝛾 exceeds 𝛾¯. This justifies the finding in Proposition 4 that, a mild under-prediction enlarges the stable region. In contrast, when ˆ is very small (i.e., < 2 𝛾), the stable region is separated into two pieces. The eigenvalues of ¯𝑄𝐷∗ that previously satisfy the stability condition when ˆ = 𝛾 < ¯ fall into the unstable region due to the separation when 𝛾 < 2 ˆ 𝛾; see the red shaded area. In addition, as expected in Remark 3, a ˆ𝛾 > ¯ will make the system permanently unstable, regardless of 𝛾; see all the crosses above the horizontal line of 𝛾¯ = 0.79. Finally, for this particular numerical case, although the stable region size is reduced when over-predictions occur (𝛾 < ˆ𝛾 < ¯), The eigenvalues of 𝑄𝐷∗ still satisfy the stability condition in Proposition 4 and thus the points above the curve ˆ = 𝛾 are stable."
+  },
+  {
+    "id_": "817fe6dd-95bc-41c7-ad2c-c5bca6601e10",
+    "text": "# 1.0\n\nγ = γ\n\nγ = 0.79\n\n0.8\n\n0.6\n\nγ = γ\n\n0.4\n\ncompared to the case of γ = γ, stability is “recovered” by a moderate under-prediction, i.e., \" !< 𝛾 < γ < 𝛾\n\n0.2\n\n0.0\n\n0.0                0.2                0.4               0.6                0.8                1.0              γ\n\nγ = 0.79\n\ncompared to the case of γ = γ, stability is “cracked’’ by a severe under-prediction, i.e., 𝛾 < \"\n\nFigure 8: Stable and unstable regions w.r.t. combinations of 𝛾 and 𝛾ˆ for the CH-NTP dynamic with |𝐾| = 2, 𝑝0 = 0.4, 𝑝1 = 0.6."
+  },
+  {
+    "id_": "6ca6858b-2edb-4e69-ac99-e40638e9c280",
+    "text": "# 5.2.2 On the boundary of the feasible route flow set\n\nProposition 3 becomes invalid when the projected flow pattern is on the boundary of the feasible set. Under this circumstance, the general analytical results are invalid, and we have to resort to Fact 1 for numerically checking the stability. To test this fact, we set |𝐾| = 2, ˆ = 𝛼 = 0.5, 𝛼 γˆ = γ ∈ {0.81, 0.82}, 𝑝0 = 0.4, 𝑝1 = 0.6 and the initial route flow pattern as 𝒙𝑘=0,(𝑡)=0 = (0, 7.999, 10, 18, 9.98, 10.01, 8.01, 8.01)𝑇 and 𝒙𝑘=1,(𝑡)=0 = (20, 11.99, 15, 7, 14.98, 15.01, 12.01, 12.01)𝑇, such that 𝐽𝑃0,0 in Fact 1 is evaluated on the boundary. From Fact 1, we have that the maximum moduli of 𝐽𝑃 of |𝐾| = 2 for 𝛾 = 0.81 and 0.82 are 1 and 1.013, respectively. It is expected that the former is stable while the latter is unstable, as shown in Figure 9. The case of |𝐾| = 3 is also consistent with the numerical result of Fact 1, which is omitted here for simplicity.\n\n26"
+  },
+  {
+    "id_": "4ea85e71-ebac-4065-bfae-5504f23b1fd0",
+    "text": "# 15"
+  },
+  {
+    "id_": "84e43bff-67ac-447b-8f9e-3e710fc21c52",
+    "text": "# 14"
+  },
+  {
+    "id_": "3565990c-1f9b-438c-8cbe-fa9996044153",
+    "text": "# 13\n\nˆγ = γ = 0.81, Step-0\n\nˆγ = γ = 0.81, Step-1 flow of route 3 ˆγ = γ = 0.82, Step-0\n\nˆγ = γ = 0.82, Step-1"
+  },
+  {
+    "id_": "4130341e-0de0-429a-8b0d-5df9fdee3f39",
+    "text": "# 12"
+  },
+  {
+    "id_": "948823d1-e963-480e-a269-e05122273da2",
+    "text": "# 11"
+  },
+  {
+    "id_": "52cae8ff-fb63-4809-be0f-7f0231bb7559",
+    "text": "# 10\n\n0 50 100 150 200 250 300\n\nday\n\nFigure 9: Validation of Fact 1 for |𝐾| = 2 when any projected flow is on the boundary of the feasible set."
+  },
+  {
+    "id_": "c8e9ed49-f1dc-43c8-a0fb-e8bf1188d359",
+    "text": "# 6 CH-Logit Dynamic\n\nIf the day-to-day operator 𝐻[·] is replaced by a “stochastic” Logit dynamic (Fudenberg and Levine, 1998; Sandholm, 2010; Xiao et al., 2019), we have the following CH-Logit dynamic:\n\n𝒙𝑘,(𝑡+1) − 𝒙𝑘,(𝑡) = 𝛼𝑝𝑘 Φ𝜃h𝒄𝝅𝑘,(𝑡+1)i − 𝒙𝑘,(𝑡), (25)\n\nwhere Φ𝜃[𝒛] ≡ 𝑑𝑤 Φ𝜃[𝒛𝑤 ], 𝑤 ∈ 𝑊 𝑇 , Φ𝑤 𝑤 and 𝜃 is a dispersal parameter capturing travelers’ perception errors. For each 𝑤 ∈ 𝑊, as 𝜃 → 0, choices become equiprobable among all the routes in 𝑅𝑤 and as 𝜃 → ∞, choices become extremely concentrated on the least cost route of 𝑅𝑤. Note that for the Logit dynamic, the flow variable (i.e., the first variable) in 𝒚[·] of (1) is not explicitly required.\n\nBased on the CH modeling idea in Section 2.3, the predicted flow pattern of each class 𝑘 ∈ {0, 1, 2} is given by:\n\n𝜃[𝒛𝑤 ] ≡ (𝑑𝑤 𝜑𝑟𝑤 (𝒛𝑤 ), 𝑟 ∈ 𝑅𝑤 )𝑇 , 𝜑𝑟𝑤 (𝒛𝑤 ) =\n\n𝝅0,(𝑡+1) = ˜𝒙(𝑡), (26)\n\n𝝅1,(𝑡+1) = ˆΦ 𝜃𝛼 ˆh𝒄𝝅0,(𝑡+1)i + (1 − ˆ) ˜𝛼 𝒙(𝑡), (27)\n\n𝝅2,(𝑡+1) = ˆ𝑞20Φ 𝜃ˆh𝒄𝝅0,(𝑡+1)i𝛼 + ˆ𝑞2𝛼 1Φ 𝜃ˆh𝒄𝝅1,(𝑡+1)i + (1 − ˆ) ˜𝛼 𝒙(𝑡). (28)\n\nA significantly large 𝜃ˆ can be interpreted as a scenario where higher-step travelers anticipate that lower-step travelers will strongly favor yesterday’s shortest path. This situation closely"
+  },
+  {
+    "id_": "c22d57ad-a912-4203-86bc-85ad8161faff",
+    "text": "# 27"
+  },
+  {
+    "id_": "9f772790-7459-4edc-80a7-312e86faefad",
+    "text": "# 6.1 Mixed prediction-based stochastic equilibria\n\nSimilar to the case of the CH-NTP dynamic, we term fixed points of the CH-Logit dynamic (25)-(28) as mixed prediction-based stochastic equilibria (MPSE) and describe them in the following proposition."
+  },
+  {
+    "id_": "fbd8ef3d-8ff8-4f09-8b9f-83f8f8ad4688",
+    "text": "# Proposition 5.\n\nWhen the route cost function 𝒄(𝒙) is continuous, the dynamical system (25)-(28) admits at least one MPSE (i.e., one fixed point). Moreover, a vector 𝒙◦ ≡ (𝒙𝑘,◦ , 𝑘 = 0, 1, 2)𝑇 is an MPSE if ∀𝑟 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊 , 𝑘 ∈ 𝐾,\n\nexp−𝜃𝜋𝑟𝑤 ( ˜◦)𝑘    𝒙\n\n𝑥𝑟𝑤 𝑘,◦= 𝑝𝑘 𝑑𝑤Í𝑠∈𝑅𝑤 exp−𝜃𝜋𝑠𝑤 ( ˜𝑘                     𝒙◦),\n\nwhere 𝝅𝑘,◦ ≡ (𝜋𝑠𝑤 , 𝑠 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊)𝑇 is a function of the aggregate flow pattern ˜𝑘 𝒙◦ = Í𝑘 𝒙𝑘,◦, dictated by (26)-(28)."
+  },
+  {
+    "id_": "991476be-935c-4cc1-899d-8557b7184288",
+    "text": "# Proof.\n\nThe existence of a fixed point is guaranteed by the continuities of the closed-form Logit operator and the route cost function. Setting the RHS of (25) to be 0 and rearranging the results yields (29). □\n\nWe now give the definition of a |𝐾|-class SUE in Definition 2 and show that it is one of the MPSE in Proposition 6 when 𝜃ˆ = 𝜃."
+  },
+  {
+    "id_": "b6ac65ad-7b43-417c-944c-5c315984ff67",
+    "text": "# Definition 2.\n\nA route flow pattern 𝒙★ ≡ (𝒙𝑘,★, 𝒙𝑘,★ ∈ Ω𝑝𝑘 , 𝑘 ∈ 𝐾)𝑇 is said to be a |𝐾|-class SUE parameterized by 𝜃 if ∀𝑟 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊 , 𝑘 ∈ 𝐾,\n\n𝑘,★= 𝑝𝑘 𝑑𝑤Í𝑠∈𝑅𝑤 exp−𝜃𝑐𝑠𝑤 ( ˜exp−𝜃𝑐𝑟𝑤 ( ˜★)𝑘  𝒙\n\n𝑥𝑟𝑤                                                            𝑘  𝒙★),\n\nwhere ˜𝒙★ = Í𝑘 𝒙𝑘,★."
+  },
+  {
+    "id_": "da15792b-6538-4c11-8192-104ec8298a77",
+    "text": "# Proposition 6.\n\nWhen 𝜃ˆ = 𝜃, a |𝐾|(= 3)-class SUE in Definition 2 parameterized by 𝜃 is an MPSE (i.e., a fixed point) of the dynamical system (25)-(28), but not vice versa."
+  },
+  {
+    "id_": "7b2a395e-753c-4993-a6bf-13c5b0a27f23",
+    "text": "# Proof.\n\nAt the SUE, first note from (26) that 𝝅0,★ = ˜𝒙★. Thus, for each 𝑟 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊, a 1-step"
+  },
+  {
+    "id_": "6ffc3184-29a3-4f64-ad75-5bd8854f837a",
+    "text": "# Traveler’s Predicted Flow\n\nThe traveler’s predicted flow (27) is:\n\n1,★ = ˆ𝑞1 0𝑑𝑤Í𝑠∈𝑅𝑤 exp−𝜃𝑐𝑠𝑤 ( ˜exp−𝜃𝑐𝑟𝑤 ( ˜★)𝑘𝒙 𝒙★) + (1 − ˆ)𝑞1 𝑥★0˜𝑟𝑤 = ˆ ˜𝑟𝑤 + (1 − ˆ) ˜𝑟𝑤 = ˜𝑟𝑤 .𝛼𝑥★ 𝑥★ 𝑥★\n\n𝜋𝑟𝑤 𝛼 𝑘 𝛼 𝛼 (31)\n\nWhere the second equality is due to Definition 2. Accordingly, for each 𝑟 ∈ 𝑅𝑤 , 𝑤 ∈ 𝑊, a 2-step traveler’s predicted flow (28) at the SUE is:\n\nexp(−𝜃𝑐𝑟𝑤 ( ˜★))𝑘 𝒙\n\n𝜋𝑟𝑤2,★ = ˆ(𝑞2 𝛼 0+ 𝑞21)𝑑𝑤Í𝑠∈𝑅𝑤 exp(−𝜃𝑐𝑠𝑤 ( ˜★)) + (1 − ˆ) ˜𝑟𝑤 = ˜𝑟𝑤 .𝑘 𝛼 𝑥★ 𝑥★ (32)\n\nSubstituting the above predicted costs, ˜𝒙★, into (25) and by Definition 2, (25) becomes 0. Hence, the SUE is an MPSE.\n\nSimilar to the CH-NTP dynamic, there exist some MPSE that are not SUE when |𝐾| ≥ 2. We can easily construct a counter-example demonstrating their existence (similar to Figure 5a) to negate the necessity. This example is omitted to conserve space. □"
+  },
+  {
+    "id_": "8298c230-84c2-4e32-91cb-5bb5a4421b1e",
+    "text": "# 6.2 Local Stability\n\nDue to the existence of multiple equilibria, this section investigates the CH-Logit dynamic’s local stability. We first give the Jacobian of the CH-Logit dynamic at the MPSE and then analyze the stability near the SUE."
+  },
+  {
+    "id_": "6fbf4728-7038-45fc-8f18-106ee70d591a",
+    "text": "# 6.2.1 Jacobian Matrix\n\nLemma 4. The Jacobian matrix of the Logit operator parameterized by 𝜃 evaluated at a cost vector 𝒄, Υ𝜃[𝒄], is a block diagonal matrix:\n\n|Υ𝑤=1[𝒄𝑤=1]|𝜃|0|\n|---|---|---|\n|. . .| | |\n|Υ𝜃=|𝑊 | [𝒄𝑤=|𝑊 | ]|0|𝑤|\n\nWhere Υ𝑤 𝜃[𝒄𝑤 ] = −𝜃𝑑𝑤DiagΦ𝑤 𝜃[𝒄𝑤 ] − Φ𝑤 𝜃[𝒄𝑤 ]Φ𝑤 𝜃[𝒄𝑤 ]𝑇. Moreover, given any 𝒄 ≡ (𝒄𝑤 , 𝑤 ∈ 𝑊)𝑇, each Υ𝑤 𝜃[𝒄𝑤 ] is negative semidefinite (NSD), and so is Υ𝜃[𝒄].\n\nProof. The result for a single 𝑤 can be obtained from Gao and Pavel (2017) after flipping the positive sign due to the negative utility of travel cost. The independence of routes from different\n\n29"
+  },
+  {
+    "id_": "aeee2b67-e6ce-4bc5-b567-f9ce7ad08996",
+    "text": "OD pairs makes the non-diagonal blocks zero. Υ𝜃[𝒄] is NSD because a block diagonal matrix is NSD if and only if each diagonal block is NSD.\n\nWith Lemma 4, the Jacobian matrix of Logit dynamic is derived in the following fact."
+  },
+  {
+    "id_": "39d2c192-29e2-427b-812d-77f434a8de50",
+    "text": "# Fact 2.\n\nThe Jacobian matrix for the CH-Logit dynamic with |𝐾| = 3 is a 3-by-3 block matrix:\n\n|𝐽Φ0,0|𝐽Φ0,1|𝐽Φ0,2|\n|---|---|---|\n|𝐽Φ1,0|𝐽Φ1,1|𝐽Φ1,2|\n|𝐽Φ2,0|𝐽Φ2,1|𝐽Φ2,2|\n\nwhere each block 𝐽Φ𝑖,𝑗 is defined as follows.\n\n𝐽Φ0,0 = 𝛼𝑝 0Υ𝑘=0𝐷0 + (1 − 𝛼)𝐼,𝜃\n\n𝐽Φ0,𝑗≠0 = 𝛼𝑝 0Υ𝑘=0𝐷0 ,𝜃\n\n𝐽Φ1,1 = 𝛼𝑝 1Υ𝑘=1𝐷1𝛼𝜃 ˆΥ 𝑘=0𝐷0 + (1 − ˆ)𝐼𝜃ˆ 𝛼 + (1 − 𝛼)𝐼,\n\n𝐽Φ1,𝑗≠1 = 𝛼𝑝 1Υ𝑘=1𝐷1𝛼𝜃 ˆΥ 𝑘=0𝐷0 + (1 − ˆ)𝐼𝜃ˆ 𝛼 ,\n\n𝐽Φ2,2 = 𝛼𝑝 2Υ𝑘=2𝐷2h𝛼𝜃 ˆ𝑞20Υ 𝑘=0𝐷0 + ˆ𝑞2𝜃ˆ 𝛼 1Φ 𝑘=1𝐷1𝛼𝜃ˆ ˆΥ 𝑘=0𝐷0 + (1 − ˆ)𝐼𝜃ˆ 𝛼 + (1 − ˆ)𝐼𝛼 i + (1 − 𝛼)𝐼,\n\n𝐽Φ2,𝑗≠2 = 𝛼𝑝 2Υ𝑘=2𝐷2h𝛼𝜃 ˆ𝑞20Υ 𝑘=0𝐷0 + ˆ𝑞2𝜃ˆ 𝛼 1Φ 𝑘=1𝐷1𝛼𝜃ˆ ˆΥ 𝑘=0𝐷0 + (1 − ˆ)𝐼𝜃ˆ 𝛼 + (1 − ˆ)𝐼𝛼 ,\n\nwhere 𝐷𝑘 represents the Jacobian of the route cost functions evaluated at predicted flow 𝝅𝑘,(𝑡+1) and Υ𝑘𝜃 𝝅𝑘,(𝑡+1). the Jacobian of Logit operator with 𝜃 evaluated at 𝒄\n\nProof. The derivation can be found in Appendix G."
+  },
+  {
+    "id_": "30d9432f-8203-4ea6-8158-5b0df135b580",
+    "text": "# 6.2.2 Stability near the SUE\n\nIf 𝜃 ≠ 𝜃ˆ, the block submatrices in (34) would not commute with each other, and thus |𝜆𝐼 − 𝐽Φ| entails directly calculating the inverse matrix of either one of these submatrices. However, none of these inverse submatrices has a closed-form. Hence, we analytically examine the case of 𝜃 = 𝜃ˆ only."
+  },
+  {
+    "id_": "6bc362ee-ebea-46c9-b037-8c1c6b96e517",
+    "text": "# Proposition 7.\n\nDenote 𝜌𝑖 as the 𝑖-th eigenvalue of Υ𝜃 𝒄  ˜𝒙★ 𝐷  ˜𝒙★ at the SUE under Assumption 1 and 𝜌𝑖 ≤ 0, ∀𝑖. Define function 𝜓(𝜌; 𝛼, ˆ, 𝑝0 , 𝑝1 , 𝑝2) ≡ 𝛼 ˆ𝛼2 𝑝2 0+𝑝1 𝜌3 + (𝛼 ˆ − 𝛼 ˆ𝑝0 −𝑝1 𝛼 ˆ𝛼2 𝑝2 0+𝑝𝑝𝑝11 )𝜌𝑖 2+ (𝛼 ˆ𝑝0 − 𝛼 ˆ + 𝛼)𝜌𝑖 + (1 − 𝛼) where 𝑝0 + 𝑝1 + 𝑝2 = 1. When 𝜃 = 𝜃 and |𝐾| ≤ 3, the𝛼 ˆ\n\n30"
+  },
+  {
+    "id_": "90ceaa36-48e8-40b7-a7f1-adab17ee9046",
+    "text": "# Stability Analysis of SUE\n\nSUE is locally asymptotically stable when −1 &lt; 𝜓(𝜌; 𝛼, 𝛼𝑖, ˆ, 𝑝0, 𝑝1, 𝑝2) &lt; 1, ∀𝑖. If |𝐾| = 2, then 𝑝2 = 0.\n\nIf |𝐾| = 1, then 𝑝1 = 𝑝2 = 0, 𝑝0 = 1 and ˆ = 𝛼.𝛼"
+  },
+  {
+    "id_": "42705dd9-e7b3-440e-9c66-f4fced98adb7",
+    "text": "# Proof\n\nSee Appendix H.\n\n□"
+  },
+  {
+    "id_": "e0aba8a4-3d94-4f2d-9ae7-c01ce3e7da3c",
+    "text": "# Remark 4\n\nRecall that the stability of the CH-NTP dynamic does not depend on the distribution of strategic thinking levels (i.e., 𝑝0, 𝑝1, and 𝑝2) when the projection operator always yields positive flows (see Proposition 3). In contrast, the proportions would affect the stability of the CH-Logit dynamic even though the Logit operator always generates positive flows.\n\n|𝜓(𝜌; 𝛼, 𝛼, 𝑝\", 𝑝#, 𝑝$)!|𝜓(𝜌; 𝛼, 𝛼, 𝑝\", 𝑝#, 𝑝$)!|\n|---|---|\n|(1,1)|(1,1)|\n|1 − 𝛼|1 − 𝛼|\n|𝜌!|𝜌!|\n|-1|-1|\n|case (i)|case (ii)|\n\n|𝜓(𝜌; 𝛼, 𝛼, 𝑝\", 𝑝#, 𝑝$)!|𝜓(𝜌; 𝛼, 𝛼, 𝑝\", 𝑝#, 𝑝$)!|\n|---|---|\n|(1,1)|(1,1)|\n|1 − 𝛼|1 − 𝛼|\n|𝜌!|𝜌!|\n|-1|-1|\n|case (iii)|case (iv)|\n\nstable region\n\nunstable region"
+  },
+  {
+    "id_": "967828f9-60e0-43eb-b78e-ac2c2de28ca2",
+    "text": "# Figure 10\n\nSketches of stable and unstable regions of the CH-Logit dynamic under four possible scenarios of 𝜓(𝜌; 𝛼, ˆ, 𝑝0, 𝑝1, 𝑝2).\n\nScrutinization of the cubic function 𝜓(𝜌; 𝛼, ˆ, 𝑝0, 𝑝1, 𝑝2) shows that it crosses points (1, 1) and (0, 1 − 𝛼) and exhibits different shapes depending on 𝛼, 𝛼ˆ, 𝑝0, 𝑝1 and 𝑝2. Figure 10 depicts four possible scenarios when determining the stable region. Here the stable/unstable region refers to the region of the five parameters that make the SUE stable/unstable (i.e., whether or not 𝜓(𝜌𝑖; 𝛼, ˆ, 𝑝0, 𝑝1, 𝑝2) ∈ (−1, 1), ∀𝜌𝑖). They are classified based on whether the cubic function has one or three real roots (which may not be distinct) at 1 or −1. The analytical results of the"
+  },
+  {
+    "id_": "c32928ee-461c-4ce4-9e00-60c04937e1a1",
+    "text": "# 6.2.2.1 Perfect prediction\n\nEven under ˆ = 𝛼, the stability condition of the CH-Logit dynamic given by Proposition 7 is much more complex than the CH-NTP dynamic. We explore the stability numerically. Given an eigenvalue 𝜌𝑖, we enumerate all the possible combinations of 𝑝0 and 𝑝1 in a resolution of 0.001 (𝑝2 is not required as 𝑝2 = 1 − 𝑝0 − 𝑝1) with 𝛼 ∈ {0.2, 0.5, 0.8} and check whether the stability condition is satisfied as per Proposition 7. Stable and unstable regions under different values of 𝜌𝑖 are depicted in Figure 11. Some observations can be made on these plots:\n\n|𝑝!|𝑝!|\n|---|---|\n|1.0|1.0|\n|unstable|unstable|\n|stable|stable|\n|0.8|0.8|\n|𝛼 = 0.2|𝛼 = 0.5|\n|0.6|0.6|\n|𝛼 = 0.8| |\n|0.4|0.4|\n|0.2|0.2|\n|0.0|0.0|\n|0.0|0.0|\n|0.2|0.2|\n|0.4|0.4|\n|0.6|0.6|\n|0.8|0.8|\n|1.0|1.0|\n\n(a) 𝜌𝑖 ≥ −1\n\n(b) 𝜌𝑖 = −3\n\n|𝑝!|𝑝!|\n|---|---|\n|0.8|0.8|\n|unstable|unstable|\n|stable|stable|\n|0.6|0.6|\n|𝛼 = 0.2|𝛼 = 0.2|\n|𝛼 = 0.5|𝛼 = 0.5|\n|𝛼 = 0.8|𝛼 = 0.8|\n|0.4|0.4|\n|0.2|0.2|\n|0.0|0.0|\n\n(c) 𝜌𝑖 = −6\n\n(d) 𝜌𝑖 = −9\n\nFigure 11: Stable and unstable regions of the CH-Logit dynamic with ˆ = 𝛼 w.r.t. different eigenvalues 𝜌𝑖.\n\n(i) When 𝜌𝑖 ≥ −1, the system is always stable irrespective of any parameter. To explain, note\n\n32"
+  },
+  {
+    "id_": "f7276a55-2372-4a78-accf-dc56c6a80312",
+    "text": "# 6.2.2.2 Imperfect prediction when |𝐾| = 2\n\nThe cubic function 𝜓(𝜌; 𝛼, ˆ, 𝑝0 , 𝑝1 , 𝑝2) in Proposition 7 reduces to a quadratic or linear function 𝛼 when |𝐾| = 2 or 1, respectively. In these two cases, the stable region in terms of 𝜌𝑖 can be succinctly described by the key parameters. Proposition 8 gives the results, followed by the discussions on how over- and under-predictions will affect the stability."
+  },
+  {
+    "id_": "61e337ed-0d0f-43eb-96d8-9ac8350f3f24",
+    "text": "# Proposition 8.\n\nThe CH-Logit dynamic with |𝐾| = 1 is locally asymptotically stable at the SUE under Assumption 1 when 𝜌𝑖 > 𝛼−2, ∀𝑖. When 𝜃 = 𝜃, for |𝐾| = 2, the SUE under Assumption 1 is locally asymptotically stable when one of the following two conditions holds for all 𝜌:\n\n1. 1−𝛼+ 𝛼(1− ˆ+ ˆ𝑝02𝑖)𝛼 > −1 and 𝜌𝑖 > (𝑝011) ˆ − 𝛼;\n2. 1 − 𝛼 + 𝛼(1− ˆ+ ˆ𝑝0)24 ˆ(𝑝𝛼𝛼0−1)𝛼 1(−r 𝛼(1+ ˆ− ˆ𝑝0)+8 ˆ(𝑝0−1)+𝛼(𝑝10−1) +1), and 𝑓1(𝛼, ˆ, 𝑝0) ≡:< −1 and {𝜌𝑖 : (𝑝−1) ˆ ≤ 𝜌𝑖 ≤ 𝑓0(𝛼, 𝛼, 𝑝0)} ∪ {𝜌𝑖 𝛼 𝛼2(𝑝0−1)𝛼22 𝑓1(𝛼, ˆ, 𝑝0) ≤ 𝜌𝑖 < 0}.\n\nHere 𝑓0(𝛼, ˆ, 𝑝0) ≡ 2 𝛼 𝛼 𝛼 ˆ𝛼 ˆ 𝛼 1(r 𝛼(1+ ˆ− ˆ𝑝0)+8 ˆ(𝑝0−1)+ 2 𝛼𝛼 ˆ𝛼2(𝑝0−1)2 𝛼 2 𝛼 𝛼ˆ(𝑝10−1) + 1)."
+  },
+  {
+    "id_": "1a6348a4-675f-4cf2-a591-1e31f5d8b24d",
+    "text": "# Proof.\n\nSee Appendix I.\n\nProposition 8 reveals insights into how the strategic-thinking behavior and associated over- and under-predictions affect the stability by comparing the stable region size between CH-Logit models with |𝐾| = 1 and 2. The discussion is as follows."
+  },
+  {
+    "id_": "9420dce0-8613-4f26-881c-26e493084bae",
+    "text": "# Over-prediction ( ˆ ≥ 𝛼)𝛼\n\nFor case (i) of |𝐾| = 2 in Proposition 8, solving 1 − 𝛼 + 𝛼(1− ˆ+ ˆ𝑝0)24 ˆ(𝑝𝛼𝛼0−1)𝛼 > −1 with 𝛼ˆ ≥ 𝛼 yields\n\n𝑝0 ≤ ℎ(𝛼, ˆ) ≡ 2√2q− 2 ˆ𝛼𝛼−22 + 𝛼 ˆ+𝛼−4. Noting that ℎ(𝛼, ˆ) is monotonically increasing in ˆ and 𝛼 𝛼𝛼 ˆ𝛼 𝛼0ℎ(𝛼, ˆ = 𝛼) ≥ 2(√2−1), we obtain ℎ(𝛼, ˆ) ≥ 2(√2−1) ≈ 0.828. The stability condition for |𝐾| = 1p𝛼𝛼 requires all the 𝜌𝑖 > 𝛼−2𝛼 while the condition for |𝐾| = 2 needs all the 𝜌𝑖 > (𝑝011) ˆ − 𝛼. Comparing these two thresholds yields:\n\n(𝑝011) ˆ − 𝛼−𝛼−2 𝛼 < 0 when 𝑝0 > 𝑔(𝛼, ˆ) ≡ 𝛼 ˆ+𝛼−2 ˆ𝛼 𝛼 ˆ−2 ˆ and (𝑝011) ˆ − 𝛼−𝛼−2 𝛼 > 0 when 𝑝0 < 𝑔(𝛼, ˆ). Hence, the stable region is expanded when 𝑔(𝛼, ˆ) < 𝑝0 < ℎ(𝛼, ˆ), and shrunk when 0 < 𝑝0 < 𝑔(𝛼, ˆ).\n\nFor case (ii) of |𝐾| = 2, 𝑝0 > ℎ(𝛼, ˆ). Combined size of the two separated stable regions over 𝜌𝑖 is 𝑓0(𝛼, ˆ, 𝑝0) − 𝛼 (𝑝−11) ˆ + 0 − 𝑓1(𝛼, ˆ, 𝑝0) = 𝛼 ˆ(1−𝑝0) ·1 less than 2−𝛼𝛼 when 𝑝0 > ℎ(𝛼, ˆ). Hence, the total size of the two separated stable regions is expanded.\n\nFigure 12 summarizes the above discussion by depicting how the stable region alters when |𝐾| changes from 1 to 2 under different 𝑝0, 𝛼, 𝛼. Note how the parametric space of 𝑝0 and 𝛼ˆ with a shrinking stable region enlarges as over-prediction becomes more severe (i.e., 𝛼𝛼ˆ becomes larger).\n\n|1.0| | | | |\n|---|---|---|---|---|\n|0.8| | | |2|\n|0.6| | | |h(α,α)|\n|0.4| | | |g(α,α)|\n|0.2|ˆa = 1|a|ˆa = 1.1|a|\n|0.0| | | |ˆa = 1.2|\n\nFigure 12: Sketch of how the stable region alters when |𝐾| changes from 1 to 2 under different 𝑝0, 𝛼, 𝛼, and 𝛼ˆ ≥ 𝛼.\n\n34"
+  },
+  {
+    "id_": "110e10ed-12c6-4919-bb0b-b93deab57e06",
+    "text": "# Under-prediction ( ˆ ≤ 𝛼)𝛼"
+  },
+  {
+    "id_": "e4e3bcc0-a37b-4139-8326-bd699c5d693e",
+    "text": "# Scenario (1): 𝛼 > 3 − 2√2ˆ\n\nConsider first case (i) of |𝐾| = 2 in Proposition 8 where 𝑓 ∗(𝛼, ˆ, 𝑝0) > −1 and 𝑝0 < ℎ(𝛼, ˆ). The discussion is divided into two sub-cases:\n\n- when ˆ ≥ −𝛼, solving (𝑝011) ˆ < 𝛼−2− 𝛼 yields 𝑝0 > 𝑔(𝛼, ˆ) and solving (𝑝011) ˆ > 𝛼−2− 𝛼 obtains 𝑝0 < 𝑔(𝛼, ˆ). Hence, the region is expanded when 𝑔(𝛼, ˆ) < 𝑝0 < ℎ(𝛼, ˆ) and shrunk when 𝑝0 < 𝑔(𝛼, ˆ). It can be verified that 𝑔(𝛼, ˆ) is monotonically increasing in ˆ and that ℎ(𝛼, ˆ) − 𝑔(𝛼, ˆ) is monotonically decreasing in ˆ when 0 < 𝛼, ˆ < 1. Hence, the parametric space of 𝑝0, 𝛼, and ˆ (< 𝛼) rendering the stable region shrunk is smaller than the perfect prediction case, while the parametric space leading to an expanded stable region is larger than the perfect prediction case;\n- when ˆ𝛼 < 2−𝛼, (𝑝011) ˆ < 𝛼−2− 𝛼 always holds and thus the expanded region is simply 𝑝0 < ℎ(𝛼, ˆ). When prediction behaviors are considered, no stable region of |𝐾| = 1 is shrunk.\n\nFor case (ii) where 𝑓 ∗(𝛼, ˆ, 𝑝0) < −1, 𝑝0 > ℎ(𝛼, ˆ), it is verified that 𝑓0(𝛼, ˆ, 𝑝0) −(𝑝−1) ˆ 𝛼 𝛼 𝛼 1 𝛼+ 0 − 𝑓1(𝛼, ˆ, 𝑝0) > 2−𝛼. Hence, when 𝑝0 > ℎ(𝛼, ˆ), the stable region is separated and the combined stable region size increased. Since ℎ(𝛼, ˆ) is monotonically increasing in ˆ, the parametric space rendering the total size of the stable region greater is larger than the perfect prediction case.\n\nThe above discussion is summarized in Figure 13. Note how the parametric space of 𝑝0 and 𝛼 with an expanding stable region enlarges as a “moderately” small ˆ ∈ (3 − 2√2, 𝛼) increases. In other words, a mild under-prediction helps stabilize the CH-Logit dynamic, which is very similar to the finding of the CH-NTP dynamic."
+  },
+  {
+    "id_": "d84319de-f5ad-4650-816e-4b6edb906b0e",
+    "text": "# Scenario (2): ˆ𝛼 < 3 − 2√2\n\nThis scenario depends on the comparison between 8 ˆ𝛼2 and 𝛼. When 8 ˆ𝛼2 > 𝛼, discussion is the same as the case of 𝛼 > 3 − 2√2; i.e., it helps stabilize the dynamic. When 8 ˆ𝛼2 < 𝛼, 𝑓 ∗(𝛼, ˆ, 𝑝0) < −1 always holds and thus the stable region is separated, while the combined size is increased. The latter case is similar to the CH-NTP dynamic with ˆ𝛾 < 2 𝛾."
+  },
+  {
+    "id_": "e681d828-5f0a-4f05-8005-23e6971d5275",
+    "text": "# 1.0\n\nthe stable region is separated and the combined size is increased"
+  },
+  {
+    "id_": "33057d35-936d-44da-9302-be1e64109bb4",
+    "text": "# 0.8\n\nthe stable region is expanded\n\nh(α,α)!"
+  },
+  {
+    "id_": "9e5f7fc9-67c8-4716-9409-13a20bdf9112",
+    "text": "# 0.6\n\ng(α,α)!"
+  },
+  {
+    "id_": "218d0809-b4bd-4ac6-9668-f9a29603c878",
+    "text": "# 0.4"
+  },
+  {
+    "id_": "10235bf2-dc63-48ab-91cb-6b76e0babac1",
+    "text": "# 0.2\n\nthe stable region is shrunk"
+  },
+  {
+    "id_": "dda11454-2425-4c14-8458-fb296ad9d327",
+    "text": "# 0.0\n\n0.2 0.3 0.4 0.5 0.6 0.7 0.8 0.9 1.0\n\na\n\nFigure 13: Sketch of how the stable region changes when |𝐾| changes from 1 to 2 under different 𝑝0, 𝛼,ˆ and 3 − 2√2 < ˆ ≤ 𝛼."
+  },
+  {
+    "id_": "e9850f91-e25a-4c7b-aa9d-cbc59f3ec40f",
+    "text": "# Summary\n\nThe CH-Logit dynamic bears similarity to the CH-NTP dynamic on how under- and over-predictions affect the stability near the UE. Over-predictions ( ˆ𝛼 > 𝛼 for CH-Logit dynamic and ˆ𝛾 > 𝛾 for CH-NTP dynamic) render the system less stable while mild under-predictions (3 − 2√2 < ˆ𝛼 < ˆ for CH-Logit dynamic and 2 < ˆ𝛼 𝛾 𝛾 < 𝛾 for CH-NTP dynamic) help stabilize the small perturbations near the UE. Severe under-predictions (ˆ 𝛼 < 3 − 2√2 and( ˆ+1)𝛼8 ˆ𝛼2 < 𝛼 for CH-Logit dynamic and ˆ𝛾 < 2 𝛾 for CH-NTP dynamic) separate the stable region into two pieces while the total size of the region is increased.\n\nWhen more travelers tend to strategically predict others’ behaviors (i.e., a larger 𝑝1), the system becomes less stable and behaves like the over-prediction case.\n\nNumerical experiments pertaining to the CH-Logit dynamic confirm the above theoretical results. They are omitted here for simplicity since the results and findings (such as the multi-equilibria phenomenon) are similar to the case of the CH-NTP dynamic, except that the DUE becomes the SUE."
+  },
+  {
+    "id_": "82e829f0-6fa2-4daa-aaec-f8e8b06875d9",
+    "text": "# 7 Conclusions and Future Research\n\nThis paper developed a new modeling framework of day-to-day network flow dynamics that incorporates hierarchical cognitive levels (Camerer et al., 2004) to better capture travelers’\n\n36"
+  },
+  {
+    "id_": "b29af455-59a5-480d-806b-00b157f7375d",
+    "text": "# Dynamic Re-Routing Behaviors\n\nThe classical NTP and Logit dynamics, on behalf of the DUE and SUE cases, respectively, were extended into the framework. Considering heterogeneity in travelers’ strategic-reasoning levels, the proposed CH-NTP model significantly improved the goodness-of-fit for a recent virtual experiment, which traditional day-to-day models could not achieve. For both dynamics, stationary states and local stabilities near the user equilibria were theoretically analyzed and verified by numerical experiments.\n\nWe find that in addition to converging to the classical user equilibria (DUE/SUE), the proposed dynamics may also converge to other equilibria, depending on the initial conditions and parameters. For example, with a large 𝛾, different initial conditions lead to different equilibria, while under a small 𝛾, various initial points tend to evolve to the same DUE tardily (see again Figures 5a and b). Moreover, when higher-step travelers can accurately predict lower-step ones’ switching propensities, thinking multiple steps ahead does not affect the local stability of the CH-NTP dynamic around the DUE, and the stability condition does not depend on the distribution of strategic-reasoning levels. In comparison, the stability condition for the CH-Logit dynamic largely depends on the proportion of heterogeneous travelers.\n\nFinally, we find that for both dynamics with |𝐾| = 2: (i) when 1-step travelers over-predict 0-step ones’ switching propensity, the stable region is shrunk, and when the over-prediction is severe (e.g., 𝛾 > ¯ for the CH-NTP dynamic), the UE is always unstable; (ii) when 1-step travelers moderately under-predict 0-step ones’ re-routing tendency, the stable region is increased; and (iii) when the under-predictions are severe, the stable region is separated into two parts.\n\nDespite the fresh findings generated, our models still have limitations, which may direct future research. First, we select two widely-used day-to-day models from the literature as examples of the general modeling framework. Many more classical day-to-day models can be analyzed in the future (e.g., Smith, 1979b, 1983; Nagurney and Zhang, 1997; Jin, 2007; Xiao et al., 2019), including those that consider travelers’ learning behavior (Horowitz, 1984; Cantarella and Cascetta, 1995; Bie and Lo, 2010). We surmise that findings on local stability still generally hold when hierarchical cognitive behaviors are incorporated into these models, provided that the dynamic itself exhibits similar properties (e.g., negative definiteness of the Jacobian).\n\nSecond, the virtual experiment data suggest that travelers’ re-routing tendencies become weaker through repeated game play. Further research can use time-varying parameters to capture such a phenomenon better. Third, future research can investigate how different measures, such as congestion tolling (Tan et al., 2015; Guo et al., 2016; Liu et al., 2017; Han).\n\n37"
+  }
+]
